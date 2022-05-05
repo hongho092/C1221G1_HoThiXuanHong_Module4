@@ -30,7 +30,7 @@
 <div>
     <h4>${mess}</h4>
     <h:forEach var="con" items="${con}">
-        ${con}
+        ${con}<br>
     </h:forEach>
 </div>
 </body>
