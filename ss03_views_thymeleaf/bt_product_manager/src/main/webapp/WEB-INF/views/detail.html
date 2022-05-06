@@ -6,6 +6,7 @@
     <th:block th:replace="~{common_product :: head_bootstrap}"></th:block>
 </head>
 <body>
+<th:block th:replace="~{common_product :: head}"></th:block>
 <div class="text-center pb-4">
     <h2 class="text-danger text-center pt-5 pb-2">DETAIL PRODUCT</h2>
     <button class="btn btn-warning"><a href="/" class="text-decoration-none">Go List Product</a></button>
@@ -27,7 +28,7 @@
         <tr>
             <td class="col-4"></td>
             <th class="col-3">Price of Product</th>
-            <td class="col-3" th:text="${product.price}"></td>
+            <td class="col-3" th:text="${product.price}+VND"></td>
             <td class="col-2"></td>
         </tr>
         <tr>
