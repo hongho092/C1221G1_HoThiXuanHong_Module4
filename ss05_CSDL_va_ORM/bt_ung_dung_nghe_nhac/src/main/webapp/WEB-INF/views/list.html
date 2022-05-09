@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{common_music :: head_bootstrap}"></th:block>
+</head>
+<body>
+<th:block th:replace="~{common_music :: head}"></th:block>
+<div class="text-center pb-4">
+    <h2 class="text-danger text-center pt-5 pb-2">LIST SONG</h2>
+    <button class="btn btn-warning"><a href="/create" class="text-decoration-none">Create Song</a></button>
+    <p class="text-success pt-2" th:text="${mess}"></p>
+</div>
+<div class="row pb-4">
+    <div class="col-8"></div>
+    <div class="col-3">
+        <form class="d-flex" method="post" action="/search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="px-5">
+    <table class="table">
+        <tr>
+            <th>#</th>
+            <th>ID</th>
+            <th>Name of Song</th>
+            <th>Singer</th>
+            <th>Kind of Song</th>
+            <th>Path of Song</th>
+            <th>Option</th>
+        </tr>
+        <tr th:each="music, hong : ${musicList}">
+            <td th:text="${hong.count}"></td>
+            <td><a class="text-decoration-none" th:href="@{/detail(id=${music.id})}"><th:block th:text="${music.id}"></th:block></a></td>
+            <td><a class="text-decoration-none" th:href="@{/detail(id=${music.id})}"><th:block th:text="${music.name}"></th:block></a></td>
+            <td th:text="${music.singer}"></td>
+            <td th:text="${music.kindOfMusic}"></td>
+            <td><a class="text-decoration-none" th:href="@{${music.path}}">Click</a></td>
+            <td>
+                <button class="btn btn-danger"><a class="text-decoration-none" th:href="@{/delete(id=${music.id})}">Delete</a></button>
+                <button class="btn btn-warning"><a class="text-decoration-none" th:href="@{/edit(id=${music.id})}">Edit</a></button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<th:block th:replace="~{common_music :: foot_bootstrap}"></th:block>
+</body>
+</html>

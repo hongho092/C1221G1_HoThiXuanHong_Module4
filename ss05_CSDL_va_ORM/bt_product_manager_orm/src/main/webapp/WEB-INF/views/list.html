@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{common_product :: head_bootstrap}"></th:block>
+</head>
+<body>
+<th:block th:replace="~{common_product :: head}"></th:block>
+<div class="text-center pb-4">
+    <h2 class="text-danger text-center pt-5 pb-2">LIST PRODUCT</h2>
+    <button class="btn btn-warning"><a href="/create" class="text-decoration-none">Create Product</a></button>
+    <p class="text-success pt-2" th:text="${mess}"></p>
+</div>
+<div class="row pb-4">
+    <div class="col-8"></div>
+    <div class="col-3">
+        <form class="d-flex" method="post" action="/search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="px-5">
+    <table class="table">
+        <tr>
+            <th class="col-1">#</th>
+            <th class="col-1">ID</th>
+            <th class="col-2">Name</th>
+            <th class="col-2">Price</th>
+            <th class="col-2">Detail</th>
+            <th class="col-1">Producer</th>
+            <th class="col-3">Option</th>
+        </tr>
+        <tr th:each="product, hong : ${productList}">
+            <td class="col-1" th:text="${hong.count}"></td>
+            <td class="col-1"><a class="text-decoration-none" th:href="@{/detail(id=${product.id})}"><th:block th:text="${product.id}"></th:block></a></td>
+            <td class="col-2"><a class="text-decoration-none" th:href="@{/detail(id=${product.id})}"><th:block th:text="${product.name}"></th:block></a></td>
+            <td class="col-2" th:text="${product.price}+ VND"></td>
+            <td class="col-2" th:text="${product.detail}"></td>
+            <td class="col-1" th:text="${product.producer}"></td>
+            <td  class="col-3 a BV">
+                <button class="btn btn-danger"><a class="text-decoration-none" th:href="@{/delete(id=${product.id})}">Delete</a></button>
+                <button class="btn btn-warning"><a class="text-decoration-none" th:href="@{/edit(id=${product.id})}">Edit</a></button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<th:block th:replace="~{common_product :: foot}"></th:block>
+<th:block th:replace="~{common_product :: foot_bootstrap}"></th:block>
+</body>
+</html>

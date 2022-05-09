@@ -16,11 +16,14 @@ import java.util.List;
 @Controller
 public class ProductController {
 
-    private final ProductService productService;
+    @Autowired
+    private ProductService productService;
 
-    public ProductController(ProductService productService) {
-        this.productService = productService;
-    }
+//    private final ProductService productService;
+//
+//    public ProductController(ProductService productService) {
+//        this.productService = productService;
+//    }
 
     @GetMapping(value = "")
     public String goList(Model model){
