@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{common_product :: head_bootstrap}"></th:block>
+</head>
+<body>
+<th:block th:replace="~{common_product :: head}"></th:block>
+<div class="text-center pb-4">
+    <h2 class="text-danger text-center pt-5 pb-2">LIST PRODUCT</h2>
+    <button class="btn btn-warning"><a href="/create" class="text-decoration-none">Create Product</a></button>
+    <p class="text-success pt-2" th:text="${mess}"></p>
+</div>
+<div class="row pb-4">
+    <div class="col-8"></div>
+    <div class="col-3">
+        <form class="d-flex" method="post" action="/search">
+            <input class="form-control me-2" type="search" placeholder="Name" aria-label="Search" name="search">
+            <input class="form-control me-2" type="search" placeholder="Detail" aria-label="Search" name="search1">
+            <input class="form-control me-2" type="search" placeholder="Category" aria-label="Search" name="search2">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="p-5">
+    <table class="table">
+        <tr>
+            <th>#</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Detail</th>
+            <th>Producer</th>
+            <th>Category</th>
+            <th>Option</th>
+        </tr>
+        <tr th:each="product, hong : ${productList}">
+            <td th:text="${hong.count}"></td>
+            <td><a class="text-decoration-none" th:href="@{/detail(id=${product.id})}"><th:block th:text="${product.id}"></th:block></a></td>
+            <td><a class="text-decoration-none" th:href="@{/detail(id=${product.id})}"><th:block th:text="${product.name}"></th:block></a></td>
+            <td th:text="${product.price}+ VND"></td>
+            <td th:text="${product.detail}"></td>
+            <td th:text="${product.producer}"></td>
+            <td th:text="${product.category.name}"></td>
+            <td>
+                <button class="btn btn-danger"><a class="text-decoration-none" th:href="@{/delete(id=${product.id})}">Delete</a></button>
+                <button class="btn btn-warning"><a class="text-decoration-none" th:href="@{/edit(id=${product.id})}">Edit</a></button>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="row">
+    <div class="col-8"></div>
+    <div class="col-4">
+        <a th:if="${productList.hasPrevious()}" th:href="@{/(page=${productList.number - 1})}">Previous</a>
+        <span th:text="${productList.number + 1}"></span>
+        /
+        <span th:text="${productList.totalPages}"></span>
+        <a th:if="${productList.hasNext()}" th:href="@{/(page=${productList.number + 1})}">Next</a>
+    </div>
+</div>
+
+
+<!--<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>-->
+<!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                y-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+<!--                <button type="button" class="btn btn-primary">Understood</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<th:block th:replace="~{common_product :: foot}"></th:block>
+<th:block th:replace="~{common_product :: foot_bootstrap}"></th:block>
+</body>
+</html>
