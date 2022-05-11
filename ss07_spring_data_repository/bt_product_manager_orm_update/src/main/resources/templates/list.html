@@ -12,13 +12,16 @@
     <button class="btn btn-warning"><a href="/create" class="text-decoration-none">Create Product</a></button>
     <p class="text-success pt-2" th:text="${mess}"></p>
 </div>
-<div class="row pb-4">
-    <div class="col-8"></div>
-    <div class="col-3">
-        <form class="d-flex" method="post" action="/search">
-            <input class="form-control me-2" type="search" placeholder="Name" aria-label="Search" name="search">
-            <input class="form-control me-2" type="search" placeholder="Detail" aria-label="Search" name="search1">
-            <input class="form-control me-2" type="search" placeholder="Category" aria-label="Search" name="search2">
+<div class="row pb-4 pe-3">
+    <div class="col-7"></div>
+    <div class="col-5">
+        <form class="d-flex" action="/">
+            <input class="form-control me-2" type="search" placeholder="Name" aria-label="Search" name="search_name">
+            <input class="form-control me-2" type="search" placeholder="Detail" aria-label="Search" name="search_detail">
+            <select name="search_category" class="form-select" aria-label="Default select example" >
+                <option th:value="no">Category</option>
+                <option th:each="category : ${categoryList}" th:value="${category.name}"  th:text="${category.name}"></option>
+            </select>
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
     </div>

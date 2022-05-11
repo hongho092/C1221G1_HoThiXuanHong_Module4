@@ -4,6 +4,7 @@ import com.example.model.Category;
 import com.example.model.Product;
 import com.example.service.ICategoryService;
 import com.example.service.IProductService;
+import jdk.nashorn.internal.runtime.options.Option;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class ProductController {
@@ -28,12 +30,35 @@ public class ProductController {
     private ICategoryService categoryService;
 
     @GetMapping(value = "")
-    public String goList(@PageableDefault(value = 2) Pageable pageable, Model model){
-        Page<Product> productList = productService.findAll(pageable);
-        System.out.println(productList.getSize());
+    public String goList(@PageableDefault(value = 2) Pageable pageable, Model model,
+                         @RequestParam Optional<String> search_name,
+                         @RequestParam Optional<String> search_detail) {
+        String searchName = search_name.orElse("");
+        String searchDetail = search_detail.orElse("");
+        Page<Product> productList = productService.findAll1(searchName, searchDetail, pageable);
         model.addAttribute("productList", productList);
+        model.addAttribute("categoryList", categoryService.findAll());
         return "list";
     }
+
+
+//    @GetMapping(value = "")
+//    public String goList(@PageableDefault(value = 6) Pageable pageable, Model model,
+//                         @RequestParam Optional<String> search_name,
+//                         @RequestParam Optional<String> search_detail,
+//                         @RequestParam int search_category){
+//        String searchName = search_name.orElse("");
+//        String searchDetail = search_detail.orElse("");
+//        Page<Product> productList=null;
+//        if (search_category == 0) {
+//            productList = productService.findAll1(searchName, searchDetail, pageable);
+//        } else {
+//            productList = productService.findAll2(searchName, searchDetail, search_category, pageable);
+//        }
+//        model.addAttribute("productList", productList);
+//        model.addAttribute("categoryList", categoryService.findAll());
+//        return "list";
+//    }
 
     @GetMapping(value = "/create")
     public String goCreate(Model model) {
@@ -80,5 +105,4 @@ public class ProductController {
         redirectAttributes.addFlashAttribute("mess", "Edit Success");
         return "redirect:/";
     }
-
 }
