@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{common_product :: head_bootstrap}"></th:block>
+</head>
+<body>
+<th:block th:replace="~{common_product :: head}"></th:block>
+<div class="text-center pb-4">
+    <h2 class="text-danger text-center pt-5 pb-2">DETAIL PRODUCT</h2>
+    <button class="btn btn-warning"><a href="/" class="text-decoration-none">Go List Product</a></button>
+</div>
+<div class="px-5 col">
+    <table class="table">
+        <tr>
+            <td class="col-4"></td>
+            <th class="col-3">ID of Product</th>
+            <td class="col-3" th:text="${product.id}"></td>
+            <td class="col-2"></td>
+        </tr>
+        <tr>
+            <td class="col-4"></td>
+            <th class="col-3">Name of Product</th>
+            <td class="col-3" th:text="${product.name}"></td>
+            <td class="col-2"></td>
+        </tr>
+        <tr>
+            <td class="col-4"></td>
+            <th class="col-3">Price of Product</th>
+            <td class="col-3" th:text="${product.price}+VND"></td>
+            <td class="col-2"></td>
+        </tr>
+        <tr>
+            <td class="col-4"></td>
+            <th class="col-3">Detail of Product</th>
+            <td class="col-3" th:text="${product.detail}"></td>
+            <td class="col-2"></td>
+        </tr>
+        <tr>
+            <td class="col-4"></td>
+            <th class="col-3">Producer of Product</th>
+            <td class="col-3" th:text="${product.producer}"></td>
+            <td class="col-2"></td>
+        </tr>
+    </table>
+</div>
+<th:block th:replace="~{common_product :: foot}"></th:block>
+<th:block th:replace="~{common_product :: foot_bootstrap}"></th:block>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{common_blog :: head_bootstrap}"></th:block>
+</head>
+<body>
+<th:block th:replace="~{common_blog :: head}"></th:block>
+<div class="text-center pb-4">
+    <h2 class="text-danger text-center pt-5 pb-2">DETAIL BLOG</h2>
+    <button class="btn btn-warning"><a href="/" class="text-decoration-none">Go List Blog</a></button>
+</div>
+<div class="px-5 col">
+    <table class="table">
+        <tr>
+            <td class="col-4"></td>
+            <th class="col-3">ID of Blog</th>
+            <td class="col-3" th:text="${blog.id}"></td>
+            <td class="col-2"></td>
+        </tr>
+        <tr>
+            <td class="col-4"></td>
+            <th class="col-3">Name of Blog</th>
+            <td class="col-3" th:text="${blog.name}"></td>
+            <td class="col-2"></td>
+        </tr>
+        <tr>
+            <td class="col-4"></td>
+            <th class="col-3">Content of Blog</th>
+            <td class="col-3" th:text="${blog.content}"></td>
+            <td class="col-2"></td>
+        </tr>
+        <tr>
+            <td class="col-4"></td>
+            <th class="col-3">Date create Blog</th>
+            <td class="col-3" th:text="${blog.date}"></td>
+            <td class="col-2"></td>
+        </tr>
+        <tr>
+            <td class="col-4"></td>
+            <th class="col-3">Category of Blog</th>
+            <td class="col-3" th:text="${blog.category.name}"></td>
+            <td class="col-2"></td>
+        </tr>
+    </table>
+</div>
+<th:block th:replace="~{common_blog :: foot}"></th:block>
+<th:block th:replace="~{common_blog :: foot_bootstrap}"></th:block>
+</body>
+</html>
