@@ -29,36 +29,37 @@ public class ProductController {
     @Autowired
     private ICategoryService categoryService;
 
-    @GetMapping(value = "")
-    public String goList(@PageableDefault(value = 2) Pageable pageable, Model model,
-                         @RequestParam Optional<String> search_name,
-                         @RequestParam Optional<String> search_detail) {
-        String searchName = search_name.orElse("");
-        String searchDetail = search_detail.orElse("");
-        Page<Product> productList = productService.findAll1(searchName, searchDetail, pageable);
-        model.addAttribute("productList", productList);
-        model.addAttribute("categoryList", categoryService.findAll());
-        return "list";
-    }
-
-
 //    @GetMapping(value = "")
-//    public String goList(@PageableDefault(value = 6) Pageable pageable, Model model,
+//    public String goList(@PageableDefault(value = 3) Pageable pageable, Model model,
 //                         @RequestParam Optional<String> search_name,
-//                         @RequestParam Optional<String> search_detail,
-//                         @RequestParam int search_category){
+//                         @RequestParam Optional<String> search_detail) {
 //        String searchName = search_name.orElse("");
 //        String searchDetail = search_detail.orElse("");
-//        Page<Product> productList=null;
-//        if (search_category == 0) {
-//            productList = productService.findAll1(searchName, searchDetail, pageable);
-//        } else {
-//            productList = productService.findAll2(searchName, searchDetail, search_category, pageable);
-//        }
+//        Page<Product> productList = productService.findAll1(searchName, searchDetail, pageable);
 //        model.addAttribute("productList", productList);
 //        model.addAttribute("categoryList", categoryService.findAll());
 //        return "list";
 //    }
+
+
+    @GetMapping(value = "")
+    public String goList(@PageableDefault(value = 6) Pageable pageable, Model model,
+                         @RequestParam Optional<String> search_name,
+                         @RequestParam Optional<String> search_detail,
+                         @RequestParam Optional<Integer> search_category){
+        String searchName = search_name.orElse("");
+        String searchDetail = search_detail.orElse("");
+        int search_categoryVal = search_category.orElse(-1);
+        Page<Product> productList = null;
+        if (search_categoryVal == -1) {
+            productList = productService.findAll1(searchName, searchDetail, pageable);
+        } else {
+            productList = productService.findAll2(searchName, searchDetail, search_categoryVal, pageable);
+        }
+        model.addAttribute("productList", productList);
+        model.addAttribute("categoryList", categoryService.findAll());
+        return "list";
+    }
 
     @GetMapping(value = "/create")
     public String goCreate(Model model) {

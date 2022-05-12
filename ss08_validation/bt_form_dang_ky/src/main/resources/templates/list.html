@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{common_user :: head_bootstrap}"></th:block>
+</head>
+<body>
+<th:block th:replace="~{common_user :: head}"></th:block>
+<div class="text-center pb-4">
+    <h2 class="text-danger text-center pt-5 pb-2">LIST USER</h2>
+    <p class="text-success pt-2" th:text="${mess}"></p>
+</div>
+<div class="row pb-4 pe-3">
+    <div class="col-5"></div>
+    <div class="col-6">
+        <form class="d-flex" action="/">
+            <input class="form-control me-2" type="search" placeholder="Name" aria-label="Search" name="search_name">
+            <input class="form-control me-2" type="search" placeholder="Detail" aria-label="Search" name="search_detail">
+<!--            <select name="search_category" class="form-select" aria-label="Default select example" >-->
+<!--                <option th:value="no">Category</option>-->
+<!--                <option th:each="category : ${categoryList}" th:value="${category.name}"  th:text="${category.name}"></option>-->
+<!--            </select>-->
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="p-5">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+<!--                <th scope="col">Name</th>-->
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Number Phone</th>
+                <th scope="col">Date Of Birth</th>
+                <th scope="col">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user, hong : ${userList}">
+                <td th:text="${hong.count}"></td>
+                <td><a class="text-decoration-none" th:href="@{/detail(id=${user.id})}"><th:block th:text="${user.id}"></th:block></a></td>
+<!--                <td><a class="text-decoration-none" th:href="@{/detail(id=${user.id})}"><th:block th:text="${user.name}"></th:block></a></td>-->
+                <td th:text="${user.firstName} + ${user.lastName}"></td>
+                <td th:text="${user.firstName}"></td>
+                <td th:text="${user.lastName}"></td>
+                <td th:text="${user.numberPhone}"></td>
+                <td th:text="${user.dateOfBirth}"></td>
+                <td th:text="${user.email}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!--<div class="row">-->
+<!--    <div class="col-8"></div>-->
+<!--    <div class="col-4">-->
+<!--        <a th:if="${productList.hasPrevious()}" th:href="@{/(page=${productList.number - 1})}">Previous</a>-->
+<!--        <span th:text="${productList.number + 1}"></span>-->
+<!--        /-->
+<!--        <span th:text="${productList.totalPages}"></span>-->
+<!--        <a th:if="${productList.hasNext()}" th:href="@{/(page=${productList.number + 1})}">Next</a>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<!--<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>-->
+<!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <p>Are you sure to delete has name is ->-->
+<!--                    <span class="text-danger font-weight-bold" id="nameDelete"></span>-->
+<!--                </p>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <form th:action="@{/delete}">-->
+<!--                    <input type="hidden" name="action" value="delete">-->
+<!--                    <input type="hidden" name="id" id="idDelete">-->
+<!--                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>-->
+<!--                    <button type="submit" class="btn btn-danger">Delete</button>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<th:block th:replace="~{common_user :: foot}"></th:block>
+<th:block th:replace="~{common_user :: foot_bootstrap}"></th:block>
+</body>
+</html>
+<!--<script>-->
+<!--    function deleteProduct(id, name) {-->
+<!--        document.getElementById("idDelete").value = id;-->
+<!--        document.getElementById("nameDelete").innerText = name;-->
+<!--    }-->
+<!--</script>-->
