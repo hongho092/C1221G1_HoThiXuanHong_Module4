@@ -15,8 +15,8 @@
     <div class="col-5"></div>
     <div class="col-6">
         <form class="d-flex" action="/">
-            <input class="form-control me-2" type="search" placeholder="Name" aria-label="Search" name="search_name">
-            <input class="form-control me-2" type="search" placeholder="Detail" aria-label="Search" name="search_detail">
+            <input class="form-control me-2" type="search" placeholder="First Name" aria-label="Search" name="first_name">
+            <input class="form-control me-2" type="search" placeholder="Last Name" aria-label="Search" name="last_name">
 <!--            <select name="search_category" class="form-select" aria-label="Default select example" >-->
 <!--                <option th:value="no">Category</option>-->
 <!--                <option th:each="category : ${categoryList}" th:value="${category.name}"  th:text="${category.name}"></option>-->
@@ -46,7 +46,7 @@
                 <td th:text="${hong.count}"></td>
                 <td><a class="text-decoration-none" th:href="@{/detail(id=${user.id})}"><th:block th:text="${user.id}"></th:block></a></td>
 <!--                <td><a class="text-decoration-none" th:href="@{/detail(id=${user.id})}"><th:block th:text="${user.name}"></th:block></a></td>-->
-                <td th:text="${user.firstName} + ${user.lastName}"></td>
+                <td th:text="${user.firstName} +' '+ ${user.lastName}"></td>
                 <td th:text="${user.firstName}"></td>
                 <td th:text="${user.lastName}"></td>
                 <td th:text="${user.numberPhone}"></td>
@@ -56,16 +56,16 @@
         </tbody>
     </table>
 </div>
-<!--<div class="row">-->
-<!--    <div class="col-8"></div>-->
-<!--    <div class="col-4">-->
-<!--        <a th:if="${productList.hasPrevious()}" th:href="@{/(page=${productList.number - 1})}">Previous</a>-->
-<!--        <span th:text="${productList.number + 1}"></span>-->
-<!--        /-->
-<!--        <span th:text="${productList.totalPages}"></span>-->
-<!--        <a th:if="${productList.hasNext()}" th:href="@{/(page=${productList.number + 1})}">Next</a>-->
-<!--    </div>-->
-<!--</div>-->
+<div class="row">
+    <div class="col-8"></div>
+    <div class="col-4">
+        <a th:if="${userList.hasPrevious()}" th:href="@{/(page=${userList.number - 1}, key1=${firstName}, key2=${lastName})} ">Previous</a>
+        <span th:text="${userList.number + 1}"></span>
+        /
+        <span th:text="${userList.totalPages}"></span>
+        <a th:if="${userList.hasNext()}" th:href="@{/(page=${userList.number + 1}, key1=${firstName}, key2=${lastName})}">Next</a>
+    </div>
+</div>
 
 
 <!--<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">-->

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{common_product :: head_bootstrap}"></th:block>
+</head>
+<body>
+<th:block th:replace="~{common_product :: head}"></th:block>
+<div class="text-center pb-4">
+    <h2 class="text-danger text-center pt-5 pb-2">LIST PRODUCT</h2>
+<!--    <button class="btn btn-warning"><a href="/create" class="text-decoration-none">Create Product</a></button>-->
+    <p class="text-success pt-2" th:text="${mess}"></p>
+</div>
+<div class="row">
+<!--    <div class="col-5"></div>-->
+<!--    <div class="col-6">-->
+<!--        <form class="d-flex" action="/">-->
+<!--            <input class="form-control me-2" type="search" placeholder="Name" aria-label="Search" name="search_name">-->
+<!--            <input class="form-control me-2" type="search" placeholder="Detail" aria-label="Search" name="search_detail">-->
+<!--            <select name="search_category" class="form-select" aria-label="Default select example" >-->
+<!--                <option th:value="-1">Category</option>-->
+<!--                <option th:each="category : ${categoryList}" th:value="${category.id}"  th:text="${category.name}"></option>-->
+<!--            </select>-->
+<!--            <button class="btn btn-outline-success" type="submit">Search</button>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--    <div class="col-1"></div>-->
+</div>
+<div class="p-5">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">ID</th>
+                <th scope="col">Code</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Detail</th>
+                <th scope="col">Producer</th>
+                <th scope="col">Category</th>
+                <th scope="col">Option</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product, hong : ${productList}">
+                <td th:text="${hong.count}"></td>
+                <td><a class="text-decoration-none" th:href="@{/detail(id=${product.id})}"><th:block th:text="${product.id}"></th:block></a></td>
+                <td th:text="${product.code}"></td>
+                <td><a class="text-decoration-none" th:href="@{/detail(id=${product.id})}"><th:block th:text="${product.name}"></th:block></a></td>
+                <td th:text="${product.price}+' '+VND"></td>
+                <td th:text="${product.detail}"></td>
+                <td th:text="${product.producer}"></td>
+                <td th:text="${product.category.name}"></td>
+                <td>
+                    <button type="button" th:attr="onclick=|deleteProduct(${product.id},'${product.name}')|" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Delete
+                    </button>
+                    <button class="btn btn-warning"><a class="text-decoration-none" th:href="@{/edit(id=${product.id})}">Edit</a></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!--<div class="row">-->
+<!--    <div class="col-8"></div>-->
+    <div class="col-11">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-end">
+                <li class="page-item">
+                    <a class="page-link" th:if="${productList.hasPrevious()}" th:href="@{/(page=${productList.number - 1}, key1=${searchName}, key2=${searchDetail}, key3=${searchCategory})}">Previous</a>
+                </li>
+    <!--            <li class="page-item"><span th:text="${productList.number + 1}"></span></li>-->
+                <li class="page-item"><a class="page-link"><span th:text="${productList.number + 1}"></span></a></li>
+                <li class="page-item page-link">/</li>
+                <li class="page-item"><a class="page-link"><span th:text="${productList.totalPages}"></span></a></li>
+    <!--            <li class="page-item"><span th:text="${productList.totalPages}"></span></li>-->
+                <li class="page-item">
+                    <a class="page-link" th:if="${productList.hasNext()}" th:href="@{/(page=${productList.number + 1}, key1=${searchName}, key2=${searchDetail}, key3=${searchCategory})}">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+<!--    <div class="col-8"></div>-->
+<!--    <div class="col-4">-->
+<!--        <a th:if="${productList.hasPrevious()}" th:href="@{/(page=${productList.number - 1}, key1=${searchName}, key2=${searchDetail}, key3=${searchCategory})}">Previous</a>-->
+<!--        <span th:text="${productList.number + 1}"></span>-->
+<!--        /-->
+<!--        <span th:text="${productList.totalPages}"></span>-->
+<!--        <a th:if="${productList.hasNext()}" th:href="@{/(page=${productList.number + 1}, key1=${searchName}, key2=${searchDetail}, key3=${searchCategory})}">Next</a>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure to delete has name is ->
+                    <span class="text-danger font-weight-bold" id="nameDelete"></span>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <form th:action="@{/delete}">
+                    <input type="hidden" name="action" value="delete">
+                    <input type="hidden" name="id" id="idDelete">
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<th:block th:replace="~{common_product :: foot}"></th:block>-->
+<th:block th:replace="~{common_product :: foot_bootstrap}"></th:block>
+</body>
+</html>
+<script>
+    function deleteProduct(id, name) {
+        document.getElementById("idDelete").value = id;
+        document.getElementById("nameDelete").innerText = name;
+    }
+</script>
