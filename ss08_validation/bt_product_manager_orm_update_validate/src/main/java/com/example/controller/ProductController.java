@@ -78,8 +78,8 @@ public class ProductController {
 
     @PostMapping(value = "/save")
     public String createProduct(@ModelAttribute @Validated ProductDto productDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
-//        new ProductDto().validate(productDto, bindingResult);
-        new ProductDto().validate(productDto, bindingResult);
+        List<Product> productList = productService.findAll();
+        new ProductDto().validate1(productDto, bindingResult, productList);
         if(bindingResult.hasFieldErrors()) {
             List<Category> categoryList = categoryService.findAll();
             model.addAttribute("categoryList", categoryList);

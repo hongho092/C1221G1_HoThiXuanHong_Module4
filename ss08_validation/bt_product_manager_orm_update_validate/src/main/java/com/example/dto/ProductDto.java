@@ -2,8 +2,6 @@ package com.example.dto;
 
 import com.example.model.Category;
 import com.example.model.Product;
-import com.example.repository.IProductRepository;
-import com.example.service.ICategoryService;
 import com.example.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
@@ -107,7 +105,14 @@ public class ProductDto implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        ProductDto productDto = (ProductDto) target;
+    }
 
+    public void validate1(Object target, Errors errors, List<Product> productList) {
+        ProductDto productDto = (ProductDto) target;
+        for (int i=0; i<productList.size(); i++) {
+            if (productList.get(i).getCode().equals(productDto.code)) {
+                errors.rejectValue("code", "error", "Error");
+            }
+        }
     }
 }

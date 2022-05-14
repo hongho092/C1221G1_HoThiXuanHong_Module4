@@ -11,20 +11,22 @@
     <h2 class="text-danger text-center pt-5 pb-2">LIST USER</h2>
     <p class="text-success pt-2" th:text="${mess}"></p>
 </div>
-<div class="row pb-4 pe-3">
-    <div class="col-5"></div>
-    <div class="col-6">
-        <form class="d-flex" action="/">
-            <input class="form-control me-2" type="search" placeholder="First Name" aria-label="Search" name="first_name">
-            <input class="form-control me-2" type="search" placeholder="Last Name" aria-label="Search" name="last_name">
-<!--            <select name="search_category" class="form-select" aria-label="Default select example" >-->
-<!--                <option th:value="no">Category</option>-->
-<!--                <option th:each="category : ${categoryList}" th:value="${category.name}"  th:text="${category.name}"></option>-->
-<!--            </select>-->
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+<div class="container">
+    <div class="row pb-4 pe-3">
+        <div class="col-5"></div>
+        <div class="col-6">
+            <form class="d-flex" action="/">
+                <input class="form-control me-2" type="search" placeholder="First Name" aria-label="Search" name="first_name">
+                <input class="form-control me-2" type="search" placeholder="Last Name" aria-label="Search" name="last_name">
+    <!--            <select name="search_category" class="form-select" aria-label="Default select example" >-->
+    <!--                <option th:value="no">Category</option>-->
+    <!--                <option th:each="category : ${categoryList}" th:value="${category.name}"  th:text="${category.name}"></option>-->
+    <!--            </select>-->
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+        <div class="col-1"></div>
     </div>
-    <div class="col-1"></div>
 </div>
 <div class="p-5">
     <table class="table table-striped">
@@ -56,14 +58,16 @@
         </tbody>
     </table>
 </div>
-<div class="row">
-    <div class="col-8"></div>
-    <div class="col-4">
-        <a th:if="${userList.hasPrevious()}" th:href="@{/(page=${userList.number - 1}, key1=${firstName}, key2=${lastName})} ">Previous</a>
-        <span th:text="${userList.number + 1}"></span>
-        /
-        <span th:text="${userList.totalPages}"></span>
-        <a th:if="${userList.hasNext()}" th:href="@{/(page=${userList.number + 1}, key1=${firstName}, key2=${lastName})}">Next</a>
+<div class="container">
+    <div class="row">
+        <div class="col-8"></div>
+        <div class="col-4">
+            <a th:if="${userList.hasPrevious()}" th:href="@{/(page=${userList.number - 1}, key1=${firstName}, key2=${lastName})} ">Previous</a>
+            <span th:text="${userList.number + 1}"></span>
+            /
+            <span th:text="${userList.totalPages}"></span>
+            <a th:if="${userList.hasNext()}" th:href="@{/(page=${userList.number + 1}, key1=${firstName}, key2=${lastName})}">Next</a>
+        </div>
     </div>
 </div>
 
