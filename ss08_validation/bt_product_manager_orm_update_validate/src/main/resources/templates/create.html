@@ -19,42 +19,42 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default0">Code of Product</span>
                     <input type="text" th:field="*{code}" class="form-control" aria-label="Sizing example input"
-                           aria-describedby="inputGroup-sizing-default0">
+                           aria-describedby="inputGroup-sizing-default0" required>
                     <span class="input-group-text text-danger" th:if="${#fields.hasErrors('code')}"
                           th:errors="*{code}"></span>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default1">Name of Product</span>
                     <input type="text" th:field="*{name}" class="form-control" aria-label="Sizing example input"
-                           aria-describedby="inputGroup-sizing-default1">
+                           aria-describedby="inputGroup-sizing-default1" required>
                     <span class="input-group-text text-danger" th:if="${#fields.hasErrors('name')}"
                           th:errors="*{name}"></span>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default2">Price of Product</span>
                     <input type="text" th:field="*{price}" class="form-control" aria-label="Sizing example input"
-                           aria-describedby="inputGroup-sizing-default2">
+                           aria-describedby="inputGroup-sizing-default2" required>
                     <span class="input-group-text text-danger" th:if="${#fields.hasErrors('price')}"
                           th:errors="*{price}"></span>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default3">Detail of Product (color)</span>
                     <input type="text" th:field="*{detail}" class="form-control" aria-label="Sizing example input"
-                           aria-describedby="inputGroup-sizing-default3">
+                           aria-describedby="inputGroup-sizing-default3" required>
                     <span class="input-group-text text-danger" th:if="${#fields.hasErrors('detail')}"
                           th:errors="*{detail}"></span>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default4">Producer of Product</span>
                     <input type="text" th:field="*{producer}" class="form-control" aria-label="Sizing example input"
-                           aria-describedby="inputGroup-sizing-default4">
+                           aria-describedby="inputGroup-sizing-default4" required>
                     <span class="input-group-text text-danger" th:if="${#fields.hasErrors('producer')}"
                           th:errors="*{producer}"></span>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default5">Category of Product</span>
-                    <select th:field="*{category}" class="form-select" aria-label="Default select example">
-                        <option value="4"></option>
+                    <select th:field="*{category}" class="form-select" aria-label="Default select example" required>
+                        <option value=""></option>
                         <option th:each="category : ${categoryList}" th:value="${category.id}"
                                 th:text="${category.name}"></option>
                     </select>

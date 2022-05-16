@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{common_book :: head_bootstrap}"></th:block>
+</head>
+<body>
+<th:block th:replace="~{common_book :: head}"></th:block>
+<div class="text-center pb-4">
+    <h2 class="text-danger text-center pt-5 pb-2">LIST BOOK</h2>
+    <!--    <button class="btn btn-warning"><a href="/create" class="text-decoration-none">Create Product</a></button>-->
+    <p class="text-success pt-2" th:text="${mess}"></p>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-5"></div>
+        <div class="col-6">
+            <form class="d-flex" action="/">
+                <input class="form-control me-2" type="search" placeholder="Name" aria-label="Search"
+                       name="search_name">
+                <input class="form-control me-2" type="search" placeholder="Detail" aria-label="Search"
+                       name="search_detail">
+<!--                <select name="search_category" class="form-select" aria-label="Default select example">-->
+<!--                    <option th:value="-1">Category</option>-->
+<!--                    <option th:each="category : ${categoryList}" th:value="${category.id}"-->
+<!--                            th:text="${category.name}"></option>-->
+<!--                </select>-->
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>
+<div class="p-5">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">ID</th>
+                <th scope="col">Code Book</th>
+                <th scope="col">Name Book</th>
+                <th scope="col">Writer</th>
+                <th scope="col">Quantity Total</th>
+                <th scope="col">Borrowed Total</th>
+                <th scope="col">Remain Total</th>
+                <th scope="col">Option</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="book, hong : ${bookList}">
+                <td th:text="${hong.count}"></td>
+                <td><a class="text-decoration-none" th:href="@{/detail(id=${book.id})}">
+                    <th:block th:text="${book.id}"></th:block>
+                </a></td>
+                <td th:text="${book.codeBook}"></td>
+                <td><a class="text-decoration-none" th:href="@{/detail(id=${book.id})}">
+                    <th:block th:text="${book.nameBook}"></th:block>
+                </a></td>
+                <td th:text="${book.writer}"></td>
+                <td th:text="${book.quantityTotal}"></td>
+                <td th:text="${book.borrowedTotal}"></td>
+                <td th:text="${book.remainTotal}"></td>
+                <td>
+                    <button class="btn btn-primary"><a class="text-decoration-none text-warning" th:href="@{/book/borrow(id=${book.id})}">Borrow</a></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!--<div class="container">-->
+<!--    <div class="row">-->
+<!--        <div class="col-8"></div>-->
+<!--        <div class="col-11">-->
+<!--            <nav aria-label="Page navigation example">-->
+<!--                <ul class="pagination justify-content-end">-->
+<!--                    <li class="page-item">-->
+<!--                        <a class="page-link" th:if="${productList.hasPrevious()}"-->
+<!--                           th:href="@{/(page=${productList.number - 1}, key1=${searchName}, key2=${searchDetail}, key3=${searchCategory})}">Previous</a>-->
+<!--                    </li>-->
+<!--                    &lt;!&ndash;            <li class="page-item"><span th:text="${productList.number + 1}"></span></li>&ndash;&gt;-->
+<!--                    <li class="page-item"><a class="page-link"><span th:text="${productList.number + 1}"></span></a></li>-->
+<!--                    <li class="page-item page-link">/</li>-->
+<!--                    <li class="page-item"><a class="page-link"><span th:text="${productList.totalPages}"></span></a></li>-->
+<!--                    &lt;!&ndash;            <li class="page-item"><span th:text="${productList.totalPages}"></span></li>&ndash;&gt;-->
+<!--                    <li class="page-item">-->
+<!--                        <a class="page-link" th:if="${productList.hasNext()}"-->
+<!--                           th:href="@{/(page=${productList.number + 1}, key1=${searchName}, key2=${searchDetail}, key3=${searchCategory})}">Next</a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </nav>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+
+
+<!--    <div class="col-8"></div>-->
+<!--    <div class="col-4">-->
+<!--        <a th:if="${productList.hasPrevious()}" th:href="@{/(page=${productList.number - 1}, key1=${searchName}, key2=${searchDetail}, key3=${searchCategory})}">Previous</a>-->
+<!--        <span th:text="${productList.number + 1}"></span>-->
+<!--        /-->
+<!--        <span th:text="${productList.totalPages}"></span>-->
+<!--        <a th:if="${productList.hasNext()}" th:href="@{/(page=${productList.number + 1}, key1=${searchName}, key2=${searchDetail}, key3=${searchCategory})}">Next</a>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<!--<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"-->
+<!--     aria-labelledby="staticBackdropLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>-->
+<!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <p>Are you sure to delete has name is ->-->
+<!--                    <span class="text-danger font-weight-bold" id="nameDelete"></span>-->
+<!--                </p>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <form th:action="@{/delete}">-->
+<!--                    <input type="hidden" name="action" value="delete">-->
+<!--                    <input type="hidden" name="id" id="idDelete">-->
+<!--                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>-->
+<!--                    <button type="submit" class="btn btn-danger">Delete</button>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<th:block th:replace="~{common_book :: foot}"></th:block>
+<th:block th:replace="~{common_book :: foot_bootstrap}"></th:block>
+</body>
+</html>
+<!--<script>-->
+<!--    function deleteProduct(id, name) {-->
+<!--        document.getElementById("idDelete").value = id;-->
+<!--        document.getElementById("nameDelete").innerText = name;-->
+<!--    }-->
+<!--</script>-->

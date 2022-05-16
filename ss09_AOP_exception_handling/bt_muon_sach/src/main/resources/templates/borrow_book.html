@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{common_book :: head_bootstrap}"></th:block>
+</head>
+<body>
+<th:block th:replace="~{common_book :: head}"></th:block>
+<div class="text-center pb-4">
+    <h2 class="text-danger text-center pt-5 pb-2">BORROW BOOK</h2>
+    <!--    <button class="btn btn-warning"><a href="/" class="text-decoration-none">Go List Product</a></button>-->
+</div>
+<div class="container">
+    <div class="px-5 row">
+        <div class="col-4"></div>
+        <div class="col-5">
+            <form action="/book/saveBorrowBook" method="post" th:object="${borrowedBook}">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default0">Code Book</span>
+                    <span class="input-group-text" th:text="*{codeBook}"></span>
+                    <input type="hidden" th:field="*{codeBook}" class="form-control" aria-label="Sizing example input"
+                           aria-describedby="inputGroup-sizing-default0" required>
+<!--                    <span class="input-group-text text-danger" th:if="${#fields.hasErrors('code')}"-->
+<!--                          th:errors="*{code}"></span>-->
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default1">Name Book</span>
+                    <span class="input-group-text" th:text="*{nameBook}"></span>
+                    <input type="hidden" th:field="*{nameBook}" class="form-control" aria-label="Sizing example input"
+                           aria-describedby="inputGroup-sizing-default1" required>
+<!--                    <span class="input-group-text text-danger" th:if="${#fields.hasErrors('name')}"-->
+<!--                          th:errors="*{name}"></span>-->
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default3">Book Borrowing Code</span>
+                    <span class="input-group-text" th:text="*{bookBorrowingCode}"></span>
+                    <input type="hidden" th:field="*{bookBorrowingCode}" class="form-control" aria-label="Sizing example input"
+                           aria-describedby="inputGroup-sizing-default3" required>
+<!--                    <span class="input-group-text text-danger" th:if="${#fields.hasErrors('detail')}"-->
+<!--                          th:errors="*{detail}"></span>-->
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary position-relative">
+                        + Borrow Book
+                        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                    <span class="visually-hidden">New alerts</span>
+                    </span>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+<th:block th:replace="~{common_book :: foot}"></th:block>
+<th:block th:replace="~{common_book :: foot_bootstrap}"></th:block>
+</body>
+</html>
