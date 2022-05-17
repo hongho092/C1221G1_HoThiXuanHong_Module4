@@ -33,7 +33,7 @@
     </div>
 </div>
 <div class="p-5">
-    <table class="table table-striped">
+    <table class="table table-striped text-center">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -70,76 +70,8 @@
 </div>
 
 
-<!--<div class="container">-->
-<!--    <div class="row">-->
-<!--        <div class="col-8"></div>-->
-<!--        <div class="col-11">-->
-<!--            <nav aria-label="Page navigation example">-->
-<!--                <ul class="pagination justify-content-end">-->
-<!--                    <li class="page-item">-->
-<!--                        <a class="page-link" th:if="${productList.hasPrevious()}"-->
-<!--                           th:href="@{/(page=${productList.number - 1}, key1=${searchName}, key2=${searchDetail}, key3=${searchCategory})}">Previous</a>-->
-<!--                    </li>-->
-<!--                    &lt;!&ndash;            <li class="page-item"><span th:text="${productList.number + 1}"></span></li>&ndash;&gt;-->
-<!--                    <li class="page-item"><a class="page-link"><span th:text="${productList.number + 1}"></span></a></li>-->
-<!--                    <li class="page-item page-link">/</li>-->
-<!--                    <li class="page-item"><a class="page-link"><span th:text="${productList.totalPages}"></span></a></li>-->
-<!--                    &lt;!&ndash;            <li class="page-item"><span th:text="${productList.totalPages}"></span></li>&ndash;&gt;-->
-<!--                    <li class="page-item">-->
-<!--                        <a class="page-link" th:if="${productList.hasNext()}"-->
-<!--                           th:href="@{/(page=${productList.number + 1}, key1=${searchName}, key2=${searchDetail}, key3=${searchCategory})}">Next</a>-->
-<!--                    </li>-->
-<!--                </ul>-->
-<!--            </nav>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
 
-
-
-
-<!--    <div class="col-8"></div>-->
-<!--    <div class="col-4">-->
-<!--        <a th:if="${productList.hasPrevious()}" th:href="@{/(page=${productList.number - 1}, key1=${searchName}, key2=${searchDetail}, key3=${searchCategory})}">Previous</a>-->
-<!--        <span th:text="${productList.number + 1}"></span>-->
-<!--        /-->
-<!--        <span th:text="${productList.totalPages}"></span>-->
-<!--        <a th:if="${productList.hasNext()}" th:href="@{/(page=${productList.number + 1}, key1=${searchName}, key2=${searchDetail}, key3=${searchCategory})}">Next</a>-->
-<!--    </div>-->
-<!--</div>-->
-
-
-<!--<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"-->
-<!--     aria-labelledby="staticBackdropLabel" aria-hidden="true">-->
-<!--    <div class="modal-dialog">-->
-<!--        <div class="modal-content">-->
-<!--            <div class="modal-header">-->
-<!--                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>-->
-<!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-<!--            </div>-->
-<!--            <div class="modal-body">-->
-<!--                <p>Are you sure to delete has name is ->-->
-<!--                    <span class="text-danger font-weight-bold" id="nameDelete"></span>-->
-<!--                </p>-->
-<!--            </div>-->
-<!--            <div class="modal-footer">-->
-<!--                <form th:action="@{/delete}">-->
-<!--                    <input type="hidden" name="action" value="delete">-->
-<!--                    <input type="hidden" name="id" id="idDelete">-->
-<!--                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>-->
-<!--                    <button type="submit" class="btn btn-danger">Delete</button>-->
-<!--                </form>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
 <th:block th:replace="~{common_book :: foot}"></th:block>
 <th:block th:replace="~{common_book :: foot_bootstrap}"></th:block>
 </body>
 </html>
-<!--<script>-->
-<!--    function deleteProduct(id, name) {-->
-<!--        document.getElementById("idDelete").value = id;-->
-<!--        document.getElementById("nameDelete").innerText = name;-->
-<!--    }-->
-<!--</script>-->

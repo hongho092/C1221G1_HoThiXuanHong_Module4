@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping Cart</title>
+    <th:block th:replace="~{common_product :: head_bootstrap}"></th:block>
+</head>
+<body>
+<th:block th:replace="~{common_product :: head}"></th:block>
+<div class="text-center p-5">
+    <h5>Total Items: <span th:text="${cart.countItemQuantity()}"></span></h5>
+    <h5>Total Products: <span th:text="${cart.countProductQuantity()}"></span></h5>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <form th:action="@{/shop}" th:object="${cart}" method="post">
+                <table class="table table-warning">
+                    <thead>
+                    <tr>
+                        <th class="col-1"></th>
+                        <th class="col-5">Product</th>
+                        <th class="col-3"></th>
+                        <th class="col-2">Info</th>
+                        <th class="col-1"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="product: ${cart.products}">
+                        <td class="col-1"></td>
+                        <td class="col-5"><img th:src="${product.getKey().img}"  class="card-img-top" alt="..." style="width: 12rem; height: 12rem"></td>
+                        <td class="col-3"></td>
+                        <td class="col-2">
+                            <p class="fw-bold" th:text="${product.getKey().name}"></p>
+                            <a class="text-decoration-none" id="decrease_button" th:href="@{/less/__${product.getKey().id}__(action='show')}" th:text="${'-'}"></a>
+                            <span th:text="${product.getValue()}"></span>
+                            <a class="text-decoration-none" id="increase_button" th:href="@{/add/__${product.getKey().id}__(action='show')}"
+                               th:text="${'+'}"></a>
+                            <p th:text="${product.getKey().price}"></p>
+                        </td>
+                        <td class="col-1"></td>
+                        <!--                <td th:text="${product.getKey().name}"></td>-->
+                        <!--                <td>-->
+                        <!--                    <a id="decrease_button" th:text="${'-'}"></a>-->
+                        <!--                    <span th:text="${product.getValue()}"></span>-->
+                        <!--                    <a id="increase_button" th:href="@{/add/__${product.getKey().id}__(action='show')}"-->
+                        <!--                       th:text="${'+'}"></a>-->
+                        <!--                </td>-->
+                        <!--                <td th:text="${product.getKey().price}"></td>-->
+                    </tr>
+                    <tr>
+                        <td class="col-1"></td>
+                        <th class="col-5">Total</th>
+                        <td class="col-3"></td>
+                        <td class="col-2" th:text="${cart.countTotalPayment()}"></td>
+                        <td class="col-1"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>
+
+<th:block th:replace="~{common_product :: foot_bootstrap}"></th:block>
+</body>
+</html>

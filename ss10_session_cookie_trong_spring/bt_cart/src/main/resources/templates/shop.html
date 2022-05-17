@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop</title>
+    <th:block th:replace="~{common_product :: head_bootstrap}"></th:block>
+    <style>
+        .bg {
+            background-color: rgba(180, 239, 239, 0.84);
+        }
+    </style>
+</head>
+<body>
+<th:block th:replace="~{common_product :: head}"></th:block>
+
+<div class="text-center pb-4">
+    <h2 class="text-danger text-center pt-5 pb-2">LIST PRODUCT</h2>
+    <!--    <button class="btn btn-warning"><a href="/create" class="text-decoration-none">Create Product</a></button>-->
+    <p class="text-success pt-2" th:text="${mess}"></p>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div th:each="product:${products}" class="col-4 pt-5">
+            <div class="card" style="width: 18rem;">
+                <img th:src="${product.img}"  class="card-img-top" alt="..." style="width: 18rem; height: 18rem">
+                <div class="card-body text-center bg">
+                    <h5 class="card-title" th:text="${product.name}"></h5>
+                    <p class="card-text text-danger" th:text="${product.price}+' '+VND"></p>
+                    <p class="card-text" th:text="${product.description}"></p>
+                    <a class="text-decoration-none btn btn-primary" th:href="@{/add/__${product.id}__(action='list')}">Add To Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<th:block th:replace="~{common_product :: foot}"></th:block>
+<th:block th:replace="~{common_product :: foot_bootstrap}"></th:block>
+</body>
+</html>

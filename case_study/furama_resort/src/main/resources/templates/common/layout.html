@@ -28,22 +28,6 @@
     </div>
 </th:block>
 
-<!--<th:block th:fragment="head_top1">-->
-<!--    &lt;!&ndash; Example split danger button &ndash;&gt;-->
-<!--    <div class="btn-group">-->
-<!--        <button type="button" class="btn btn-danger">Action</button>-->
-<!--        <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">-->
-<!--            <span class="visually-hidden">Toggle Dropdown</span>-->
-<!--        </button>-->
-<!--        <ul class="dropdown-menu">-->
-<!--            <li><a class="dropdown-item" href="#">Action</a></li>-->
-<!--            <li><a class="dropdown-item" href="#">Another action</a></li>-->
-<!--            <li><a class="dropdown-item" href="#">Something else here</a></li>-->
-<!--&lt;!&ndash;            <li><hr class="dropdown-divider"></li>&ndash;&gt;-->
-<!--            <li><a class="dropdown-item" href="#">Separated link</a></li>-->
-<!--        </ul>-->
-<!--    </div>-->
-<!--</th:block>-->
 
 <th:block th:fragment="head">
     <div class="container sticky-top">
@@ -58,17 +42,18 @@
                     </a>
                     <a class="navbar-brand h5" href="/">Home</a>
                     <div class="btn-group">
-                        <button type="button" class="btn fw-bold">Employee</button>
+                        <button class="btn fw-bold"><a class="text-decoration-none" th:href="@{/employee/list}">Employee</a></button>
+<!--                        <button class="btn btn-warning"><a class="text-decoration-none" th:href="@{/edit(id=${employee.employeeId})}">Edit</a>-->
                         <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                         <span class="visually-hidden">Toggle Dropdown</span>
                         </button>
                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li><a class="dropdown-item" href="/employee/create">Create Employee</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Separated link</a></li>
+                            <li><a class="dropdown-item" href="/employee/list_education_degree">Education Degree</a></li>
+                            <li><a class="dropdown-item" href="/employee/list_division">Division</a></li>
+                            <li><a class="dropdown-item" href="/employee/list_position">Position</a></li>
                          </ul>
                      </div>
                     <div class="btn-group">

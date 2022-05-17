@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{common/layout :: head_bootstrap}"></th:block>
+</head>
+<body>
+<th:block th:replace="~{common/layout :: head}"></th:block>
+<div class="text-center pb-4">
+    <h2 class="text-danger text-center pt-5 pb-2">EDIT EMPLOYEE</h2>
+<!--    <button class="btn btn-warning"><a href="/" class="text-decoration-none">Go List Product</a></button>-->
+</div>
+<div class="container">
+    <div class="px-5 row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <form action="/employee/save_edit" method="post" th:object="${employee}">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Edit for Employee has ID is -> <th:block
+                            th:text="*{employeeId}"></th:block></span>
+                    <input type="hidden" th:field="*{employeeId}" class="form-control" aria-label="Sizing example input"
+                           aria-describedby="inputGroup-sizing-default">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default0">Employee Name</span>
+                    <input type="text" th:field="*{employeeName}" class="form-control" aria-label="Sizing example input"
+                           aria-describedby="inputGroup-sizing-default0">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default1">Employee Birthday</span>
+                    <input type="text" th:field="*{employeeBirthday}" class="form-control" aria-label="Sizing example input"
+                           aria-describedby="inputGroup-sizing-default1">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default2">Employee Id Card</span>
+                    <input type="text" th:field="*{employeeIdCard}" class="form-control" aria-label="Sizing example input"
+                           aria-describedby="inputGroup-sizing-default2">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default3">Employee Salary</span>
+                    <input type="text" th:field="*{employeeSalary}" class="form-control" aria-label="Sizing example input"
+                           aria-describedby="inputGroup-sizing-default3">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default4">Employee Phone</span>
+                    <input type="text" th:field="*{employeePhone}" class="form-control" aria-label="Sizing example input"
+                           aria-describedby="inputGroup-sizing-default4">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default9">Employee Email</span>
+                    <input type="text" th:field="*{employeeEmail}" class="form-control" aria-label="Sizing example input"
+                           aria-describedby="inputGroup-sizing-default9">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default6">Employee Address</span>
+                    <input type="text" th:field="*{employeeAddress}" class="form-control" aria-label="Sizing example input"
+                           aria-describedby="inputGroup-sizing-default6">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default5">Education Degree of Employee</span>
+                    <select th:field="*{educationDegree}" class="form-select" aria-label="Default select example">
+                        <option th:each="category : ${educationDegreeList}" th:value="${category.educationDegreeId}"
+                                th:text="${category.educationDegreeName}"></option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default7">Position of Employee</span>
+                    <select th:field="*{position}" class="form-select" aria-label="Default select example">
+                        <option th:each="category : ${positionList}" th:value="${category.positionId}"
+                                th:text="${category.positionName}"></option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default8">Division of Employee</span>
+                    <select th:field="*{division}" class="form-select" aria-label="Default select example">
+                        <option th:each="category : ${divisionList}" th:value="${category.divisionId}"
+                                th:text="${category.divisionName}"></option>
+                    </select>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary position-relative">
+                        Edit Employee
+                        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                    <span class="visually-hidden">New alerts</span>
+                    </span>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>
+<th:block th:replace="~{common/layout :: foot}"></th:block>
+<th:block th:replace="~{common/layout :: foot_bootstrap}"></th:block>
+</body>
+</html>
