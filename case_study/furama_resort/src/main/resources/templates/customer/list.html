@@ -22,9 +22,9 @@
                 <input class="form-control me-2" type="search" placeholder="Employee Address" aria-label="Search"
                        name="search_address">
                 <select name="search_category" class="form-select" aria-label="Default select example">
-                    <option th:value="-1">Position</option>
-                    <option th:each="category : ${positionList}" th:value="${category.positionId}"
-                            th:text="${category.positionName}"></option>
+                    <option th:value="-1">Customer Type</option>
+                    <option th:each="category : ${customerTypeList}" th:value="${category.customerTypeId}"
+                            th:text="${category.customerTypeName}"></option>
                 </select>
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
@@ -38,43 +38,41 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">ID</th>
-            <th scope="col">Employee Name</th>
-            <th scope="col">Employee Birthday</th>
-            <th scope="col">Employee Id Card</th>
-            <th scope="col">Employee Salary</th>
-            <th scope="col">Employee Phone</th>
-            <th scope="col">Employee Email</th>
-            <th scope="col">Employee Address</th>
-            <th scope="col">Position</th>
-            <th scope="col">Education Degree</th>
-            <th scope="col">Division</th>
+            <th scope="col">Customer Code</th>
+            <th scope="col">Customer Name</th>
+            <th scope="col">Customer Birthday</th>
+            <th scope="col">Customer Gender</th>
+            <th scope="col">Customer Id Card</th>
+            <th scope="col">Customer Phone</th>
+            <th scope="col">Customer Email</th>
+            <th scope="col">Customer Address</th>
+            <th scope="col">Customer Type</th>
             <th scope="col">Option</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="employee, hong : ${employeePage}">
+        <tr th:each="customer, hong : ${customerPage}">
             <td th:text="${hong.count}"></td>
-            <td><a class="text-decoration-none" th:href="@{/employee/detail(id=${employee.employeeId})}">
-                <th:block th:text="${employee.employeeId}"></th:block>
+            <td><a class="text-decoration-none" th:href="@{/customer/detail(id=${customer.customerId})}">
+                <th:block th:text="${customer.customerId}"></th:block>
             </a></td>
-            <td><a class="text-decoration-none" th:href="@{/employee/detail(id=${employee.employeeId})}">
-                <th:block th:text="${employee.employeeName}"></th:block>
+            <td th:text="${customer.customerCode}"></td>
+            <td><a class="text-decoration-none" th:href="@{/customer/detail(id=${customer.customerId})}">
+                <th:block th:text="${customer.customerName}"></th:block>
             </a></td>
-            <td th:text="${employee.employeeBirthday}"></td>
-            <td th:text="${employee.employeeIdCard}"></td>
-            <td th:text="${employee.employeeSalary}"></td>
-            <td th:text="${employee.employeePhone}"></td>
-            <td th:text="${employee.employeeEmail}"></td>
-            <td th:text="${employee.employeeAddress}"></td>
-            <td th:text="${employee.position.positionName}"></td>
-            <td th:text="${employee.educationDegree.educationDegreeName}"></td>
-            <td th:text="${employee.division.divisionName}"></td>
+            <td th:text="${customer.customerBirthday}"></td>
+            <td th:text="${customer.customerGender}"></td>
+            <td th:text="${customer.customerIdCard}"></td>
+            <td th:text="${customer.customerPhone}"></td>
+            <td th:text="${customer.customerEmail}"></td>
+            <td th:text="${customer.customerAddress}"></td>
+            <td th:text="${customer.customerType.customerTypeName}"></td>
             <td>
-                <button type="button" th:attr="onclick=|deleteProduct(${employee.employeeId},'${employee.employeeName}')|"
+                <button type="button" th:attr="onclick=|deleteCustomer(${customer.customerId},'${customer.customerName}')|"
                         class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                     Delete
                 </button>
-                <button class="btn btn-warning"><a class="text-decoration-none" th:href="@{/employee/edit(id=${employee.employeeId})}">Edit</a></button>
+                <button class="btn btn-warning"><a class="text-decoration-none" th:href="@{/customer/edit(id=${customer.customerId})}">Edit</a></button>
             </td>
         </tr>
         </tbody>
@@ -86,33 +84,21 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-end">
             <li class="page-item">
-                <a class="page-link" th:if="${employeePage.hasPrevious()}"
-                   th:href="@{/employee/list/(page=${employeePage.number - 1}, key1=${searchName}, key2=${searchAddress}, key3=${searchCategory})}">Previous</a>
+                <a class="page-link" th:if="${customerPage.hasPrevious()}"
+                   th:href="@{/employee/list/(page=${customerPage.number - 1}, key1=${searchName}, key2=${searchAddress}, key3=${searchCategory})}">Previous</a>
             </li>
             <!--            <li class="page-item"><span th:text="${productList.number + 1}"></span></li>-->
-            <li class="page-item"><a class="page-link"><span th:text="${employeePage.number + 1}"></span></a></li>
+            <li class="page-item"><a class="page-link"><span th:text="${customerPage.number + 1}"></span></a></li>
             <li class="page-item page-link">/</li>
-            <li class="page-item"><a class="page-link"><span th:text="${employeePage.totalPages}"></span></a></li>
+            <li class="page-item"><a class="page-link"><span th:text="${customerPage.totalPages}"></span></a></li>
             <!--            <li class="page-item"><span th:text="${productList.totalPages}"></span></li>-->
             <li class="page-item">
-                <a class="page-link" th:if="${employeePage.hasNext()}"
-                   th:href="@{/employee/list/(page=${employeePage.number + 1}, key1=${searchName}, key2=${searchAddress}, key3=${searchCategory})}">Next</a>
+                <a class="page-link" th:if="${customerPage.hasNext()}"
+                   th:href="@{/employee/list/(page=${customerPage.number + 1}, key1=${searchName}, key2=${searchAddress}, key3=${searchCategory})}">Next</a>
             </li>
         </ul>
     </nav>
 </div>
-
-
-<!--    <div class="col-8"></div>-->
-<!--    <div class="col-4">-->
-<!--        <a th:if="${productList.hasPrevious()}" th:href="@{/(page=${productList.number - 1}, key1=${searchName}, key2=${searchDetail}, key3=${searchCategory})}">Previous</a>-->
-<!--        <span th:text="${productList.number + 1}"></span>-->
-<!--        /-->
-<!--        <span th:text="${productList.totalPages}"></span>-->
-<!--        <a th:if="${productList.hasNext()}" th:href="@{/(page=${productList.number + 1}, key1=${searchName}, key2=${searchDetail}, key3=${searchCategory})}">Next</a>-->
-<!--    </div>-->
-<!--</div>-->
-
 
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -128,7 +114,7 @@
                 </p>
             </div>
             <div class="modal-footer">
-                <form th:action="@{/employee/delete}">
+                <form th:action="@{/customer/delete}">
 <!--                    <input type="hidden" name="action" value="employee/delete">-->
                     <input type="hidden" name="id" id="idDelete">
                     <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
@@ -143,7 +129,7 @@
 </body>
 </html>
 <script>
-    function deleteProduct(id, name) {
+    function deleteCustomer(id, name) {
         document.getElementById("idDelete").value = id;
         document.getElementById("nameDelete").innerText = name;
     }

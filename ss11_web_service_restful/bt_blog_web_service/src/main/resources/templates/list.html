@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{common_blog :: head_bootstrap}"></th:block>
+</head>
+<body>
+<th:block th:replace="~{common_blog :: head}"></th:block>
+<div class="text-center pb-4">
+    <h2 class="text-danger text-center pt-5 pb-2">LIST BLOG</h2>
+    <button class="btn btn-info"><a href="/create" class="text-decoration-none">Create Blog</a></button>
+    <p class="text-success pt-2" th:text="${mess}"></p>
+</div>
+<div class="row pb-4">
+    <div class="col-8"></div>
+    <div class="col-3">
+        <form class="d-flex" action="/">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="px-5 row">
+    <div class="card text-center col-4 mb-4" th:each="blog, hong : ${blogList}">
+        <div class="card-header bg-dark">
+            <h5 class="text-danger" th:text="Blog + ${hong.count}"></h5>
+            <h5 class="text-danger" th:text="${blog.category.name}"></h5>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title"><a class="text-decoration-none" th:href="@{/detail(id=${blog.id})}"><th:block th:text="${blog.name}"></th:block></a></h5>
+            <p class="card-text" th:text="${blog.content}"></p>
+            <button class="btn btn-danger"><a class="text-decoration-none" th:href="@{/delete(id=${blog.id})}">Delete</a></button>
+            <button class="btn btn-warning"><a class="text-decoration-none" th:href="@{/edit(id=${blog.id})}">Edit</a></button>
+        </div>
+        <div class="card-footer text-muted">
+            <p class="card-text" th:text="${blog.date}"></p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-8"></div>
+    <div class="col-4">
+        <a th:if="${blogList.hasPrevious()}" th:href="@{/(page=${blogList.number - 1}, search=${searchVal})}">Previous</a>
+        <span th:text="${blogList.number + 1}"></span>
+        /
+        <span th:text="${blogList.totalPages}"></span>
+        <a th:if="${blogList.hasNext()}" th:href="@{/(page=${blogList.number + 1}, search=${searchVal})}">Next</a>
+    </div>
+</div>
+
+<th:block th:replace="~{common_blog :: foot}"></th:block>
+<th:block th:replace="~{common_blog :: foot_bootstrap}"></th:block>
+
+</body>
+</html>

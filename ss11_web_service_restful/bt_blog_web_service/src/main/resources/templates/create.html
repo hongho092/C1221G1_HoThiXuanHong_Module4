@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{common_blog :: head_bootstrap}"></th:block>
+</head>
+<body>
+<th:block th:replace="~{common_blog :: head}"></th:block>
+<div class="text-center pb-4">
+    <h2 class="text-danger text-center pt-5 pb-2">CREATE BLOG</h2>
+    <button class="btn btn-warning"><a href="/" class="text-decoration-none">Go List Blog</a></button>
+</div>
+<div class="px-5 row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <form action="/save" method="post" th:object="${blogDto}">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default1">Name of Blog</span>
+                <input type="text" th:field="*{name}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default1">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default2">Content of Blog</span>
+                <textarea type="text" th:field="*{content}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default2"></textarea>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default3">Date create Blog</span>
+                <input type="date" th:field="*{date}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default3">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default4">Category of Blog</span>
+                <select th:field="*{category}" class="form-select" aria-label="Default select example" >
+                    <option th:each="category : ${categoryList}" th:value="${category.id}"  th:text="${category.name}" ></option>
+                </select>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary position-relative">
+                    Create Blog
+                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                    <span class="visually-hidden">New alerts</span>
+                    </span>
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="col-3"></div>
+</div>
+<th:block th:replace="~{common_blog :: foot}"></th:block>
+<th:block th:replace="~{common_blog :: foot_bootstrap}"></th:block>
+</body>
+</html>

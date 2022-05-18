@@ -33,19 +33,6 @@ public class ProductController {
     @Autowired
     private ICategoryService categoryService;
 
-//    @GetMapping(value = "")
-//    public String goList(@PageableDefault(value = 3) Pageable pageable, Model model,
-//                         @RequestParam Optional<String> search_name,
-//                         @RequestParam Optional<String> search_detail) {
-//        String searchName = search_name.orElse("");
-//        String searchDetail = search_detail.orElse("");
-//        Page<Product> productList = productService.findAll1(searchName, searchDetail, pageable);
-//        model.addAttribute("productList", productList);
-//        model.addAttribute("categoryList", categoryService.findAll());
-//        return "list";
-//    }
-
-
     @GetMapping(value = "")
     public String goList(@PageableDefault(value = 3) Pageable pageable, Model model,
                          @RequestParam Optional<String> search_name,
@@ -83,7 +70,6 @@ public class ProductController {
         if(bindingResult.hasFieldErrors()) {
             List<Category> categoryList = categoryService.findAll();
             model.addAttribute("categoryList", categoryList);
-            System.out.println(productDto.getCategory().getId());
             return "create";
         } else {
             Product product = new Product();

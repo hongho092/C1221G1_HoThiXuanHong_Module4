@@ -13,10 +13,6 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int customerId;
 
-    @ManyToOne
-    @JoinColumn(name = "customer_type_id", referencedColumnName = "customerTypeId")
-    private CustomerType customerType;
-
     private String customerCode;
     private String customerName;
     private String customerBirthday;
@@ -25,6 +21,10 @@ public class Customer {
     private String customerPhone;
     private String customerEmail;
     private String customerAddress;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_type_id", referencedColumnName = "customerTypeId")
+    private CustomerType customerType;
 
     @OneToMany(mappedBy = "customer")
     private List<Contract> contractList;

@@ -11,75 +11,63 @@
     <h2 class="text-danger text-center pt-5 pb-2">DETAIL EMPlOYEE</h2>
 <!--    <button class="btn btn-warning"><a href="/" class="text-decoration-none">Go List Product</a></button>-->
 </div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <table class="table text-center">
+                <tr>
+                    <th class="col-6">ID of Employee</th>
+                    <td class="col-6" th:text="${employee.employeeId}"></td>
+                </tr>
+                <tr>
+                    <th class="col-6">Employee Name</th>
+                    <td class="col-6" th:text="${employee.employeeName}"></td>
+                </tr>
+                <tr>
+                    <th class="col-6">Employee Birthday</th>
+                    <td class="col-6" th:text="${employee.employeeBirthday}"></td>
+                </tr>
+                <tr>
+                    <th class="col-6">Employee Id Card</th>
+                    <td class="col-6" th:text="${employee.employeeIdCard}"></td>
+                </tr>
+                <tr>
+                    <th class="col-6">Employee Salary</th>
+                    <td class="col-6" th:text="${employee.employeeSalary}"></td>
+                </tr>
+                <tr>
+                    <th class="col-6">Employee Phone</th>
+                    <td class="col-6" th:text="${employee.employeePhone}"></td>
+                </tr>
+                <tr>
+                    <th class="col-6">Employee Email</th>
+                    <td class="col-6" th:text="${employee.employeeEmail}"></td>
+                </tr>
+                <tr>
+                    <th class="col-6">Employee Address</th>
+                    <td class="col-6" th:text="${employee.employeeAddress}"></td>
+                </tr>
+                <tr>
+                    <th class="col-6">Education Degree of Employee</th>
+                    <td class="col-6" th:text="${employee.educationDegree.educationDegreeName}"></td>
+                </tr>
+                <tr>
+                    <th class="col-6">Position of Employee</th>
+                    <td class="col-6" th:text="${employee.position.positionName}"></td>
+                </tr>
+                <tr>
+                    <th class="col-6">Division of Employee</th>
+                    <td class="col-6" th:text="${employee.division.divisionName}"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>
 <div class="px-5 col">
-    <table class="table text-center">
-        <tr>
-            <td class="col-3"></td>
-            <th class="col-3">ID of Employee</th>
-            <td class="col-3" th:text="${employee.employeeId}"></td>
-            <td class="col-3"></td>
-        </tr>
-        <tr>
-            <td class="col-3"></td>
-            <th class="col-3">Employee Name</th>
-            <td class="col-3" th:text="${employee.employeeName}"></td>
-            <td class="col-3"></td>
-        </tr>
-        <tr>
-            <td class="col-3"></td>
-            <th class="col-3">Employee Birthday</th>
-            <td class="col-3" th:text="${employee.employeeBirthday}"></td>
-            <td class="col-3"></td>
-        </tr>
-        <tr>
-            <td class="col-3"></td>
-            <th class="col-3">Employee Id Card</th>
-            <td class="col-3" th:text="${employee.employeeIdCard}"></td>
-            <td class="col-3"></td>
-        </tr>
-        <tr>
-            <td class="col-3"></td>
-            <th class="col-3">Employee Salary</th>
-            <td class="col-3" th:text="${employee.employeeSalary}"></td>
-            <td class="col-3"></td>
-        </tr>
-        <tr>
-            <td class="col-3"></td>
-            <th class="col-3">Employee Phone</th>
-            <td class="col-3" th:text="${employee.employeePhone}"></td>
-            <td class="col-3"></td>
-        </tr>
-        <tr>
-            <td class="col-3"></td>
-            <th class="col-3">Employee Email</th>
-            <td class="col-3" th:text="${employee.employeeEmail}"></td>
-            <td class="col-3"></td>
-        </tr>
-        <tr>
-            <td class="col-3"></td>
-            <th class="col-3">Employee Address</th>
-            <td class="col-3" th:text="${employee.employeeAddress}"></td>
-            <td class="col-3"></td>
-        </tr>
-        <tr>
-            <td class="col-3"></td>
-            <th class="col-3">Education Degree of Employee</th>
-            <td class="col-3" th:text="${employee.educationDegree.educationDegreeName}"></td>
-            <td class="col-3"></td>
-        </tr>
-        <tr>
-            <td class="col-3"></td>
-            <th class="col-3">Position of Employee</th>
-            <td class="col-3" th:text="${employee.position.positionName}"></td>
-            <td class="col-3"></td>
-        </tr>
-        <tr>
-            <td class="col-3"></td>
-            <th class="col-3">Division of Employee</th>
-            <td class="col-3" th:text="${employee.division.divisionName}"></td>
-            <td class="col-3"></td>
-        </tr>
-    </table>
+
 </div>
 <th:block th:replace="~{common/layout :: foot}"></th:block>
 <th:block th:replace="~{common/layout :: foot_bootstrap}"></th:block>

@@ -40,7 +40,8 @@
                         <img src="https://i.pinimg.com/originals/59/10/ae/5910ae148dc0784a7fdb05bc2ad9ebbc.gif"
                              width="30" height="30">
                     </a>
-                    <a class="navbar-brand h5" href="/">Home</a>
+                    <button class="btn fw-bold"><a class="text-decoration-none" th:href="@{/}">Home</a></button>
+<!--                    <a class="navbar-brand h5" href="/">Home</a>-->
                     <div class="btn-group">
                         <button class="btn fw-bold"><a class="text-decoration-none" th:href="@{/employee/list}">Employee</a></button>
 <!--                        <button class="btn btn-warning"><a class="text-decoration-none" th:href="@{/edit(id=${employee.employeeId})}">Edit</a>-->
@@ -57,31 +58,41 @@
                          </ul>
                      </div>
                     <div class="btn-group">
-                        <button type="button" class="btn">Customer</button>
+                        <button class="btn fw-bold"><a class="text-decoration-none" th:href="@{/customer/list}">Customer</a></button>
                         <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                         <span class="visually-hidden">Toggle Dropdown</span>
                         </button>
                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li><a class="dropdown-item" href="/customer/create">Create Customer</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Separated link</a></li>
+                            <li><a class="dropdown-item" href="/customer/list_customer_type">Customer Type</a></li>
+                         </ul>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn fw-bold"><a class="text-decoration-none" th:href="@{/service/list}">Service</a></button>
+                        <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                        <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                         <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/service/create">Create Service</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/service/list_service_type">Service Type</a></li>
+                            <li><a class="dropdown-item" href="/service/list_rent_type">Rent Type</a></li>
                          </ul>
                      </div>
                     <div class="btn-group">
-                        <button type="button" class="btn">Contract</button>
+                        <button class="btn fw-bold"><a class="text-decoration-none" th:href="@{/contract/list}">Contract</a></button>
                         <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                         <span class="visually-hidden">Toggle Dropdown</span>
                         </button>
                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li><a class="dropdown-item" href="/contract/create_contract">Create Contract</a></li>
+                            <li><a class="dropdown-item" href="/contract/create_contract_detail">Create Contract Detail</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Separated link</a></li>
+                            <li><a class="dropdown-item" href="/contract/list_attach_service">Attach Service</a></li>
                          </ul>
                      </div>
 <!--                    <a class="navbar-brand h5" href="/create">Create</a>-->

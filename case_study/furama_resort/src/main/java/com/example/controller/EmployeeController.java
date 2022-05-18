@@ -17,7 +17,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -53,7 +52,7 @@ public class EmployeeController {
         }
 //        List<Employee> employeeList = employeeService.findAll();
         model.addAttribute("positionList", positionService.findAll());
-        model.addAttribute("employeeList", employeeService.findAll());
+        model.addAttribute("employeePage", employeePage);
         model.addAttribute("searchName", searchName);
         model.addAttribute("searchAddress", searchAddress);
         model.addAttribute("searchCategory", searchCategory);
