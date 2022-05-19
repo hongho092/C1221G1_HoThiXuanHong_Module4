@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.dto.ServiceDto;
 import com.example.model.customer.Customer;
 import com.example.model.customer.CustomerType;
 import com.example.model.service.RentType;
@@ -10,15 +11,19 @@ import com.example.service.customer.ICustomerTypeService;
 import com.example.service.service.IRentTypeService;
 import com.example.service.service.IServiceService;
 import com.example.service.service.IServiceTypeService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -57,19 +62,34 @@ public class ServiceController {
         return "service/list";
     }
 
-//    @GetMapping(value = "/create")
-//    public String showCreateCustomer(Model model) {
-//        model.addAttribute("customer", new Customer());
-//        model.addAttribute("customerTypeList", customerTypeService.findAll());
-//        return "customer/create";
-//    }
-//
-//    @PostMapping(value = "/save")
-//    public String saveCustomer(@ModelAttribute Customer customer, RedirectAttributes redirectAttributes) {
-//        customerService.save(customer);
-//        redirectAttributes.addFlashAttribute("mess", "Create Customer Success");
-//        return "redirect:/customer/list";
-//    }
+    @GetMapping(value = "/create")
+    public String showCreateService(Model model) {
+        model.addAttribute("serviceDto", new ServiceDto());
+        model.addAttribute("rentTypeList", rentTypeService.findAll());
+        model.addAttribute("serviceTypeList", serviceTypeService.findAll());
+        return "service/create";
+    }
+
+    @PostMapping(value = "/save")
+    public String saveService(@ModelAttribute @Validated ServiceDto serviceDto,
+                              BindingResult bindingResult,
+                              RedirectAttributes redirectAttributes,
+                              Model model) {
+        List<Service> serviceList = serviceService.findAll();
+        new ServiceDto().validate(serviceDto, bindingResult);
+        new ServiceDto().validate1(serviceDto, bindingResult, serviceList);
+        if (bindingResult.hasFieldErrors()) {
+            model.addAttribute("rentTypeList", rentTypeService.findAll());
+            model.addAttribute("serviceTypeList", serviceTypeService.findAll());
+            return "service/create";
+        } else {
+            Service service = new Service();
+            BeanUtils.copyProperties(serviceDto, service);
+            serviceService.save(service);
+            redirectAttributes.addFlashAttribute("mess", "Create Service Success");
+            return "redirect:/service/list";
+        }
+    }
 
     @GetMapping(value = "/list_service_type")
     public String goListServiceType(Model model) {

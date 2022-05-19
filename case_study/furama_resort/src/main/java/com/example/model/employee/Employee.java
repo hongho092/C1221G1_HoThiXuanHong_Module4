@@ -1,6 +1,7 @@
 package com.example.model.employee;
 
 import com.example.model.contract.Contract;
+import com.example.model.customer.CustomerType;
 
 import javax.persistence.*;
 import java.util.List;

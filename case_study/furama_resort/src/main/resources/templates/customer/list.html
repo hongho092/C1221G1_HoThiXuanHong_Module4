@@ -85,16 +85,14 @@
         <ul class="pagination justify-content-end">
             <li class="page-item">
                 <a class="page-link" th:if="${customerPage.hasPrevious()}"
-                   th:href="@{/employee/list/(page=${customerPage.number - 1}, key1=${searchName}, key2=${searchAddress}, key3=${searchCategory})}">Previous</a>
+                   th:href="@{/customer/list/(page=${customerPage.number - 1}, key1=${searchName}, key2=${searchAddress}, key3=${searchCategory})}">Previous</a>
             </li>
-            <!--            <li class="page-item"><span th:text="${productList.number + 1}"></span></li>-->
             <li class="page-item"><a class="page-link"><span th:text="${customerPage.number + 1}"></span></a></li>
             <li class="page-item page-link">/</li>
             <li class="page-item"><a class="page-link"><span th:text="${customerPage.totalPages}"></span></a></li>
-            <!--            <li class="page-item"><span th:text="${productList.totalPages}"></span></li>-->
             <li class="page-item">
                 <a class="page-link" th:if="${customerPage.hasNext()}"
-                   th:href="@{/employee/list/(page=${customerPage.number + 1}, key1=${searchName}, key2=${searchAddress}, key3=${searchCategory})}">Next</a>
+                   th:href="@{/customer/list/(page=${customerPage.number + 1}, key1=${searchName}, key2=${searchAddress}, key3=${searchCategory})}">Next</a>
             </li>
         </ul>
     </nav>

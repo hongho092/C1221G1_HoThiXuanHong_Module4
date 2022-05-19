@@ -60,5 +60,10 @@ public class BlogService implements IBlogService{
         iBlogRepository.deleteById(id);
     }
 
+    @Override
+    public List<Blog> findBySearch(String search) {
+        return iBlogRepository.findAllByNameContaining(search);
+    }
+
 
 }

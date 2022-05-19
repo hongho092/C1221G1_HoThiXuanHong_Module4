@@ -9,6 +9,6 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Integer> {
 
     Page<Employee> findAllByEmployeeNameContainingAndEmployeeAddressContaining(String searchName, String searchAddress, Pageable pageable);
 
-    Page<Employee> findAllByEmployeeNameContainingAndEmployeeAddressContainingAndPosition_PositionId(String searchName, String searchAddress, int searchCategory, Pageable pageable);
+    Page<Employee> findAllByEmployeeNameContainingAndEmployeeAddressContainingAndDivision_DivisionId(String searchName, String searchAddress, int searchCategory, Pageable pageable);
 
 }

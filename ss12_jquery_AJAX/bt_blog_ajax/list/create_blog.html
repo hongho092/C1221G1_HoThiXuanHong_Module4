@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Blog</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+<label for="a1">Name</label><input type="text" id="a1"><br><br>
+<label for="a4">Category</label>
+<select name="" id="a4">
+    <option value="1">du lịch</option>
+    <option value="2">học tập</option>
+    <option value="3">giải trí</option>
+    <option value="4">vui chơi</option>
+</select><br><br>
+<label for="a2">Content</label><input type="text" id="a2"><br><br>
+<label for="a3">Date</label><input type="date" id="a3"><br><br>
+<button id="btnCreate" type="button">Create Blog</button>
+
+<script>
+    $("#btnCreate").click(function () {
+        let inputName = $("#a1").val();
+        let inputCategory = $("#a4").val();
+        let inputContent = $("#a2").val();
+        let inputDate = $("#a3").val();
+
+        let blogObj = {
+            "name": inputName,
+            "content": inputContent,
+            "date": inputDate,
+            "category": {
+                "id": inputCategory
+            }
+        }
+
+        console.log(blogObj);
+
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "POST", //GET, DELETE, PUT...
+            url: "http://localhost:8080/blogRest/create",
+            data: JSON.stringify(blogObj),
+            success: function(resultSuccess){
+                alert("OK");
+            },
+            error: function(resultError) {
+                console.log(resultError);
+                // $("#pError").text(resultError.responseJSON[0].defaultMessage);
+            }
+        });
+    })
+</script>
+</body>
+</html>

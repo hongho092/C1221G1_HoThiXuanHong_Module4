@@ -22,9 +22,9 @@
                 <input class="form-control me-2" type="search" placeholder="Employee Address" aria-label="Search"
                        name="search_address">
                 <select name="search_category" class="form-select" aria-label="Default select example">
-                    <option th:value="-1">Position</option>
-                    <option th:each="category : ${positionList}" th:value="${category.positionId}"
-                            th:text="${category.positionName}"></option>
+                    <option th:value="-1">Division</option>
+                    <option th:each="category : ${divisionList}" th:value="${category.divisionId}"
+                            th:text="${category.divisionName}"></option>
                 </select>
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
@@ -81,7 +81,6 @@
     </table>
 </div>
 
-
 <div class="col-11">
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-end">
@@ -89,11 +88,9 @@
                 <a class="page-link" th:if="${employeePage.hasPrevious()}"
                    th:href="@{/employee/list/(page=${employeePage.number - 1}, key1=${searchName}, key2=${searchAddress}, key3=${searchCategory})}">Previous</a>
             </li>
-            <!--            <li class="page-item"><span th:text="${productList.number + 1}"></span></li>-->
             <li class="page-item"><a class="page-link"><span th:text="${employeePage.number + 1}"></span></a></li>
             <li class="page-item page-link">/</li>
             <li class="page-item"><a class="page-link"><span th:text="${employeePage.totalPages}"></span></a></li>
-            <!--            <li class="page-item"><span th:text="${productList.totalPages}"></span></li>-->
             <li class="page-item">
                 <a class="page-link" th:if="${employeePage.hasNext()}"
                    th:href="@{/employee/list/(page=${employeePage.number + 1}, key1=${searchName}, key2=${searchAddress}, key3=${searchCategory})}">Next</a>
@@ -102,8 +99,7 @@
     </nav>
 </div>
 
-
-<!--    <div class="col-8"></div>-->
+<!--    <div class="col-8"></div>-->key3=${searchCategory}
 <!--    <div class="col-4">-->
 <!--        <a th:if="${productList.hasPrevious()}" th:href="@{/(page=${productList.number - 1}, key1=${searchName}, key2=${searchDetail}, key3=${searchCategory})}">Previous</a>-->
 <!--        <span th:text="${productList.number + 1}"></span>-->

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RequestMapping(value = "/blogRest")
 @RestController
 public class BlogRestController {
@@ -30,7 +31,7 @@ public class BlogRestController {
     private ICategoryService categoryService;
 
     @GetMapping(value = "/list")
-    public ResponseEntity<Page<Blog>> getPageBlog(@PageableDefault(value = 3) Pageable pageable) {
+    public ResponseEntity<Page<Blog>> getPageBlog(@PageableDefault(value = 10) Pageable pageable) {
         Page<Blog> blogPage = blogService.findAllPage(pageable);
         if(!blogPage.hasContent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -48,7 +49,7 @@ public class BlogRestController {
     }
 
     @GetMapping(value = "blogByCategory")
-    public ResponseEntity<Page<Blog>> getContentByCategory(@PageableDefault(value = 3) Pageable pageable, @RequestParam String nameCategory) {
+    public ResponseEntity<Page<Blog>> getContentByCategory(@PageableDefault(value = 5) Pageable pageable, @RequestParam String nameCategory) {
         Page<Blog> blogPageByCategory = blogService.findBlogByCategory(nameCategory, pageable);
         if (!blogPageByCategory.hasContent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -92,5 +93,14 @@ public class BlogRestController {
         }
         blogService.save(blog);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping(value = "search")
+    public ResponseEntity<List<Blog>> searchBlog(@RequestParam String search) {
+        List<Blog> blogList = blogService.findBySearch(search);
+        if (blogList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(blogList, HttpStatus.OK);
     }
 }

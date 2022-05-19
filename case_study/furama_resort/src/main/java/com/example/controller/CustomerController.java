@@ -1,18 +1,23 @@
 package com.example.controller;
 
+import com.example.dto.CustomerDto;
 import com.example.model.customer.Customer;
 import com.example.model.customer.CustomerType;
 import com.example.service.customer.ICustomerService;
 import com.example.service.customer.ICustomerTypeService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -50,16 +55,30 @@ public class CustomerController {
 
     @GetMapping(value = "/create")
     public String showCreateCustomer(Model model) {
-        model.addAttribute("customer", new Customer());
+        model.addAttribute("customerDto", new CustomerDto());
         model.addAttribute("customerTypeList", customerTypeService.findAll());
         return "customer/create";
     }
 
     @PostMapping(value = "/save")
-    public String saveCustomer(@ModelAttribute Customer customer, RedirectAttributes redirectAttributes) {
-        customerService.save(customer);
-        redirectAttributes.addFlashAttribute("mess", "Create Customer Success");
-        return "redirect:/customer/list";
+    public String saveCustomer(@ModelAttribute @Validated CustomerDto customerDto,
+                               BindingResult bindingResult,
+                               RedirectAttributes redirectAttributes,
+                               Model model) {
+        List<Customer> customerList = customerService.findAll();
+        CustomerDto customerDto1 = new CustomerDto();
+        customerDto1.validate(customerDto, bindingResult);
+        customerDto1.validate1(customerDto, bindingResult, customerList);
+        if (bindingResult.hasFieldErrors()) {
+            model.addAttribute("customerTypeList", customerTypeService.findAll());
+            return "customer/create";
+        } else {
+            Customer customer = new Customer();
+            BeanUtils.copyProperties(customerDto, customer);
+            customerService.save(customer);
+            redirectAttributes.addFlashAttribute("mess", "Create Customer Success");
+            return "redirect:/customer/list";
+        }
     }
 
     @GetMapping(value = "/delete")
@@ -72,16 +91,32 @@ public class CustomerController {
     @GetMapping(value = "/edit")
     public String showEditEmployee(@RequestParam int id, Model model) {
         Customer customer = customerService.findById(id);
-        model.addAttribute("customer", customer);
+        CustomerDto customerDto = new CustomerDto();
+        BeanUtils.copyProperties(customer, customerDto);
+        model.addAttribute("customerDto", customerDto);
         model.addAttribute("customerTypeList", customerTypeService.findAll());
         return "customer/edit";
     }
 
     @PostMapping(value = "/save_edit")
-    public String editCustomer(@ModelAttribute Customer customer, RedirectAttributes redirectAttributes) {
-        customerService.save(customer);
-        redirectAttributes.addFlashAttribute("mess", "Edit Customer Success");
-        return "redirect:/customer/list";
+    public String editCustomer(@ModelAttribute @Validated CustomerDto customerDto,
+                               BindingResult bindingResult,
+                               RedirectAttributes redirectAttributes,
+                               Model model) {
+        List<Customer> customerList = customerService.findAll();
+        CustomerDto customerDto1 = new CustomerDto();
+        customerDto1.validate(customerDto, bindingResult);
+        customerDto1.validate1(customerDto, bindingResult, customerList);
+        if (bindingResult.hasFieldErrors()) {
+            model.addAttribute("customerTypeList", customerTypeService.findAll());
+            return "customer/edit";
+        } else {
+            Customer customer = new Customer();
+            BeanUtils.copyProperties(customerDto, customer);
+            customerService.save(customer);
+            redirectAttributes.addFlashAttribute("mess", "Edit Customer Success");
+            return "redirect:/customer/list";
+        }
     }
 
     @GetMapping(value = "/detail")

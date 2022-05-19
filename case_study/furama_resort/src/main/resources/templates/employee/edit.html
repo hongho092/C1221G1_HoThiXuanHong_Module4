@@ -15,7 +15,7 @@
     <div class="px-5 row">
         <div class="col-3"></div>
         <div class="col-6">
-            <form action="/employee/save_edit" method="post" th:object="${employee}">
+            <form class="was-validated" action="/employee/save_edit" method="post" th:object="${employeeDto}">
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Edit for Employee has ID is -> <th:block
                             th:text="*{employeeId}"></th:block></span>
@@ -25,55 +25,72 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default0">Employee Name</span>
                     <input type="text" th:field="*{employeeName}" class="form-control" aria-label="Sizing example input"
-                           aria-describedby="inputGroup-sizing-default0">
+                           aria-describedby="inputGroup-sizing-default0" required>
+                    <span class="input-group-text text-danger" th:if="${#fields.hasErrors('employeeName')}"
+                          th:errors="*{employeeName}"></span>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default1">Employee Birthday</span>
                     <input type="text" th:field="*{employeeBirthday}" class="form-control" aria-label="Sizing example input"
-                           aria-describedby="inputGroup-sizing-default1">
+                           aria-describedby="inputGroup-sizing-default1" required>
+                    <span class="input-group-text text-danger" th:if="${#fields.hasErrors('employeeBirthday')}"
+                          th:errors="*{employeeBirthday}"></span>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default2">Employee Id Card</span>
                     <input type="text" th:field="*{employeeIdCard}" class="form-control" aria-label="Sizing example input"
-                           aria-describedby="inputGroup-sizing-default2">
+                           aria-describedby="inputGroup-sizing-default2" required>
+                    <span class="input-group-text text-danger" th:if="${#fields.hasErrors('employeeIdCard')}"
+                          th:errors="*{employeeIdCard}"></span>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default3">Employee Salary</span>
                     <input type="text" th:field="*{employeeSalary}" class="form-control" aria-label="Sizing example input"
-                           aria-describedby="inputGroup-sizing-default3">
+                           aria-describedby="inputGroup-sizing-default3" required>
+                    <span class="input-group-text text-danger" th:if="${#fields.hasErrors('employeeSalary')}"
+                          th:errors="*{employeeSalary}"></span>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default4">Employee Phone</span>
                     <input type="text" th:field="*{employeePhone}" class="form-control" aria-label="Sizing example input"
-                           aria-describedby="inputGroup-sizing-default4">
+                           aria-describedby="inputGroup-sizing-default4" required>
+                    <span class="input-group-text text-danger" th:if="${#fields.hasErrors('employeePhone')}"
+                          th:errors="*{employeePhone}"></span>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default9">Employee Email</span>
                     <input type="text" th:field="*{employeeEmail}" class="form-control" aria-label="Sizing example input"
-                           aria-describedby="inputGroup-sizing-default9">
+                           aria-describedby="inputGroup-sizing-default9" required>
+                    <span class="input-group-text text-danger" th:if="${#fields.hasErrors('employeeEmail')}"
+                          th:errors="*{employeeEmail}"></span>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default6">Employee Address</span>
                     <input type="text" th:field="*{employeeAddress}" class="form-control" aria-label="Sizing example input"
-                           aria-describedby="inputGroup-sizing-default6">
+                           aria-describedby="inputGroup-sizing-default6" required>
+                    <span class="input-group-text text-danger" th:if="${#fields.hasErrors('employeeAddress')}"
+                          th:errors="*{employeeAddress}"></span>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default5">Education Degree of Employee</span>
-                    <select th:field="*{educationDegree}" class="form-select" aria-label="Default select example">
+                    <select th:field="*{educationDegree}" class="form-select" aria-label="Default select example" required>
+                        <option value=""></option>
                         <option th:each="category : ${educationDegreeList}" th:value="${category.educationDegreeId}"
                                 th:text="${category.educationDegreeName}"></option>
                     </select>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default7">Position of Employee</span>
-                    <select th:field="*{position}" class="form-select" aria-label="Default select example">
+                    <select th:field="*{position}" class="form-select" aria-label="Default select example" required>
+                        <option value=""></option>
                         <option th:each="category : ${positionList}" th:value="${category.positionId}"
                                 th:text="${category.positionName}"></option>
                     </select>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default8">Division of Employee</span>
-                    <select th:field="*{division}" class="form-select" aria-label="Default select example">
+                    <select th:field="*{division}" class="form-select" aria-label="Default select example" required>
+                        <option value=""></option>
                         <option th:each="category : ${divisionList}" th:value="${category.divisionId}"
                                 th:text="${category.divisionName}"></option>
                     </select>

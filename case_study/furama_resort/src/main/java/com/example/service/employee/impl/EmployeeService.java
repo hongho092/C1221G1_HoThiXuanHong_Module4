@@ -43,6 +43,6 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public Page<Employee> findAll2(String searchName, String searchAddress, int searchCategory, Pageable pageable) {
-        return employeeRepository.findAllByEmployeeNameContainingAndEmployeeAddressContainingAndPosition_PositionId(searchName, searchAddress, searchCategory, pageable);
+        return employeeRepository.findAllByEmployeeNameContainingAndEmployeeAddressContainingAndDivision_DivisionId(searchName, searchAddress, searchCategory, pageable);
     }
 }
