@@ -16,10 +16,10 @@
     <div class="row pb-4">
         <div class="col-7"></div>
         <div class="col-4">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search">
+            <input class="form-control me-2" id="inSearch" type="search" placeholder="Search">
             <button class="btn btn-outline-success" id="btnSearch">Search</button>
         </div>
-        <div class="col-1"></div>
+<!--        <div class="col-1"></div>-->
     </div>
 </div>
 <br>
@@ -46,24 +46,39 @@
         </div>
         <div class="col-1"></div>
     </div>
+</div>
 
+<div class="container">
+    <div class="row">
+        <div class="col-8"></div>
+        <div class="col-4">
+            <a class="text-decoration-none" href="#" id="aPrevious">Previous</a>
+            <span id="page"></span>
+            <a class="text-decoration-none" href="#" id="aNext">Next</a>
+        </div>
+    </div>
 </div>
 
 
 <script>
-    $.ajax({
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        type: "GET", //GET, DELETE, PUT...
-        url: "http://localhost:8080/blogRest/list?name=",
-        success: function(pageBlog){
-            console.log(pageBlog.content);
-            let outHTML = "";
-            let count = 1;
-            for (let pageObj of pageBlog.content) {
-                outHTML += `<tr>
+    let curPage = 0;
+    let searchVal ="";
+    function getPageBlog(pageNumber, name) {
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "GET", //GET, DELETE, PUT...
+            url: "http://localhost:8080/blogRest/list?page="+pageNumber+"&search="+name,
+            success: function(pageBlog){
+                console.log(pageBlog.content);
+                let outHTML = "";
+                let count = 1;
+                let totalPages = pageBlog.totalPages;
+                let showPage = pageNumber + 1 + "/" + totalPages;
+                for (let pageObj of pageBlog.content) {
+                    outHTML += `<tr>
                                 <td>${count++}</td>
                                 <td>${pageObj.id}</td>
                                 <td>${pageObj.name}</td>
@@ -77,41 +92,38 @@
                                     <a href="#">Delete</a>
                                 </td>
                             </tr>`;
-            }
-            $("#bodyBlog").html(outHTML);
-        },
-        error: function(resultError) {
-            console.log(resultError);
-        }
-    });
-
-</script>
-<script>
-    $("#btnSearch").click(function () {
-
-        let string = $("#search").val();
-        console.log(string);
-
-        $.ajax({
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            type: "GET", //GET, DELETE, PUT...
-            url: `http://localhost:8080/blogRest/search?search=${string}`,
-            // data: JSON.stringify(string),
-            success: function(listBlog){
-                alert("OK");
-                console.log(listBlog)
-
+                }
+                $("#bodyBlog").html(outHTML);
+                $("#page").html(showPage);
             },
             error: function(resultError) {
                 console.log(resultError);
-                console.log("notOK");
             }
         });
+    }
+
+    getPageBlog(curPage, searchVal)
+
+    $("#aNext").click(function () {
+        curPage++;
+        getPageBlog(curPage, searchVal);
     })
+
+    $("#aPrevious").click(function () {
+        curPage--;
+        getPageBlog(curPage, searchVal);
+    })
+
+    $("#btnSearch").click(function () {
+        searchVal = $("#inSearch").val();
+        console.log(searchVal);
+        getPageBlog(curPage, searchVal);
+
+    })
+
+
 </script>
+
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
         crossorigin="anonymous"></script>

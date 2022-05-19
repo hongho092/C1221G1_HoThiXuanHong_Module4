@@ -12,12 +12,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin
 @RequestMapping(value = "/blogRest")
@@ -31,13 +33,24 @@ public class BlogRestController {
     private ICategoryService categoryService;
 
     @GetMapping(value = "/list")
-    public ResponseEntity<Page<Blog>> getPageBlog(@PageableDefault(value = 10) Pageable pageable) {
-        Page<Blog> blogPage = blogService.findAllPage(pageable);
+    public ResponseEntity<Page<Blog>> getPageBlog(@PageableDefault(value = 3) Pageable pageable, @RequestParam Optional<String> search) {
+        String searchVal = search.orElse("");
+        Page<Blog> blogPage = blogService.findAll(searchVal, pageable);
         if(!blogPage.hasContent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(blogPage, HttpStatus.OK);
     }
+
+//    @GetMapping(value = "")
+//    public String goList(@PageableDefault(value = 3, sort = {}) Pageable pageable, Model model, @RequestParam Optional<String> search){
+//        String searchVal = search.orElse("");
+//        Page<Blog> blogList = blogService.findAll(searchVal, pageable);
+//        System.out.println(blogList);
+//        model.addAttribute("searchVal", searchVal);
+//        model.addAttribute("blogList", blogList);
+//        return "list";
+//    }
 
     @GetMapping(value = "/category")
     public ResponseEntity<List<Category>> getCategory() {
