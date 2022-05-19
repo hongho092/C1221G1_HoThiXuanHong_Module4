@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update_Phone</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+<table border="1"  class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">No</th>
+        <th scope="col">Id</th>
+        <th scope="col">Producer</th>
+        <th scope="col">Model</th>
+        <th scope="col">Price</th>
+        <th scope="col" colspan="2">Action</th>
+    </tr>
+    </thead>
+    <tbody id="bodyBlog">
+
+    </tbody>
+</table>
+
+<br><br>
+<label for="a1">Input id for edit</label><input type="text" id="a1"><button id="btnId">Find</button>
+<br><br>
+
+<label for="a2">Producer</label><input type="text" id="a2"><br>
+<label for="a3">Model</label><input type="text" id="a3"><br>
+<label for="a4">Price</label><input type="number" id="a4">
+
+<script>
+    // $.ajax({
+    //     headers: {
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json'
+    //     },
+    //     type: "GET", //GET, DELETE, PUT...
+    //     url: "http://localhost:8080/smartphones/list1",
+    //     success: function(phoneList){
+    //         console.log(phoneList);
+    //         console.log("hear")
+    //         let outHTML = "";
+    //         let count = 1;
+    //         for (let phoneObj of phoneList) {
+    //             outHTML += `<tr>
+    //                             <td>${count++}</td>
+    //                             <td>${phoneObj.id}</td>
+    //                             <td>${phoneObj.producer}</td>
+    //                             <td>${phoneObj.model}</td>
+    //                             <td>${phoneObj.price}</td>
+    //                             <td>
+    //                                 <a href="#">Update</a>
+    //                             </td>
+    //                             <td>
+    //                                 <a href="#">Delete</a>
+    //                             </td>
+    //                         </tr>`;
+    //         }
+    //         $("#bodyBlog").html(outHTML);
+    //     },
+    //     error: function(resultError) {
+    //         console.log(resultError);
+    //     }
+    // });
+
+    let idEdit;
+    function findById(id) {
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "GET", //GET, DELETE, PUT...
+            url: "http://localhost:8080/smartphones/getById?id="+id,
+            success: function(phone){
+                console.log(phone);
+                console.log("hear")
+                // let outHTML = "";
+                // let count = 1;
+                // for (let phoneObj of phoneList) {
+                //     outHTML += `<tr>
+                //             <td>${count++}</td>
+                //             <td>${phoneObj.id}</td>
+                //             <td>${phoneObj.producer}</td>
+                //             <td>${phoneObj.model}</td>
+                //             <td>${phoneObj.price}</td>
+                //             <td>
+                //                 <a href="#">Update</a>
+                //             </td>
+                //             <td>
+                //                 <a href="#">Delete</a>
+                //             </td>
+                //         </tr>`;
+                // }
+                // $("#bodyBlog").html(outHTML);
+            },
+            error: function(resultError) {
+                console.log(resultError);
+            }
+        });
+    }
+
+    $("#btnId").click(function () {
+        idEdit = $("#a1").val();
+        findById(idEdit);
+    })
+
+
+
+</script>
+
+</body>
+</html>
