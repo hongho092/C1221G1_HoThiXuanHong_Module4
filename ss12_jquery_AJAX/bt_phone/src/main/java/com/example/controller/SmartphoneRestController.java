@@ -40,19 +40,26 @@ public class SmartphoneRestController {
         return modelAndView;
     }
 
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<Smartphone> deleteSmartphone(@PathVariable Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Smartphone> deleteSmartphone(@PathVariable int id) {
 //        Optional<Smartphone> smartphoneOptional = smartphoneService.findById(id);
-//        if (!smartphoneOptional.isPresent()) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        smartphoneService.remove(id);
-//        return new ResponseEntity<>(smartphoneOptional.get(), HttpStatus.NO_CONTENT);
-//    }
+        Optional<Smartphone> smartphoneOptional = Optional.ofNullable(smartphoneService.findById(id));
+        if (!smartphoneOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        smartphoneService.remove(id);
+        return new ResponseEntity<>(smartphoneOptional.get(), HttpStatus.NO_CONTENT);
+    }
 
     @GetMapping(value = "getById")
     public ResponseEntity<Smartphone> getById(@RequestParam int id) {
         Smartphone smartphone = smartphoneService.findById(id);
         return new ResponseEntity<>(smartphone, HttpStatus.OK);
+    }
+
+    @PatchMapping(value = "/{id}")
+    public ResponseEntity<Void> edit(@RequestBody Smartphone smartphone) {
+        smartphoneService.save(smartphone);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

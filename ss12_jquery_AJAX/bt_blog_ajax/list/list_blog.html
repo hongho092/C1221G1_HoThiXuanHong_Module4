@@ -48,13 +48,14 @@
     </div>
 </div>
 
+
 <div class="container">
     <div class="row">
         <div class="col-8"></div>
         <div class="col-4">
-            <a class="text-decoration-none" href="#" id="aPrevious">Previous</a>
-            <span id="page"></span>
-            <a class="text-decoration-none" href="#" id="aNext">Next</a>
+<!--            <a class="text-decoration-none" href="#" id="aPrevious">Previous</a>-->
+<!--            <span id="page"></span>-->
+            <a class="text-decoration-none" href="#" id="aNext">Load more</a>
         </div>
     </div>
 </div>
@@ -93,7 +94,8 @@
                                 </td>
                             </tr>`;
                 }
-                $("#bodyBlog").html(outHTML);
+                // $("#bodyBlog").html(outHTML); //phân trang
+                $("#bodyBlog").append(outHTML);
                 $("#page").html(showPage);
             },
             error: function(resultError) {
@@ -109,10 +111,10 @@
         getPageBlog(curPage, searchVal);
     })
 
-    $("#aPrevious").click(function () {
-        curPage--;
-        getPageBlog(curPage, searchVal);
-    })
+    // $("#aPrevious").click(function () {
+    //     curPage--;
+    //     getPageBlog(curPage, searchVal);
+    // })
 
     $("#btnSearch").click(function () {
         searchVal = $("#inSearch").val();
@@ -120,7 +122,6 @@
         getPageBlog(curPage, searchVal);
 
     })
-
 
 </script>
 
@@ -130,20 +131,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
-
-<!--<script>-->
-<!--    // let curPage = 0;-->
-
-<!--    // function getPageStudent(pageNumber) {-->
-<!--    //    -->
-<!--    // }-->
-<!--    //-->
-<!--    // getPageStudent(curPage);-->
-<!--    //-->
-<!--    // $("#aNext").click(function() {-->
-<!--    //     curPage++;-->
-<!--    //     getPageStudent(curPage);-->
-<!--    // })-->
-<!--</script>-->
 </body>
 </html>

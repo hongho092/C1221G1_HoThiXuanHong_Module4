@@ -23,10 +23,10 @@ public class SmartphoneService implements ISmartphoneService {
         return smartPhoneRepository.save(smartPhone);
     }
 
-//    @Override
-////    public void remove(Long id) {
-////        smartPhoneRepository.deleteById(id);
-////    }
+    @Override
+    public void remove(int id) {
+        smartPhoneRepository.deleteById(id);
+    }
 
     @Override
     public List<Smartphone> findAllSmarts() {

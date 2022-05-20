@@ -10,8 +10,7 @@ public interface ISmartphoneService {
 
     Smartphone save(Smartphone smartPhone);
 
-//    void remove(Long id);
-
+    void remove(int id);
 
     List<Smartphone> findAllSmarts();
 
