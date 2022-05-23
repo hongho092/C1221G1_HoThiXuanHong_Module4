@@ -38,7 +38,7 @@
     <div class="px-5 row">
         <div class="col-2"></div>
         <div class="col-8">
-            <form action="/customer/save_customer_type" method="post" th:object="${customerType}">
+            <form action="/customer/save_customer_type" method="get" th:object="${customerType}">
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default1">Division</span>
                     <input type="text" th:field="*{customerTypeName}" class="form-control" aria-label="Sizing example input"

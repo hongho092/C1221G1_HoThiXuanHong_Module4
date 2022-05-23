@@ -133,7 +133,7 @@ public class CustomerController {
         return "customer/customer_type";
     }
 
-    @PostMapping(value = "/save_customer_type")
+    @GetMapping(value = "/save_customer_type")
     public String saveCustomerType(@ModelAttribute CustomerType customerType, RedirectAttributes redirectAttributes) {
         customerTypeService.save(customerType);
         redirectAttributes.addFlashAttribute("mess", "Create Customer Type Success");

@@ -1,13 +1,19 @@
-package com.example.model.employee;
+package com.example.model.login;
+
+import com.example.model.employee.Employee;
+import com.example.model.login.UserRole;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "user")
+@Table(name = "user"
+//        , uniqueConstraints = { @UniqueConstraint(name = "USER_UK", columnNames = "user_name") }
+)
 public class User {
 
     @Id
+//    @Column(name = "user_name")
     private String userName;
 
     private String password;
