@@ -73,6 +73,8 @@ public class ContractController {
             return "redirect:/contract/list";
         }
     }
+
+
 //
 //    @GetMapping(value = "/list_service_type")
 //    public String goListServiceType(Model model) {

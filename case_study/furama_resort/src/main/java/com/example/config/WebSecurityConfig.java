@@ -53,7 +53,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/employee/*",
                                                         "/service/*",
                                                         "/customer/save_customer_type",
-                                                        "/contract/*"
+                                                        "/contract/*",
+                                                        "/contract_detail/*"
                                                         ).access("hasRole('ROLE_BOSS')");
 
         http.authorizeRequests().antMatchers("/customer/list",
