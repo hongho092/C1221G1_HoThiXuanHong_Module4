@@ -13,7 +13,7 @@ public class CustomerType {
 
     private String customerTypeName;
 
-    @OneToMany(mappedBy = "customerType")
+    @OneToMany(mappedBy = "customerType", orphanRemoval = true)
     private List<Customer> customerList;
 
     public CustomerType() {

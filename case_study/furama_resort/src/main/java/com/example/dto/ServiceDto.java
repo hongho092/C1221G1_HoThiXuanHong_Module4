@@ -6,21 +6,41 @@ import com.example.model.service.ServiceType;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import javax.validation.constraints.Pattern;
 import java.util.List;
 
 public class ServiceDto implements Validator {
 
     private int serviceId;
+
+    @Pattern(regexp = "^DV-[0-9]{4}$", message = "Wrong format service code")
     private String serviceCode;
+
+    @Pattern(regexp = "^([A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]* [A-Z][a-z]*|)$", message = "The first letter must be capitalized")
     private String serviceName;
+
+    @Pattern(regexp = "^[1-9][0-9]+$", message = "Wrong format Area")
     private String serviceArea;
+
+    @Pattern(regexp = "^[1-9][0-9]+$", message = "Wrong format Cost")
     private String serviceCost;
+
+    @Pattern(regexp = "^[1-9][0-9]+$", message = "Wrong format Max People")
     private String serviceMaxPeople;
+
     private ServiceType serviceType;
     private RentType rentType;
+
+    @Pattern(regexp = "^([A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]* [A-Z][a-z]*|)$", message = "The first letter must be capitalized")
     private String standardRoom;
+
+    @Pattern(regexp = "^([A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]* [A-Z][a-z]*|)$", message = "The first letter must be capitalized")
     private String descriptionOtherConvenience;
+
+    @Pattern(regexp = "^[1-9][0-9]+$", message = "Wrong format Pool Area")
     private String poolArea;
+
+    @Pattern(regexp = "^[1-9][0-9]+$", message = "Wrong format Number Of Floors")
     private String numberOfFloors;
 
     public ServiceDto() {
@@ -133,6 +153,11 @@ public class ServiceDto implements Validator {
     }
 
     public void validate1(Object target, Errors errors, List<Service> serviceList) {
-
+        ServiceDto serviceDto = (ServiceDto) target;
+        for (int i=0; i<serviceList.size(); i++) {
+            if (serviceList.get(i).getServiceCode().equals(serviceDto.serviceCode)) {
+                errors.rejectValue("serviceCode", "error1", "Error");
+            }
+        }
     }
 }

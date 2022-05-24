@@ -1,54 +1,47 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Login</title>
-</head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../common/css_login.css">
+    <th:block th:replace="~{common/layout :: head_bootstrap}"></th:block></head>
 <body>
-<!-- Include _menu.html -->
-<!--<th:block th:include="/_menu"></th:block>-->
+<th:block th:replace="~{common/layout :: head}"></th:block>
 
-<h1>Login</h1>
+<!--<div th:if="${#request.getParameter('error') == 'true'}" ">-->
+<!--    Login Failed!!! Incorrect user or password-->
+<!--&lt;!&ndash;    Reason :&ndash;&gt;-->
+<!--&lt;!&ndash;    <span th:if="${#session!= null and #session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') != null}"&ndash;&gt;-->
+<!--&lt;!&ndash;          th:utext="${#session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION').message}">&ndash;&gt;-->
+<!--&lt;!&ndash;                Static summary&ndash;&gt;-->
+<!--&lt;!&ndash;    </span>&ndash;&gt;-->
+<!--</div>-->
 
-<!-- /login?error=true -->
-<div th:if="${#request.getParameter('error') == 'true'}"
-     style="color:red;margin:10px 0px;">
-    Login Failed!!!<br />
-    Reason :
-    <span th:if="${#session!= null and #session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') != null}"
-          th:utext="${#session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION').message}">
-                Static summary
-         </span>
+<h4 th:if="${#request.getParameter('error') == 'true'}" class="text-center text-danger pt-3">Login Failed!!! Incorrect user or password. Try again</h4>
 
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <form class="form-signin" name='f' th:action="@{/j_spring_security_check}" method='POST'>
+                <img class="mb-4" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOXRcYVOltx6AbMgTUMw6t4VlUbYbmm8WL7w&usqp=CAU" alt="" width="72"
+                     height="72">
+                <h1 class="h3 mb-3 font-weight-normal text-danger">Please sign in</h1>
+                <input type="text" name='username' class="form-control" placeholder="User" required><br>
+                <input type="password" name='password' class="form-control" placeholder="Password" required><br>
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                <p class="mt-5 mb-3 text-muted">&copy; 2022-2025</p>
+            </form>
+        </div>
+        <div class="col-4"></div>
+    </div>
 </div>
 
-<h3>Enter user name and password:</h3>
-<form name='f' th:action="@{/j_spring_security_check}" method='POST'>
-    <table>
-        <tr>
-            <td>User:</td>
-            <td><input type='text' name='username' value=''></td>
-        </tr>
-        <tr>
-            <td>Password:</td>
-            <td><input type='password' name='password' /></td>
-        </tr>
-        <tr>
-            <td>Remember Me?</td>
-            <td><input type="checkbox" name="remember-me" /></td>
-        </tr>
-        <tr>
-            <td><input name="submit" type="submit" value="submit" /></td>
-        </tr>
-    </table>
-</form>
-
-<br>
-Username/pass:
-<ul>
-    <li>dbuser1/123</li>
-    <li>dbadmin1/123</li>
-</ul>
-
+<th:block th:replace="~{common/layout :: foot_bootstrap}"></th:block>
 </body>
-
 </html>

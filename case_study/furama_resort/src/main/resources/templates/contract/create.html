@@ -18,14 +18,14 @@
             <form class="was-validated" action="/contract/save" method="post" th:object="${contractDto}" novalidate>
                 <div class="input-group mb-3 position-relative">
                     <label for="a12"><span class="input-group-text" id="inputGroup-sizing-default12">Contract Start Date</span></label>
-                    <input type="text" th:field="*{contractStartDate}" class="form-control is-invalid" aria-label="Sizing example input"
+                    <input type="date" th:field="*{contractStartDate}" class="form-control is-invalid" aria-label="Sizing example input"
                            aria-describedby="inputGroup-sizing-default12" id="a12" required>
                     <span class="input-group-text text-danger" th:if="${#fields.hasErrors('contractStartDate')}"
                           th:errors="*{contractStartDate}"></span>
                 </div>
                 <div class="input-group mb-3 position-relative">
                     <label for="a1"><span class="input-group-text" id="inputGroup-sizing-default11">Contract End Date</span></label>
-                    <input type="text" th:field="*{contractEndDate}" class="form-control is-invalid" aria-label="Sizing example input"
+                    <input type="date" th:field="*{contractEndDate}" class="form-control is-invalid" aria-label="Sizing example input"
                            aria-describedby="inputGroup-sizing-default11" id="a1" required>
                     <span class="input-group-text text-danger" th:if="${#fields.hasErrors('contractEndDate')}"
                           th:errors="*{contractEndDate}"></span>
@@ -37,13 +37,13 @@
                     <span class="input-group-text text-danger" th:if="${#fields.hasErrors('contractDeposit')}"
                           th:errors="*{contractDeposit}"></span>
                 </div>
-                <div class="input-group mb-3">
-                    <label for="a3"><span class="input-group-text" id="inputGroup-sizing-default2">Contract Total Money</span></label>
-                    <input type="text" th:field="*{contractTotalMoney}" class="form-control" aria-label="Sizing example input"
-                           aria-describedby="inputGroup-sizing-default2" id="a3" required>
-                    <span class="input-group-text text-danger" th:if="${#fields.hasErrors('contractTotalMoney')}"
-                          th:errors="*{contractTotalMoney}"></span>
-                </div>
+<!--                <div class="input-group mb-3">-->
+<!--                    <label for="a3"><span class="input-group-text" id="inputGroup-sizing-default2">Contract Total Money</span></label>-->
+<!--                    <input type="text" th:field="*{contractTotalMoney}" class="form-control" aria-label="Sizing example input"-->
+<!--                           aria-describedby="inputGroup-sizing-default2" id="a3" required>-->
+<!--                    <span class="input-group-text text-danger" th:if="${#fields.hasErrors('contractTotalMoney')}"-->
+<!--                          th:errors="*{contractTotalMoney}"></span>-->
+<!--                </div>-->
                 <div class="input-group mb-3">
                     <label for="a10"><span class="input-group-text" id="inputGroup-sizing-default8">Employee create Contract</span></label>
                     <select th:field="*{employee}" class="form-select" aria-label="Default select example" id="a10" required>

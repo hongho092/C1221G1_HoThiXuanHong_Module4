@@ -6,16 +6,35 @@ import com.example.model.employee.Position;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import javax.validation.constraints.Pattern;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+
 public class EmployeeDto implements Validator{
 
     private int employeeId;
+
+    @Pattern(regexp = "^([A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]* [A-Z][a-z]*|)$", message = "The first letter must be capitalized")
     private String employeeName;
+
+//    @Pattern(regexp = "^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$", message = "Wrong format DateOfBirth")
     private String employeeBirthday;
+
+    @Pattern(regexp = "(^[0-9]{9}|[0-9]{12})$", message = "9 or 12 number")
     private String employeeIdCard;
+
+    @Pattern(regexp = "[1-9][0-9]+", message = "Wrong format salary")
     private String employeeSalary;
+
+    @Pattern(regexp = "^(090|091)[0-9]{7}$", message = "Start with 090 or 091 and 10 number")
     private String employeePhone;
+
+    @Pattern(regexp = "^[a-z][a-z0-9]+@gmail.com$", message = "Wrong format email")
     private String employeeEmail;
+
     private String employeeAddress;
+
     private Position position;
     private EducationDegree educationDegree;
     private Division division;
@@ -119,5 +138,16 @@ public class EmployeeDto implements Validator{
     @Override
     public void validate(Object target, Errors errors) {
 
+        EmployeeDto employeeDto = (EmployeeDto) target;
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate age = LocalDate.parse(employeeDto.employeeBirthday, formatter);
+        LocalDate now = LocalDate.now();
+        int current = Period.between(age, now).getYears();
+        if (current < 18) {
+            errors.rejectValue("employeeBirthday", "age_error1", "Error");
+        } else if (current > 100) {
+            errors.rejectValue("employeeBirthday", "age_error2", "Error");
+        }
     }
 }

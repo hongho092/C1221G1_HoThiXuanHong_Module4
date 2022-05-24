@@ -3,6 +3,8 @@ package com.example.controller;
 import com.example.dto.CustomerDto;
 import com.example.model.customer.Customer;
 import com.example.model.customer.CustomerType;
+import com.example.model.customer.CustomerUsingNow;
+import com.example.service.customer.ICustomerUsingService;
 import com.example.service.customer.ICustomerService;
 import com.example.service.customer.ICustomerTypeService;
 import org.springframework.beans.BeanUtils;
@@ -29,6 +31,9 @@ public class CustomerController {
 
     @Autowired
     private ICustomerTypeService customerTypeService;
+
+    @Autowired
+    private ICustomerUsingService customerUsingService;
 
     @GetMapping(value = "/list")
     public String goListCustomer(@PageableDefault(value = 3) Pageable pageable,
@@ -65,6 +70,7 @@ public class CustomerController {
                                BindingResult bindingResult,
                                RedirectAttributes redirectAttributes,
                                Model model) {
+        System.out.println(customerDto.getCustomerBirthday());
         List<Customer> customerList = customerService.findAll();
         CustomerDto customerDto1 = new CustomerDto();
         customerDto1.validate(customerDto, bindingResult);
@@ -138,5 +144,16 @@ public class CustomerController {
         customerTypeService.save(customerType);
         redirectAttributes.addFlashAttribute("mess", "Create Customer Type Success");
         return "redirect:/customer/list_customer_type";
+    }
+
+    @GetMapping(value = "/list_customer_service_now")
+    public String get(Model model) {
+//        List<CustomerServiceNow> customerServiceNows = null;
+//        System.out.println("bắt đầu lấy");
+        List<CustomerUsingNow> serviceNowList = customerUsingService.get();
+        model.addAttribute("serviceNowList", serviceNowList);
+//        System.out.println(serviceNowDtos);
+//        System.out.println("sau khi hoàn thành lấy");
+        return "customer/list_customer_service";
     }
 }

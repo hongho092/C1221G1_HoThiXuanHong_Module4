@@ -3,11 +3,15 @@ package com.example.dto;
 import com.example.model.contract.AttachService;
 import com.example.model.contract.Contract;
 
+import javax.validation.constraints.Pattern;
+
 public class ContractDetailDto {
 
     private int contractDetailId;
     private Contract contract;
     private AttachService attachService;
+
+    @Pattern(regexp = "^[1-9][0-9]*$", message = "Wrong format Quantity")
     private String quantity;
 
     public ContractDetailDto() {

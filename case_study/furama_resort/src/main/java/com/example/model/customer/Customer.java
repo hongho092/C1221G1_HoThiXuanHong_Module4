@@ -16,7 +16,7 @@ public class Customer {
     private String customerCode;
     private String customerName;
     private String customerBirthday;
-    private int customerGender;
+    private String customerGender;
     private String customerIdCard;
     private String customerPhone;
     private String customerEmail;
@@ -26,13 +26,13 @@ public class Customer {
     @JoinColumn(name = "customer_type_id", referencedColumnName = "customerTypeId")
     private CustomerType customerType;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer", orphanRemoval = true)
     private List<Contract> contractList;
 
     public Customer() {
     }
 
-    public Customer(int customerId, CustomerType customerType, String customerCode, String customerName, String customerBirthday, int customerGender, String customerIdCard, String customerPhone, String customerEmail, String customerAddress) {
+    public Customer(int customerId, CustomerType customerType, String customerCode, String customerName, String customerBirthday, String customerGender, String customerIdCard, String customerPhone, String customerEmail, String customerAddress) {
         this.customerId = customerId;
         this.customerType = customerType;
         this.customerCode = customerCode;
@@ -93,11 +93,11 @@ public class Customer {
         this.customerBirthday = customerBirthday;
     }
 
-    public int getCustomerGender() {
+    public String getCustomerGender() {
         return customerGender;
     }
 
-    public void setCustomerGender(int customerGender) {
+    public void setCustomerGender(String customerGender) {
         this.customerGender = customerGender;
     }
 

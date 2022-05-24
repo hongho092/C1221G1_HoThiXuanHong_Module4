@@ -32,17 +32,22 @@
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default1">Customer Birthday</span>
-                    <input type="text" th:field="*{customerBirthday}" class="form-control" aria-label="Sizing example input"
+                    <input type="date" th:field="*{customerBirthday}" class="form-control" aria-label="Sizing example input"
                            aria-describedby="inputGroup-sizing-default1" required>
                     <span class="input-group-text text-danger" th:if="${#fields.hasErrors('customerBirthday')}"
                           th:errors="*{customerBirthday}"></span>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default2">Customer Gender</span>
-                    <input type="text" th:field="*{customerGender}" class="form-control" aria-label="Sizing example input"
-                           aria-describedby="inputGroup-sizing-default2" required>
-                    <span class="input-group-text text-danger" th:if="${#fields.hasErrors('customerGender')}"
-                          th:errors="*{customerGender}"></span>
+                    <select th:field="*{customerGender}" class="form-select" aria-label="Default select example" required>
+                        <option value=""></option>
+                        <option th:value="Nữ" th:text="Nữ"></option>
+                        <option th:value="Nam" th:text="Nam"></option>
+                    </select>
+<!--                    <input type="text" th:field="*{customerGender}" class="form-control" aria-label="Sizing example input"-->
+<!--                           aria-describedby="inputGroup-sizing-default2" required>-->
+<!--                    <span class="input-group-text text-danger" th:if="${#fields.hasErrors('customerGender')}"-->
+<!--                          th:errors="*{customerGender}"></span>-->
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default3">Customer Id Card</span>

@@ -10,4 +10,5 @@ public class FuramaController {
     public String goHome() {
         return "common/home";
     }
+
 }

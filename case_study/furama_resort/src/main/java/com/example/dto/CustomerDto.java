@@ -5,18 +5,34 @@ import com.example.model.customer.CustomerType;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import javax.validation.constraints.Pattern;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class CustomerDto implements Validator {
 
     private int customerId;
+
+    @Pattern(regexp = "^KH-[0-9]{4}$", message = "Wrong format customer code")
     private String customerCode;
+
+    @Pattern(regexp = "^([A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]* [A-Z][a-z]*|)$", message = "The first letter must be capitalized")
     private String customerName;
+
     private String customerBirthday;
-    private int customerGender;
+    private String customerGender;
+
+    @Pattern(regexp = "(^[0-9]{9}|[0-9]{12})$", message = "9 or 12 number")
     private String customerIdCard;
+
+    @Pattern(regexp = "^(090|091)[0-9]{7}$", message = "Start with 090 or 091 and 10 number")
     private String customerPhone;
+
+    @Pattern(regexp = "^[a-z][a-z0-9]+@gmail.com$", message = "Wrong format email")
     private String customerEmail;
+
     private String customerAddress;
     private CustomerType customerType;
 
@@ -55,11 +71,11 @@ public class CustomerDto implements Validator {
         this.customerBirthday = customerBirthday;
     }
 
-    public int getCustomerGender() {
+    public String getCustomerGender() {
         return customerGender;
     }
 
-    public void setCustomerGender(int customerGender) {
+    public void setCustomerGender(String customerGender) {
         this.customerGender = customerGender;
     }
 
@@ -114,6 +130,24 @@ public class CustomerDto implements Validator {
     }
 
     public void validate1(Object target, Errors errors, List<Customer> customers) {
+        CustomerDto customerDto = (CustomerDto) target;
+        for (int i=0; i<customers.size(); i++) {
+            if (customers.get(i).getCustomerCode().equals(customerDto.customerCode)) {
+                errors.rejectValue("customerCode", "error", "Error");
+            }
+        }
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate age = LocalDate.parse(customerDto.customerBirthday, formatter);
+        LocalDate now = LocalDate.now();
+        int current = Period.between(age, now).getYears();
+        if (current < 18) {
+            errors.rejectValue("customerBirthday", "age_error1", "Error");
+        } else if (current > 100) {
+            errors.rejectValue("customerBirthday", "age_error2", "Error");
+        }
+
+//        regex ngayf thangs nawm:  ^\\d{4}[-](0?[1-9]|1[012])[-](0?[1-9]|[12][0-9]|3[01])$
 
     }
 }

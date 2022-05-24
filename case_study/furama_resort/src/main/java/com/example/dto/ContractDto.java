@@ -3,14 +3,29 @@ package com.example.dto;
 import com.example.model.customer.Customer;
 import com.example.model.employee.Employee;
 import com.example.model.service.Service;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
-public class ContractDto {
+import javax.validation.constraints.Pattern;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
+
+public class ContractDto implements Validator {
 
     private int contractId;
+
     private String contractStartDate;
+
     private String contractEndDate;
+
+    @Pattern(regexp = "^[1-9][0-9]+$", message = "Wrong format Deposit")
     private String contractDeposit;
+
+//    @Pattern(regexp = "^[1-9][0-9]+$", message = "Wrong format Total Money")
     private String contractTotalMoney;
+
     private Employee employee;
     private Customer customer;
     private Service service;
@@ -80,5 +95,29 @@ public class ContractDto {
 
     public void setService(Service service) {
         this.service = service;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+
+        ContractDto contractDto = (ContractDto) target;
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate startDate = LocalDate.parse(contractDto.contractStartDate, formatter);
+        LocalDate endDate = LocalDate.parse(contractDto.contractEndDate, formatter);
+        LocalDate now = LocalDate.now();
+        int current1 = Period.between(startDate, now).getDays();
+        int current2 = Period.between(endDate, startDate).getDays();
+        if (current1 > 0) {
+            errors.rejectValue("contractStartDate", "day_error1", "Error");
+        }
+        if (current2 > 0) {
+            errors.rejectValue("contractEndDate", "day_error2", "Error");
+        }
     }
 }

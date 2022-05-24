@@ -13,7 +13,7 @@ public class Position {
 
     private String positionName;
 
-    @OneToMany(mappedBy = "position")
+    @OneToMany(mappedBy = "position", orphanRemoval = true)
     private List<Employee> employeeList;
 
     public Position() {

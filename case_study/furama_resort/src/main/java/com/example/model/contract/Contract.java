@@ -32,7 +32,7 @@ public class Contract {
     @JoinColumn(name = "service_id", referencedColumnName = "serviceId")
     private Service service;
 
-    @OneToMany(mappedBy = "contract")
+    @OneToMany(mappedBy = "contract", orphanRemoval = true)
     private List<ContractDetail> contractDetailList;
 
     public Contract() {

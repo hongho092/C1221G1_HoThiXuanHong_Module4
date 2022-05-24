@@ -15,7 +15,7 @@ public class ServiceType {
 
     private String serviceTypeName;
 
-    @OneToMany(mappedBy = "serviceType")
+    @OneToMany(mappedBy = "serviceType", orphanRemoval = true)
     private List<Service> serviceList;
 
     public ServiceType() {

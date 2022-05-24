@@ -59,7 +59,7 @@ public class ContractController {
                               BindingResult bindingResult,
                               RedirectAttributes redirectAttributes,
                               Model model) {
-        new ServiceDto().validate(contractDto, bindingResult);
+        new ContractDto().validate(contractDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
             model.addAttribute("customerList", customerService.findAll());
             model.addAttribute("employeeList", employeeService.findAll());
@@ -76,31 +76,23 @@ public class ContractController {
 
 
 //
-//    @GetMapping(value = "/list_service_type")
-//    public String goListServiceType(Model model) {
-//        model.addAttribute("serviceTypeList", serviceTypeService.findAll());
-//        model.addAttribute("serviceType", new ServiceType());
-//        return "service/service_type";
-//    }
-//
-//    @PostMapping(value = "/save_service_type")
-//    public String saveServiceType(@ModelAttribute ServiceType serviceType, RedirectAttributes redirectAttributes) {
-//        serviceTypeService.save(serviceType);
-//        redirectAttributes.addFlashAttribute("mess", "Create Service Type Success");
-//        return "redirect:/service/list_service_type";
-//    }
-//
-//    @GetMapping(value = "/list_rent_type")
-//    public String goListRentType(Model model) {
-//        model.addAttribute("rentTypeList", rentTypeService.findAll());
-//        model.addAttribute("rentType", new RentType());
-//        return "service/rent_type";
-//    }
-//
-//    @PostMapping(value = "/save_rent_type")
-//    public String saveRentType(@ModelAttribute RentType rentType, RedirectAttributes redirectAttributes) {
-//        rentTypeService.save(rentType);
-//        redirectAttributes.addFlashAttribute("mess", "Create Rent Type Success");
-//        return "redirect:/service/list_rent_type";
+//    @PostMapping(value = "/save")
+//    public String saveEmployee(@ModelAttribute @Validated EmployeeDto employeeDto,
+//                               BindingResult bindingResult,
+//                               RedirectAttributes redirectAttributes,
+//                               Model model) {
+//        new EmployeeDto().validate(employeeDto, bindingResult);
+//        if (bindingResult.hasFieldErrors()) {
+//            model.addAttribute("divisionList", divisionService.findAll());
+//            model.addAttribute("educationDegreeList", educationDegreeService.findAll());
+//            model.addAttribute("positionList", positionService.findAll());
+//            return "employee/create";
+//        } else {
+//            Employee employee = new Employee();
+//            BeanUtils.copyProperties(employeeDto, employee);
+//            employeeService.save(employee);
+//            redirectAttributes.addFlashAttribute("mess", "Create Employee Success");
+//            return "redirect:/employee/list";
+//        }
 //    }
 }

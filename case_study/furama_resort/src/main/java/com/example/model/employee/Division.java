@@ -13,7 +13,7 @@ public class Division {
 
     private String divisionName;
 
-    @OneToMany(mappedBy = "division")
+    @OneToMany(mappedBy = "division", orphanRemoval = true)
     private List<Employee> employeeList;
 
     public Division() {

@@ -8,7 +8,7 @@
 <body>
 <th:block th:replace="~{common/layout :: head}"></th:block>
 <div class="text-center pb-4">
-    <h2 class="text-danger text-center pt-5 pb-2">LIST CONTRACT</h2>
+    <h2 class="text-danger text-center pt-5 pb-2">LIST ATTACH SERVICE</h2>
     <!--    <button class="btn btn-warning"><a href="/create" class="text-decoration-none">Create Product</a></button>-->
     <p class="text-success pt-2" th:text="${mess}"></p>
 </div>
@@ -30,27 +30,21 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Contract ID</th>
-            <th scope="col">Service Code</th>
-            <th scope="col">Contract Start Date</th>
-            <th scope="col">Contract End Date</th>
-            <th scope="col">Contract Deposit</th>
-<!--            <th scope="col">Contract Total Money</th>-->
-            <th scope="col">Employee create Contract</th>
-            <th scope="col">Customer contracted Contract</th>
+            <th scope="col">Attach Service ID</th>
+            <th scope="col">Attach Service Name</th>
+            <th scope="col">Attach Service Cost</th>
+            <th scope="col">Attach Service Unit</th>
+            <th scope="col">Attach Service Status</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="contract, hong : ${contractPage}">
+        <tr th:each="attachService, hong : ${attachServicePage}">
             <td th:text="${hong.count}"></td>
-            <td th:text="${contract.contractId}"></td>
-            <td th:text="${contract.service.serviceCode}"></td>
-            <td th:text="${contract.contractStartDate}"></td>
-            <td th:text="${contract.contractEndDate}"></td>
-            <td th:text="${contract.contractDeposit}"></td>
-<!--            <td th:text="${contract.contractTotalMoney}"></td>-->
-            <td th:text="${contract.employee.employeeName}"></td>
-            <td th:text="${contract.customer.customerName}"></td>
+            <td th:text="${attachService.attachServiceId}"></td>
+            <td th:text="${attachService.attachServiceName}"></td>
+            <td th:text="${attachService.attachServiceCost}"></td>
+            <td th:text="${attachService.attachServiceUnit}"></td>
+            <td th:text="${attachService.attachServiceStatus}"></td>
         </tr>
         </tbody>
     </table>
@@ -61,17 +55,17 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-end">
             <li class="page-item">
-                <a class="page-link" th:if="${contractPage.hasPrevious()}"
-                   th:href="@{/contract/list/(page=${contractPage.number - 1})}">Previous</a>
+                <a class="page-link" th:if="${attachServicePage.hasPrevious()}"
+                   th:href="@{/attach_service/list/(page=${attachServicePage.number - 1})}">Previous</a>
             </li>
             <!--            <li class="page-item"><span th:text="${productList.number + 1}"></span></li>-->
-            <li class="page-item"><a class="page-link"><span th:text="${contractPage.number + 1}"></span></a></li>
+            <li class="page-item"><a class="page-link"><span th:text="${attachServicePage.number + 1}"></span></a></li>
             <li class="page-item page-link">/</li>
-            <li class="page-item"><a class="page-link"><span th:text="${contractPage.totalPages}"></span></a></li>
+            <li class="page-item"><a class="page-link"><span th:text="${attachServicePage.totalPages}"></span></a></li>
             <!--            <li class="page-item"><span th:text="${productList.totalPages}"></span></li>-->
             <li class="page-item">
-                <a class="page-link" th:if="${contractPage.hasNext()}"
-                   th:href="@{/contract/list/(page=${contractPage.number + 1})}">Next</a>
+                <a class="page-link" th:if="${attachServicePage.hasNext()}"
+                   th:href="@{/attach_service/list/(page=${attachServicePage.number + 1})}">Next</a>
             </li>
         </ul>
     </nav>

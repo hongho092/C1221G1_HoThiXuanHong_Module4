@@ -24,9 +24,17 @@ public class MainController {
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String adminPage(Model model, Principal principal) {
 
-        User loginedUser = (User) ((Authentication) principal).getPrincipal();
+        // thành phần đại diện cho thiết bị đang đăng nhập hiện tại
+        // org.springframework.security.core.userdetails.User [Username=dbadmin1, Password=[PROTECTED],
+        // Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true,
+        // Granted Authorities=[ROLE_ADMIN, ROLE_USER]]
 
+        User loginedUser = (User) ((Authentication) principal).getPrincipal();
+        System.out.println(loginedUser);
+
+        System.out.println("chuẩn bị lấy");
         String userInfo = WebUtils.toString(loginedUser);
+
         model.addAttribute("userInfo", userInfo);
 
         return "adminPage";
@@ -55,6 +63,7 @@ public class MainController {
         User loginedUser = (User) ((Authentication) principal).getPrincipal();
 
         String userInfo = WebUtils.toString(loginedUser);
+
         model.addAttribute("userInfo", userInfo);
 
         return "userInfoPage";
@@ -80,3 +89,8 @@ public class MainController {
     }
 
 }
+
+
+/*
+WebUtils làm việc với controller để lấy thông tin của (user) và (role của user) thông qua principal(đối tượng đã đăng nhập) được truyền vào
+ */

@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <th:block th:replace="~{common/layout :: head_bootstrap}"></th:block>
+    <style>
+        .bg {
+            background-color: #eaf8fa;
+        }
+    </style>
 </head>
 <body>
 <th:block th:replace="~{common/layout :: head}"></th:block>
@@ -32,51 +37,84 @@
 <!--        <div class="col-1"></div>-->
     </div>
 </div>
-<div class="p-5">
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">ID</th>
-            <th scope="col">Customer Code</th>
-            <th scope="col">Customer Name</th>
-            <th scope="col">Customer Birthday</th>
-            <th scope="col">Customer Gender</th>
-            <th scope="col">Customer Id Card</th>
-            <th scope="col">Customer Phone</th>
-            <th scope="col">Customer Email</th>
-            <th scope="col">Customer Address</th>
-            <th scope="col">Customer Type</th>
-            <th scope="col">Option</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="customer, hong : ${customerPage}">
-            <td th:text="${hong.count}"></td>
-            <td><a class="text-decoration-none" th:href="@{/customer/detail(id=${customer.customerId})}">
-                <th:block th:text="${customer.customerId}"></th:block>
-            </a></td>
-            <td th:text="${customer.customerCode}"></td>
-            <td><a class="text-decoration-none" th:href="@{/customer/detail(id=${customer.customerId})}">
-                <th:block th:text="${customer.customerName}"></th:block>
-            </a></td>
-            <td th:text="${customer.customerBirthday}"></td>
-            <td th:text="${customer.customerGender}"></td>
-            <td th:text="${customer.customerIdCard}"></td>
-            <td th:text="${customer.customerPhone}"></td>
-            <td th:text="${customer.customerEmail}"></td>
-            <td th:text="${customer.customerAddress}"></td>
-            <td th:text="${customer.customerType.customerTypeName}"></td>
-            <td>
-                <button type="button" th:attr="onclick=|deleteCustomer(${customer.customerId},'${customer.customerName}')|"
-                        class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                    Delete
-                </button>
-                <button class="btn btn-warning"><a class="text-decoration-none" th:href="@{/customer/edit(id=${customer.customerId})}">Edit</a></button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+<!--<div class="p-5">-->
+<!--    <table class="table table-striped">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th scope="col">#</th>-->
+<!--            <th scope="col">ID</th>-->
+<!--            <th scope="col">Customer Code</th>-->
+<!--            <th scope="col">Customer Name</th>-->
+<!--            <th scope="col">Customer Birthday</th>-->
+<!--            <th scope="col">Customer Gender</th>-->
+<!--            <th scope="col">Customer Id Card</th>-->
+<!--            <th scope="col">Customer Phone</th>-->
+<!--            <th scope="col">Customer Email</th>-->
+<!--            <th scope="col">Customer Address</th>-->
+<!--            <th scope="col">Customer Type</th>-->
+<!--            <th scope="col">Option</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr th:each="customer, hong : ${customerPage}">-->
+<!--            <td th:text="${hong.count}"></td>-->
+<!--            <td><a class="text-decoration-none" th:href="@{/customer/detail(id=${customer.customerId})}">-->
+<!--                <th:block th:text="${customer.customerId}"></th:block>-->
+<!--            </a></td>-->
+<!--            <td th:text="${customer.customerCode}"></td>-->
+<!--            <td><a class="text-decoration-none" th:href="@{/customer/detail(id=${customer.customerId})}">-->
+<!--                <th:block th:text="${customer.customerName}"></th:block></a></td>-->
+<!--            <td th:text="${customer.customerBirthday}"></td>-->
+<!--            <td th:text="${customer.customerGender}"></td>-->
+<!--            <td th:text="${customer.customerIdCard}"></td>-->
+<!--            <td th:text="${customer.customerPhone}"></td>-->
+<!--            <td th:text="${customer.customerEmail}"></td>-->
+<!--            <td th:text="${customer.customerAddress}"></td>-->
+<!--            <td th:text="${customer.customerType.customerTypeName}"></td>-->
+<!--            <td>-->
+<!--                <button type="button" th:attr="onclick=|deleteCustomer(${customer.customerId},'${customer.customerName}')|"-->
+<!--                        class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">-->
+<!--                    Delete-->
+<!--                </button>-->
+<!--                <button class="btn btn-warning"><a class="text-decoration-none" th:href="@{/customer/edit(id=${customer.customerId})}">Edit</a></button>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--</div>-->
+
+
+<div class="container">
+    <div class="row">
+        <div class="card my-5 me-2 col-4" th:each="customer, hong : ${customerPage}" style="width: 32%">
+            <div class="row bg">
+                <div class="col-md-4">
+                    <img src="https://www.clipartmax.com/png/middle/71-717812_girl-person-woman-people-icon-profile-woman-icon.png  " class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title"><a class="text-decoration-none" th:href="@{/customer/detail(id=${customer.customerId})}">
+                            <th:block th:text="${customer.customerName}"></th:block></a></h5>
+                        <p class="card-text" th:text="${'Code: '+customer.customerCode}"></p>
+                        <p class="card-text" th:text="${'Birthday: '+customer.customerBirthday}"></p>
+                        <p class="card-text" th:text="${'Id Card: '+customer.customerIdCard}"></p>
+                        <p class="card-text" th:text="${'Gender: '+customer.customerGender}"></p>
+                        <p class="card-text" th:text="${'Phone: '+customer.customerPhone}"></p>
+                        <p class="card-text" th:text="${'Email: '+customer.customerEmail}"></p>
+                        <p class="card-text" th:text="${'Address: '+customer.customerAddress}"></p>
+                        <hr>
+                        <p class="card-text"><small class="text-muted" th:text="${customer.customerType.customerTypeName}"></small></p>
+                        <hr>
+                        <button type="button" th:attr="onclick=|deleteCustomer(${customer.customerId},'${customer.customerName}')|"
+                                class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            Delete
+                        </button>
+                        <button class="btn btn-warning"><a class="text-decoration-none" th:href="@{/customer/edit(id=${customer.customerId})}">Edit</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 

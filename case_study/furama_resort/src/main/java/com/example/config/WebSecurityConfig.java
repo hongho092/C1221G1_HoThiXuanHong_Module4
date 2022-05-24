@@ -34,11 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-
-        // Sét đặt dịch vụ để tìm kiếm User trong Database.
-        // Và sét đặt PasswordEncoder.
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-
     }
 
 //    userDetails (lấy tên người dùng, lấy password của người dùng, lấy tất cả các role của người dùng)
@@ -54,7 +50,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                                                         "/service/*",
                                                         "/customer/save_customer_type",
                                                         "/contract/*",
-                                                        "/contract_detail/*"
+                                                        "/contract_detail/*",
+                                                        "/attach_service/*"
                                                         ).access("hasRole('ROLE_BOSS')");
 
         http.authorizeRequests().antMatchers("/customer/list",
@@ -64,21 +61,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                                                         "/customer/edit",
                                                         "/customer/save_edit",
                                                         "/customer/detail",
-                                                        "/customer/list_customer_type"
+                                                        "/customer/list_customer_type",
+                                                        "/customer/list_customer_service_now"
                                                         ).access("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')");
 
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/login/403");
 
-        // Cấu hình cho Login Form.
         http.authorizeRequests().and().formLogin()//
-                // Submit URL của trang login
-                .loginProcessingUrl("/j_spring_security_check") // Submit URL
+                .loginProcessingUrl("/j_spring_security_check")
                 .loginPage("/login/login")//
                 .defaultSuccessUrl("/")//
-                .failureUrl("/login/login?error=true")//
-                .usernameParameter("username")//
+                .failureUrl("/login/login?error=true")
+                .usernameParameter("username")
                 .passwordParameter("password")
-                // Cấu hình cho Logout Page.
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login/logoutSuccessful");
 
         // Cấu hình Remember Me.
