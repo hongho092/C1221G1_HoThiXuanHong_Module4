@@ -25,7 +25,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
 
-    // chuyển đổi mật khẩu đã được mã hóa
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
@@ -45,6 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
 
         http.authorizeRequests().antMatchers("/", "/login", "/logout").permitAll();
+//        http.authorizeRequests().antMatchers("/*").permitAll();
 
         http.authorizeRequests().antMatchers("/employee/*",
                                                         "/service/*",
@@ -69,8 +69,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests().and().formLogin()//
                 .loginProcessingUrl("/j_spring_security_check")
-                .loginPage("/login/login")//
-                .defaultSuccessUrl("/")//
+                .loginPage("/login/login")
+                .defaultSuccessUrl("/")
                 .failureUrl("/login/login?error=true")
                 .usernameParameter("username")
                 .passwordParameter("password")

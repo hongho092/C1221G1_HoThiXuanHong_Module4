@@ -7,40 +7,42 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import javax.validation.constraints.Pattern;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class ServiceDto implements Validator {
 
     private int serviceId;
 
-    @Pattern(regexp = "^DV-[0-9]{4}$", message = "Wrong format service code")
+    @Pattern(regexp = "^DV-[0-9]{4}$", message = "Sai format mã dịch vụ")
     private String serviceCode;
 
-    @Pattern(regexp = "^([A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]* [A-Z][a-z]*|)$", message = "The first letter must be capitalized")
+    @Pattern(regexp = "^([A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]* [A-Z][a-z]*|)$", message = "Chữ cái đầu phải viết hoa")
     private String serviceName;
 
-    @Pattern(regexp = "^[1-9][0-9]+$", message = "Wrong format Area")
+    @Pattern(regexp = "^[1-9][0-9]*$", message = "Sai format số hoặc số âm")
     private String serviceArea;
 
-    @Pattern(regexp = "^[1-9][0-9]+$", message = "Wrong format Cost")
+    @Pattern(regexp = "^[1-9][0-9]*$", message = "Sai format số hoặc số âm")
     private String serviceCost;
 
-    @Pattern(regexp = "^[1-9][0-9]+$", message = "Wrong format Max People")
+    @Pattern(regexp = "^[1-9][0-9]*$", message = "Sai format số hoặc số âm")
     private String serviceMaxPeople;
 
     private ServiceType serviceType;
     private RentType rentType;
 
-    @Pattern(regexp = "^([A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]* [A-Z][a-z]*|)$", message = "The first letter must be capitalized")
+    @Pattern(regexp = "^([A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]* [A-Z][a-z]*|)$", message = "Chữ cái đầu phải viết hoa")
     private String standardRoom;
 
-    @Pattern(regexp = "^([A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]* [A-Z][a-z]*|)$", message = "The first letter must be capitalized")
+    @Pattern(regexp = "^([A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]* [A-Z][a-z]*|)$", message = "Chữ cái đầu phải viết hoa")
     private String descriptionOtherConvenience;
 
-    @Pattern(regexp = "^[1-9][0-9]+$", message = "Wrong format Pool Area")
+    @Pattern(regexp = "^[1-9][0-9]*$", message = "Sai format số hoặc số âm")
     private String poolArea;
 
-    @Pattern(regexp = "^[1-9][0-9]+$", message = "Wrong format Number Of Floors")
+    @Pattern(regexp = "^[1-9][0-9]*$", message = "Sai format số hoặc số âm")
     private String numberOfFloors;
 
     public ServiceDto() {

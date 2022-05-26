@@ -46,4 +46,9 @@ public class CustomerService implements ICustomerService {
         return customerRepository.findAll();
     }
 
+//    @Override
+//    public void updateFlag(int id) {
+//        customerRepository.updateFlag(id);
+//    }
+
 }

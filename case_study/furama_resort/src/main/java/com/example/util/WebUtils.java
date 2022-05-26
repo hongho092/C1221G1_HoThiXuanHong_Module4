@@ -36,8 +36,6 @@ public class WebUtils {
             }
             sb.append(")");
         }
-        System.out.println("phương thưc láy...");
-        System.out.println(sb.toString());
         return sb.toString();
         // trả về dạng -- UserName:dbadmin1 (ROLE_ADMIN, ROLE_USER)
     }

@@ -6,9 +6,10 @@
     <th:block th:replace="~{common/layout :: head_bootstrap}"></th:block>
 </head>
 <body>
+<th:block th:replace="~{common/layout :: head_top}"></th:block>
 <th:block th:replace="~{common/layout :: head}"></th:block>
 <div class="text-center pb-4">
-    <h2 class="text-danger text-center pt-5 pb-2">LIST CUSTOMER ARE USING SERVICE</h2>
+    <h2 class="text-danger text-center pt-5 pb-2">DANH SÁCH KHÁCH HÀNG HIỆN TẠI ĐANG SỬ DỤNG DỊCH VỤ</h2>
     <!--    <button class="btn btn-warning"><a href="/create" class="text-decoration-none">Create Product</a></button>-->
     <p class="text-success pt-2" th:text="${mess}"></p>
 </div>
@@ -37,14 +38,14 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Contract ID</th>
-            <th scope="col">Customer Name</th>
-            <th scope="col">Service Name</th>
-            <th scope="col">Description Other Convenience</th>
-            <th scope="col">Service Cost</th>
-            <th scope="col">Attach Service Name</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Total Money</th>
+            <th scope="col">ID hợp dồng</th>
+            <th scope="col">Tên khách hàng</th>
+            <th scope="col">Tên dịch vụ</th>
+            <th scope="col">Tiện ích khác</th>
+            <th scope="col">Mã dịch vụ</th>
+            <th scope="col">Tên dịch vụ đính kèm</th>
+            <th scope="col">Số lượng</th>
+            <th scope="col">Tổng tiền</th>
         </tr>
         </thead>
         <tbody>

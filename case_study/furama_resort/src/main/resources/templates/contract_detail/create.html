@@ -6,9 +6,10 @@
     <th:block th:replace="~{common/layout :: head_bootstrap}"></th:block>
 </head>
 <body>
+<th:block th:replace="~{common/layout :: head_top}"></th:block>
 <th:block th:replace="~{common/layout :: head}"></th:block>
 <div class="text-center pb-4">
-    <h2 class="text-danger text-center pt-5 pb-2">CREATE CONTRACT DETAIL</h2>
+    <h2 class="text-danger text-center pt-5 pb-2">TẠO HỢP ĐỒNG CHI TIẾT</h2>
     <!--    <button class="btn btn-warning"><a href="/" class="text-decoration-none">Go List Product</a></button>-->
 </div>
 <div class="container">
@@ -17,7 +18,7 @@
         <div class="col-8">
             <form class="was-validated" action="/contract_detail/save" method="post" th:object="${contractDetailDto}" novalidate>
                 <div class="input-group mb-3">
-                    <label for="a10"><span class="input-group-text" id="inputGroup-sizing-default8">Contract Id</span></label>
+                    <label for="a10"><span class="input-group-text" id="inputGroup-sizing-default8">Id hợp đồng</span></label>
                     <select th:field="*{contract}" class="form-select" aria-label="Default select example" id="a10" required>
                         <option value=""></option>
                         <option th:each="category : ${contractList}" th:value="${category.contractId}"
@@ -25,7 +26,7 @@
                     </select>
                 </div>
                 <div class="input-group mb-3">
-                    <label for="a8"><span class="input-group-text" id="inputGroup-sizing-default9">Attach Service Name</span></label>
+                    <label for="a8"><span class="input-group-text" id="inputGroup-sizing-default9">Tên dịch vụ đính kèm</span></label>
                     <select th:field="*{attachService}" class="form-select" aria-label="Default select example" id="a8" required>
                         <option value=""></option>
                         <option th:each="category : ${attachServiceList}" th:value="${category.attachServiceId}"
@@ -33,7 +34,7 @@
                     </select>
                 </div>
                 <div class="input-group mb-3">
-                    <label for="a3"><span class="input-group-text" id="inputGroup-sizing-default2">Quantity</span></label>
+                    <label for="a3"><span class="input-group-text" id="inputGroup-sizing-default2">Số lượng</span></label>
                     <input type="text" th:field="*{quantity}" class="form-control" aria-label="Sizing example input"
                            aria-describedby="inputGroup-sizing-default2" id="a3" required>
                     <span class="input-group-text text-danger" th:if="${#fields.hasErrors('quantity')}"
@@ -41,7 +42,7 @@
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary position-relative">
-                        Create Contract Detail
+                        Tạo hợp đồng chi tiết
                         <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
                     <span class="visually-hidden">New alerts</span>
                     </span>

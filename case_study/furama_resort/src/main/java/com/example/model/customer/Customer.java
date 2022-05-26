@@ -26,6 +26,9 @@ public class Customer {
     @JoinColumn(name = "customer_type_id", referencedColumnName = "customerTypeId")
     private CustomerType customerType;
 
+    @Column(columnDefinition = "1")
+    private int flag;
+
     @OneToMany(mappedBy = "customer", orphanRemoval = true)
     private List<Contract> contractList;
 

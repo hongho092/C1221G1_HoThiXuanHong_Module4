@@ -11,7 +11,7 @@ public class ContractDetailDto {
     private Contract contract;
     private AttachService attachService;
 
-    @Pattern(regexp = "^[1-9][0-9]*$", message = "Wrong format Quantity")
+    @Pattern(regexp = "^[1-9][0-9]*$", message = "Sai format số hoặc số âm")
     private String quantity;
 
     public ContractDetailDto() {

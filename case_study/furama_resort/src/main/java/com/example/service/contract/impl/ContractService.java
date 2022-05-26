@@ -31,3 +31,20 @@ public class ContractService implements IContractService {
         return contractRepository.findAll();
     }
 }
+
+
+//    @Override
+//    public Page<Contract> findAll(Pageable pageable) {
+//        Page<Contract> contractPage = contractRepository.findAll(pageable);
+//        List<Contract> contractList = contractPage.getContent();
+//        Locale localeVN = new Locale("vi", "VN");
+//        NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
+//        for (int i=0; i < contractList.size(); i++) {
+//            String vnd1 = contractList.get(i).getContractDeposit();
+//            long VND = Long.valueOf(vnd1);
+//            String vnd2 = currencyVN.format(VND);
+//            contractList.get(i).setContractDeposit(vnd2);
+//        }
+//        contractPage = new PageImpl<>(contractList);
+//        return contractPage;
+//    }

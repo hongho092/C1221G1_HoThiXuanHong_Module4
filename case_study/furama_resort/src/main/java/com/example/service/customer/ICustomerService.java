@@ -18,4 +18,6 @@ public interface ICustomerService {
     Customer findById(int id);
 
     List<Customer> findAll();
+
+//    void updateFlag(int id);
 }

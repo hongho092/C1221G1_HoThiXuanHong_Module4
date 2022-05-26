@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>LIST EMPLOYEE</title>
     <th:block th:replace="~{common/layout :: head_bootstrap}"></th:block>
     <style>
         .bg {
@@ -11,9 +11,10 @@
     </style>
 </head>
 <body>
+<th:block th:replace="~{common/layout :: head_top}"></th:block>
 <th:block th:replace="~{common/layout :: head}"></th:block>
 <div class="text-center pb-4">
-    <h2 class="text-danger text-center pt-5 pb-2">LIST EMPLOYEE</h2>
+    <h2 class="text-danger text-center pt-5 pb-2">DANH SÁCH NHÂN VIÊN</h2>
     <!--    <button class="btn btn-warning"><a href="/create" class="text-decoration-none">Create Product</a></button>-->
     <p class="text-success pt-2" th:text="${mess}"></p>
 </div>
@@ -23,12 +24,12 @@
         <div class="col-5"></div>
         <div class="col-7">
             <form class="d-flex" action="/employee/list">
-                <input class="form-control me-2" type="search" placeholder="Employee Name" aria-label="Search"
+                <input class="form-control me-2" type="search" placeholder="Tên nhân viên" aria-label="Search"
                        name="search_name">
-                <input class="form-control me-2" type="search" placeholder="Employee Address" aria-label="Search"
+                <input class="form-control me-2" type="search" placeholder="Địa chỉ nhân viên" aria-label="Search"
                        name="search_address">
-                <select name="search_category" class="form-select" aria-label="Default select example">
-                    <option th:value="-1">Division</option>
+                <select name="search_category" class="form-select me-2" aria-label="Default select example">
+                    <option th:value="-1">Bộ phận</option>
                     <option th:each="category : ${divisionList}" th:value="${category.divisionId}"
                             th:text="${category.divisionName}"></option>
                 </select>
@@ -97,20 +98,20 @@
                     <div class="card-body">
                         <h5 class="card-title"><a class="text-decoration-none" th:href="@{/employee/detail(id=${employee.employeeId})}">
                             <th:block th:text="${employee.employeeName}"></th:block></a></h5>
-                        <p class="card-text" th:text="${'Birthday: '+employee.employeeBirthday}"></p>
-                        <p class="card-text" th:text="${'Id Card: '+employee.employeeIdCard}"></p>
-                        <p class="card-text" th:text="${'Salary: '+employee.employeeSalary}"></p>
-                        <p class="card-text" th:text="${'Phone: '+employee.employeePhone}"></p>
+                        <p class="card-text" th:text="${'Ngày sinh: '+employee.employeeBirthday}"></p>
+                        <p class="card-text" th:text="${'CMND: '+employee.employeeIdCard}"></p>
+                        <p class="card-text" th:text="${'Lương: '+employee.employeeSalary}"></p>
+                        <p class="card-text" th:text="${'Số dt: '+employee.employeePhone}"></p>
                         <p class="card-text" th:text="${'Email: '+employee.employeeEmail}"></p>
-                        <p class="card-text" th:text="${'Address: '+employee.employeeAddress}"></p>
+                        <p class="card-text" th:text="${'Địa chỉ: '+employee.employeeAddress}"></p>
                         <hr>
                         <p class="card-text"><small class="text-muted" th:text="${employee.position.positionName+', '+employee.educationDegree.educationDegreeName+', '+employee.division.divisionName}"></small></p>
                         <hr>
                         <button type="button" th:attr="onclick=|deleteProduct(${employee.employeeId},'${employee.employeeName}')|"
                                 class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                            Delete
+                            Xóa
                         </button>
-                        <button class="btn btn-warning"><a class="text-decoration-none" th:href="@{/employee/edit(id=${employee.employeeId})}">Edit</a></button>
+                        <button class="btn btn-warning"><a class="text-decoration-none" th:href="@{/employee/edit(id=${employee.employeeId})}">Sửa</a></button>
                     </div>
                 </div>
             </div>
@@ -124,14 +125,14 @@
         <ul class="pagination justify-content-end">
             <li class="page-item">
                 <a class="page-link" th:if="${employeePage.hasPrevious()}"
-                   th:href="@{/employee/list/(page=${employeePage.number - 1}, key1=${searchName}, key2=${searchAddress}, key3=${searchCategory})}">Previous</a>
+                   th:href="@{/employee/list/(page=${employeePage.number - 1}, key1=${searchName}, key2=${searchAddress}, key3=${searchCategory})}">Trang trước</a>
             </li>
             <li class="page-item"><a class="page-link"><span th:text="${employeePage.number + 1}"></span></a></li>
             <li class="page-item page-link">/</li>
             <li class="page-item"><a class="page-link"><span th:text="${employeePage.totalPages}"></span></a></li>
             <li class="page-item">
                 <a class="page-link" th:if="${employeePage.hasNext()}"
-                   th:href="@{/employee/list/(page=${employeePage.number + 1}, key1=${searchName}, key2=${searchAddress}, key3=${searchCategory})}">Next</a>
+                   th:href="@{/employee/list/(page=${employeePage.number + 1}, key1=${searchName}, key2=${searchAddress}, key3=${searchCategory})}">Trang sau</a>
             </li>
         </ul>
     </nav>
@@ -154,11 +155,11 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Xóa nhân viên</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Are you sure to delete has name is ->
+                <p>Bạn có chắc muốn xóa nhân viên có tên ->
                     <span class="text-danger font-weight-bold" id="nameDelete"></span>
                 </p>
             </div>
@@ -166,8 +167,8 @@
                 <form th:action="@{/employee/delete}">
 <!--                    <input type="hidden" name="action" value="employee/delete">-->
                     <input type="hidden" name="id" id="idDelete">
-                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-danger">Xóa</button>
                 </form>
             </div>
         </div>

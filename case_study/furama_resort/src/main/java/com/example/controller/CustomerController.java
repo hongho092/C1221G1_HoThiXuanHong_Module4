@@ -19,6 +19,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -90,6 +91,7 @@ public class CustomerController {
     @GetMapping(value = "/delete")
     public String deleteCustomer(@RequestParam int id, RedirectAttributes redirectAttributes) {
         customerService.deleteById(id);
+//        customerService.updateFlag(id);
         redirectAttributes.addFlashAttribute("mess", "Delete Customer Success");
         return "redirect:/customer/list";
     }

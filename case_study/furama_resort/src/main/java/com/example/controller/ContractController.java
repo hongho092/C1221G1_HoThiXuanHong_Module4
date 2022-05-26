@@ -1,7 +1,6 @@
 package com.example.controller;
 
 import com.example.dto.ContractDto;
-import com.example.dto.ServiceDto;
 import com.example.model.contract.Contract;
 import com.example.service.contract.IContractService;
 import com.example.service.customer.ICustomerService;
@@ -18,6 +17,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.security.Principal;
 
 @Controller
 @RequestMapping(value = "/contract")
@@ -45,9 +46,6 @@ public class ContractController {
     @GetMapping(value = "/create")
     public String showCreateContract(Model model) {
         model.addAttribute("contractDto", new ContractDto());
-//        List<Customer> customerList = customerService.findAll();
-//        List<Employee> employeeList = employeeService.findAll();
-//        List<Service> serviceList = serviceService.findAll();
         model.addAttribute("customerList", customerService.findAll());
         model.addAttribute("employeeList", employeeService.findAll());
         model.addAttribute("serviceList", serviceService.findAll());
@@ -73,26 +71,4 @@ public class ContractController {
             return "redirect:/contract/list";
         }
     }
-
-
-//
-//    @PostMapping(value = "/save")
-//    public String saveEmployee(@ModelAttribute @Validated EmployeeDto employeeDto,
-//                               BindingResult bindingResult,
-//                               RedirectAttributes redirectAttributes,
-//                               Model model) {
-//        new EmployeeDto().validate(employeeDto, bindingResult);
-//        if (bindingResult.hasFieldErrors()) {
-//            model.addAttribute("divisionList", divisionService.findAll());
-//            model.addAttribute("educationDegreeList", educationDegreeService.findAll());
-//            model.addAttribute("positionList", positionService.findAll());
-//            return "employee/create";
-//        } else {
-//            Employee employee = new Employee();
-//            BeanUtils.copyProperties(employeeDto, employee);
-//            employeeService.save(employee);
-//            redirectAttributes.addFlashAttribute("mess", "Create Employee Success");
-//            return "redirect:/employee/list";
-//        }
-//    }
 }

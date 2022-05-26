@@ -15,22 +15,22 @@ public class EmployeeDto implements Validator{
 
     private int employeeId;
 
-    @Pattern(regexp = "^([A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]* [A-Z][a-z]*|)$", message = "The first letter must be capitalized")
+    @Pattern(regexp = "^([A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]* [A-Z][a-z]*|)$", message = "Chữ cái đầu phải viết hoa")
     private String employeeName;
 
 //    @Pattern(regexp = "^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$", message = "Wrong format DateOfBirth")
     private String employeeBirthday;
 
-    @Pattern(regexp = "(^[0-9]{9}|[0-9]{12})$", message = "9 or 12 number")
+    @Pattern(regexp = "(^[0-9]{9}|[0-9]{12})$", message = "Phải có 9 hoặc 10 chữ số")
     private String employeeIdCard;
 
-    @Pattern(regexp = "[1-9][0-9]+", message = "Wrong format salary")
+    @Pattern(regexp = "[1-9][0-9]*", message = "Sai format số hoặc số âm")
     private String employeeSalary;
 
-    @Pattern(regexp = "^(090|091)[0-9]{7}$", message = "Start with 090 or 091 and 10 number")
+    @Pattern(regexp = "^(090|091)[0-9]{7}$", message = "Phải có 9 hoặc 10 chữ số")
     private String employeePhone;
 
-    @Pattern(regexp = "^[a-z][a-z0-9]+@gmail.com$", message = "Wrong format email")
+    @Pattern(regexp = "^[a-z][a-z0-9]+@gmail.com$", message = "Sai format email")
     private String employeeEmail;
 
     private String employeeAddress;

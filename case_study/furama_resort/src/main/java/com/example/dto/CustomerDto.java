@@ -15,22 +15,22 @@ public class CustomerDto implements Validator {
 
     private int customerId;
 
-    @Pattern(regexp = "^KH-[0-9]{4}$", message = "Wrong format customer code")
+    @Pattern(regexp = "^KH-[0-9]{4}$", message = "Sai format mã khách hàng")
     private String customerCode;
 
-    @Pattern(regexp = "^([A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]* [A-Z][a-z]*|)$", message = "The first letter must be capitalized")
+    @Pattern(regexp = "^([A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]* [A-Z][a-z]*|)$", message = "Chữ cái đầu phải viết hoa")
     private String customerName;
 
     private String customerBirthday;
     private String customerGender;
 
-    @Pattern(regexp = "(^[0-9]{9}|[0-9]{12})$", message = "9 or 12 number")
+    @Pattern(regexp = "(^[0-9]{9}|[0-9]{12})$", message = "Phải có 9 hoặc 10 chữ số")
     private String customerIdCard;
 
-    @Pattern(regexp = "^(090|091)[0-9]{7}$", message = "Start with 090 or 091 and 10 number")
+    @Pattern(regexp = "^(090|091)[0-9]{7}$", message = "Bắt đầu từ 090 hoặc 091 và có 10 chữ số")
     private String customerPhone;
 
-    @Pattern(regexp = "^[a-z][a-z0-9]+@gmail.com$", message = "Wrong format email")
+    @Pattern(regexp = "^[a-z][a-z0-9]+@gmail.com$", message = "Sai format email")
     private String customerEmail;
 
     private String customerAddress;

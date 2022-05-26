@@ -6,9 +6,10 @@
     <th:block th:replace="~{common/layout :: head_bootstrap}"></th:block>
 </head>
 <body>
+<th:block th:replace="~{common/layout :: head_top}"></th:block>
 <th:block th:replace="~{common/layout :: head}"></th:block>
 <div class="text-center pb-4">
-    <h2 class="text-danger text-center pt-5 pb-2">CREATE SERVICE</h2>
+    <h2 class="text-danger text-center pt-5 pb-2">TẠO DỊCH VỤ</h2>
     <!--    <button class="btn btn-warning"><a href="/" class="text-decoration-none">Go List Product</a></button>-->
 </div>
 <div class="container">
@@ -17,70 +18,70 @@
         <div class="col-8">
             <form class="was-validated" action="/service/save" method="post" th:object="${serviceDto}" novalidate>
                 <div class="input-group mb-3 position-relative">
-                    <label for="a12"><span class="input-group-text" id="inputGroup-sizing-default12">Service Code</span></label>
+                    <label for="a12"><span class="input-group-text" id="inputGroup-sizing-default12">Code dịch vụ</span></label>
                     <input type="text" th:field="*{serviceCode}" class="form-control is-invalid" aria-label="Sizing example input"
                            aria-describedby="inputGroup-sizing-default12" id="a12" required>
                     <span class="input-group-text text-danger" th:if="${#fields.hasErrors('serviceCode')}"
                           th:errors="*{serviceCode}"></span>
                 </div>
                 <div class="input-group mb-3 position-relative">
-                    <label for="a1"><span class="input-group-text" id="inputGroup-sizing-default11">Service Name</span></label>
+                    <label for="a1"><span class="input-group-text" id="inputGroup-sizing-default11">Tên dịch vụ</span></label>
                     <input type="text" th:field="*{serviceName}" class="form-control is-invalid" aria-label="Sizing example input"
                            aria-describedby="inputGroup-sizing-default11" id="a1" required>
                     <span class="input-group-text text-danger" th:if="${#fields.hasErrors('serviceName')}"
                           th:errors="*{serviceName}"></span>
                 </div>
                 <div class="input-group mb-3">
-                    <label for="a2"><span class="input-group-text" id="inputGroup-sizing-default1">Service Area</span></label>
+                    <label for="a2"><span class="input-group-text" id="inputGroup-sizing-default1">Diện tích</span></label>
                     <input type="text" th:field="*{serviceArea}" class="form-control" aria-label="Sizing example input"
                            aria-describedby="inputGroup-sizing-default1" id="a2" required>
                     <span class="input-group-text text-danger" th:if="${#fields.hasErrors('serviceArea')}"
                           th:errors="*{serviceArea}"></span>
                 </div>
                 <div class="input-group mb-3">
-                    <label for="a3"><span class="input-group-text" id="inputGroup-sizing-default2">Service Cost</span></label>
+                    <label for="a3"><span class="input-group-text" id="inputGroup-sizing-default2">Phí thuê</span></label>
                     <input type="text" th:field="*{serviceCost}" class="form-control" aria-label="Sizing example input"
                            aria-describedby="inputGroup-sizing-default2" id="a3" required>
                     <span class="input-group-text text-danger" th:if="${#fields.hasErrors('serviceCost')}"
                           th:errors="*{serviceCost}"></span>
                 </div>
                 <div class="input-group mb-3">
-                    <label for="a4"><span class="input-group-text" id="inputGroup-sizing-default3">Max People</span></label>
+                    <label for="a4"><span class="input-group-text" id="inputGroup-sizing-default3">Số người max</span></label>
                     <input type="text" th:field="*{serviceMaxPeople}" class="form-control" aria-label="Sizing example input"
                            aria-describedby="inputGroup-sizing-default3" id="a4" required>
                     <span class="input-group-text text-danger" th:if="${#fields.hasErrors('serviceMaxPeople')}"
                           th:errors="*{serviceMaxPeople}"></span>
                 </div>
                 <div class="input-group mb-3">
-                    <label for="a5"><span class="input-group-text" id="inputGroup-sizing-default4">Standard Room</span></label>
+                    <label for="a5"><span class="input-group-text" id="inputGroup-sizing-default4">Tiêu chuẩn</span></label>
                     <input type="text" th:field="*{standardRoom}" class="form-control" aria-label="Sizing example input"
                            aria-describedby="inputGroup-sizing-default4" id="a5" required>
                     <span class="input-group-text text-danger" th:if="${#fields.hasErrors('standardRoom')}"
                           th:errors="*{standardRoom}"></span>
                 </div>
                 <div class="input-group mb-3">
-                    <label for="a6"><span class="input-group-text" id="inputGroup-sizing-default6">Other Convenience</span></label>
+                    <label for="a6"><span class="input-group-text" id="inputGroup-sizing-default6">Tiện ích khác</span></label>
                     <input type="text" th:field="*{descriptionOtherConvenience}" class="form-control" aria-label="Sizing example input"
                            aria-describedby="inputGroup-sizing-default6" id="a6" required>
                     <span class="input-group-text text-danger" th:if="${#fields.hasErrors('descriptionOtherConvenience')}"
                           th:errors="*{descriptionOtherConvenience}"></span>
                 </div>
                 <div class="input-group mb-3">
-                    <label for="a7"><span class="input-group-text" id="inputGroup-sizing-default7">Pool Area</span></label>
+                    <label for="a7"><span class="input-group-text" id="inputGroup-sizing-default7">Diện tích hồ bơi</span></label>
                     <input type="text" th:field="*{poolArea}" class="form-control" aria-label="Sizing example input"
                            aria-describedby="inputGroup-sizing-default7" id="a7" required>
                     <span class="input-group-text text-danger" th:if="${#fields.hasErrors('poolArea')}"
                           th:errors="*{poolArea}"></span>
                 </div>
                 <div class="input-group mb-3">
-                    <label for="a17"><span class="input-group-text" id="inputGroup-sizing-default17">Number Of Floors</span></label>
+                    <label for="a17"><span class="input-group-text" id="inputGroup-sizing-default17">Số tầng</span></label>
                     <input type="text" th:field="*{numberOfFloors}" class="form-control" aria-label="Sizing example input"
                            aria-describedby="inputGroup-sizing-default17" id="a17" required>
                     <span class="input-group-text text-danger" th:if="${#fields.hasErrors('numberOfFloors')}"
                           th:errors="*{numberOfFloors}"></span>
                 </div>
                 <div class="input-group mb-3">
-                    <label for="a10"><span class="input-group-text" id="inputGroup-sizing-default8">Service Type</span></label>
+                    <label for="a10"><span class="input-group-text" id="inputGroup-sizing-default8">Loại dịch vụ</span></label>
                     <select th:field="*{serviceType}" class="form-select" aria-label="Default select example" id="a10" required>
                         <option value=""></option>
                         <option th:each="category : ${serviceTypeList}" th:value="${category.serviceTypeId}"
@@ -88,7 +89,7 @@
                     </select>
                 </div>
                 <div class="input-group mb-3">
-                    <label for="a8"><span class="input-group-text" id="inputGroup-sizing-default9">Rent Type</span></label>
+                    <label for="a8"><span class="input-group-text" id="inputGroup-sizing-default9">Kiểu thuê</span></label>
                     <select th:field="*{rentType}" class="form-select" aria-label="Default select example" id="a8" required>
                         <option value=""></option>
                         <option th:each="category : ${rentTypeList}" th:value="${category.rentTypeId}"
@@ -97,7 +98,7 @@
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary position-relative">
-                        Create Service
+                        Tạo dịch vụ
                         <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
                     <span class="visually-hidden">New alerts</span>
                     </span>

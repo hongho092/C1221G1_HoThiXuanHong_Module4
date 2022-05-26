@@ -20,7 +20,7 @@ public class ContractDto implements Validator {
 
     private String contractEndDate;
 
-    @Pattern(regexp = "^[1-9][0-9]+$", message = "Wrong format Deposit")
+    @Pattern(regexp = "^[1-9][0-9]*$", message = "Sai format số hoặc số âm")
     private String contractDeposit;
 
 //    @Pattern(regexp = "^[1-9][0-9]+$", message = "Wrong format Total Money")

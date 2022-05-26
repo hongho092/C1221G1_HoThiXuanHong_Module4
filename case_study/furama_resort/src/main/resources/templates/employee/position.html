@@ -2,13 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>POSITION</title>
     <th:block th:replace="~{common/layout :: head_bootstrap}"></th:block>
 </head>
 <body>
+<th:block th:replace="~{common/layout :: head_top}"></th:block>
 <th:block th:replace="~{common/layout :: head}"></th:block>
 <div class="text-center pb-4">
-    <h2 class="text-danger text-center pt-5 pb-2">POSITION</h2>
+    <h2 class="text-danger text-center pt-5 pb-2">CHỨC VỤ</h2>
     <p class="text-success pt-2" th:text="${mess}"></p>
     <!--    <button class="btn btn-warning"><a href="/" class="text-decoration-none">Go List Product</a></button>-->
 </div>
@@ -20,8 +21,8 @@
         <div class="col-6">
             <table class="table text-center">
                 <tr>
-                    <th class="col-6">Position Id</th>
-                    <th class="col-6">Position Name</th>
+                    <th class="col-6">Id chức vụ</th>
+                    <th class="col-6">Chức vụ</th>
                 </tr>
                 <tr th:each="position : ${positionList}">
                     <td class="col-6" th:text="${position.positionId}"></td>
@@ -40,13 +41,13 @@
         <div class="col-8">
             <form action="/employee/save_position" method="post" th:object="${position}">
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default1">Posision</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default1">Chức vụ</span>
                     <input type="text" th:field="*{positionName}" class="form-control" aria-label="Sizing example input"
                            aria-describedby="inputGroup-sizing-default1" required>
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary position-relative">
-                        Create Position
+                        Tạo chức vụ
                         <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
                     <span class="visually-hidden">New alerts</span>
                     </span>

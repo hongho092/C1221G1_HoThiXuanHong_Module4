@@ -6,9 +6,10 @@
     <th:block th:replace="~{common/layout :: head_bootstrap}"></th:block>
 </head>
 <body>
+<th:block th:replace="~{common/layout :: head_top}"></th:block>
 <th:block th:replace="~{common/layout :: head}"></th:block>
 <div class="text-center pb-4">
-    <h2 class="text-danger text-center pt-5 pb-2">EDIT CUSTOMER</h2>
+    <h2 class="text-danger text-center pt-5 pb-2">SỬA THÔNG TIN KHÁCH HÀNG</h2>
 <!--    <button class="btn btn-warning"><a href="/" class="text-decoration-none">Go List Product</a></button>-->
 </div>
 <div class="container">
@@ -17,69 +18,69 @@
         <div class="col-6">
             <form class="was-validated" action="/customer/save_edit" method="post" th:object="${customerDto}">
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Edit for Customer has ID is -> <th:block
+                    <span class="input-group-text" id="inputGroup-sizing-default">Sửa thông tin cho khách hàng có Id là -> <th:block
                             th:text="*{customerId}"></th:block></span>
                     <input type="hidden" th:field="*{customerId}" class="form-control" aria-label="Sizing example input"
                            aria-describedby="inputGroup-sizing-default" required>
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default0">Customer Code</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default0">Code</span>
                     <input type="text" th:field="*{customerCode}" class="form-control" aria-label="Sizing example input"
                            aria-describedby="inputGroup-sizing-default0" required>
                     <span class="input-group-text text-danger" th:if="${#fields.hasErrors('customerCode')}"
                           th:errors="*{customerCode}"></span>
                 </div>
                  <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default10">Customer Name</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default10">Tên</span>
                     <input type="text" th:field="*{customerName}" class="form-control" aria-label="Sizing example input"
                            aria-describedby="inputGroup-sizing-default10" required>
                      <span class="input-group-text text-danger" th:if="${#fields.hasErrors('customerName')}"
                            th:errors="*{customerName}"></span>
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default1">Customer Birthday</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default1">Ngày sinh</span>
                     <input type="text" th:field="*{customerBirthday}" class="form-control" aria-label="Sizing example input"
                            aria-describedby="inputGroup-sizing-default1" required>
                     <span class="input-group-text text-danger" th:if="${#fields.hasErrors('customerBirthday')}"
                           th:errors="*{customerBirthday}"></span>
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default3">Customer Gender</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default3">Giới tính</span>
                     <input type="text" th:field="*{customerGender}" class="form-control" aria-label="Sizing example input"
                            aria-describedby="inputGroup-sizing-default3" required>
                     <span class="input-group-text text-danger" th:if="${#fields.hasErrors('customerGender')}"
                           th:errors="*{customerGender}"></span>
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default2">Customer Id Card</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default2">CMND</span>
                     <input type="text" th:field="*{customerIdCard}" class="form-control" aria-label="Sizing example input"
                            aria-describedby="inputGroup-sizing-default2" required>
                     <span class="input-group-text text-danger" th:if="${#fields.hasErrors('customerIdCard')}"
                           th:errors="*{customerIdCard}"></span>
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default4">Customer Phone</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default4">Số ĐT</span>
                     <input type="text" th:field="*{customerPhone}" class="form-control" aria-label="Sizing example input"
                            aria-describedby="inputGroup-sizing-default4" required>
                     <span class="input-group-text text-danger" th:if="${#fields.hasErrors('customerPhone')}"
                           th:errors="*{customerPhone}"></span>
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default9">Customer Email</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default9">Email</span>
                     <input type="text" th:field="*{customerEmail}" class="form-control" aria-label="Sizing example input"
                            aria-describedby="inputGroup-sizing-default9" required>
                     <span class="input-group-text text-danger" th:if="${#fields.hasErrors('customerEmail')}"
                           th:errors="*{customerEmail}"></span>
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default6">Customer Address</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default6">Địa chỉ</span>
                     <input type="text" th:field="*{customerAddress}" class="form-control" aria-label="Sizing example input"
                            aria-describedby="inputGroup-sizing-default6" required>
                     <span class="input-group-text text-danger" th:if="${#fields.hasErrors('customerAddress')}"
                           th:errors="*{customerAddress}"></span>
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default8">Type of Employee</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default8">Loại khách</span>
                     <select th:field="*{customerType}" class="form-select" aria-label="Default select example" required>
                         <option value=""></option>
                         <option th:each="category : ${customerTypeList}" th:value="${category.customerTypeId}"
@@ -88,7 +89,7 @@
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary position-relative">
-                        Edit Customer
+                        Sửa thông tin khách hàng
                         <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
                     <span class="visually-hidden">New alerts</span>
                     </span>

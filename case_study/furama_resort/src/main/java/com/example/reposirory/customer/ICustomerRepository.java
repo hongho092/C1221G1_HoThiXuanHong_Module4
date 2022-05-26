@@ -4,6 +4,8 @@ import com.example.model.customer.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
 
@@ -11,13 +13,10 @@ public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
 
     Page<Customer> findAllByCustomerNameContainingAndCustomerAddressContainingAndCustomerType_CustomerTypeId(String searchName, String searchAddress, int searchCategory, Pageable pageable);
 
-//    @Query (value = "select contract.contract_id, customer.customer_name, service.service_name, service.description_other_convenience, service.service_cost, \n" +
-//                    "attach_service.attach_service_name, contract_detail.quantity\n" +
-//                    "from customer\n" +
-//                    "inner join contract on customer.customer_id = contract.customer_id\n" +
-//                    "inner join service on contract.service_id = service.service_id\n" +
-//                    "left join contract_detail on contract.contract_id = contract_detail.contract_id\n" +
-//                    "left join attach_service on contract_detail.attach_service_id = attach_service.attach_service_id\n" +
-//                    "where now() between contract.contract_start_date and contract.contract_end_date", nativeQuery = true)
-//    List<ServiceNowDto> getTry ();
+//    @Query(value = "update customer set flag = 0 where customer_id = ?", nativeQuery = true)
+//    void updateFlag(int id);
+
 }
+//    @Query (value = "select * from blog Where name_blog like :name",
+//            countQuery = "select * from blog Where name_blog like :name" ,nativeQuery = true)
+//    Page<Blog> searchByName (@Param("name") String name, Pageable pageable);
