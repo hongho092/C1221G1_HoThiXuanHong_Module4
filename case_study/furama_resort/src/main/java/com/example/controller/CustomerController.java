@@ -1,10 +1,9 @@
 package com.example.controller;
 
 import com.example.dto.CustomerDto;
+import com.example.dto.CustomerUsingNow;
 import com.example.model.customer.Customer;
 import com.example.model.customer.CustomerType;
-import com.example.model.customer.CustomerUsingNow;
-import com.example.service.customer.ICustomerUsingService;
 import com.example.service.customer.ICustomerService;
 import com.example.service.customer.ICustomerTypeService;
 import org.springframework.beans.BeanUtils;
@@ -19,7 +18,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,9 +30,6 @@ public class CustomerController {
 
     @Autowired
     private ICustomerTypeService customerTypeService;
-
-    @Autowired
-    private ICustomerUsingService customerUsingService;
 
     @GetMapping(value = "/list")
     public String goListCustomer(@PageableDefault(value = 3) Pageable pageable,
@@ -75,7 +70,7 @@ public class CustomerController {
         List<Customer> customerList = customerService.findAll();
         CustomerDto customerDto1 = new CustomerDto();
         customerDto1.validate(customerDto, bindingResult);
-        customerDto1.validate1(customerDto, bindingResult, customerList);
+//        customerDto1.validate1(customerDto, bindingResult, customerList);
         if (bindingResult.hasFieldErrors()) {
             model.addAttribute("customerTypeList", customerTypeService.findAll());
             return "customer/create";
@@ -114,14 +109,14 @@ public class CustomerController {
         List<Customer> customerList = customerService.findAll();
         CustomerDto customerDto1 = new CustomerDto();
         customerDto1.validate(customerDto, bindingResult);
-        customerDto1.validate1(customerDto, bindingResult, customerList);
+//        customerDto1.validate1(customerDto, bindingResult, customerList);
         if (bindingResult.hasFieldErrors()) {
             model.addAttribute("customerTypeList", customerTypeService.findAll());
             return "customer/edit";
         } else {
             Customer customer = new Customer();
             BeanUtils.copyProperties(customerDto, customer);
-            customerService.save(customer);
+            customerService.save1(customer);
             redirectAttributes.addFlashAttribute("mess", "Edit Customer Success");
             return "redirect:/customer/list";
         }
@@ -148,14 +143,10 @@ public class CustomerController {
         return "redirect:/customer/list_customer_type";
     }
 
-    @GetMapping(value = "/list_customer_service_now")
-    public String get(Model model) {
-//        List<CustomerServiceNow> customerServiceNows = null;
-//        System.out.println("bắt đầu lấy");
-        List<CustomerUsingNow> serviceNowList = customerUsingService.get();
-        model.addAttribute("serviceNowList", serviceNowList);
-//        System.out.println(serviceNowDtos);
-//        System.out.println("sau khi hoàn thành lấy");
+        @GetMapping(value = "/list_customer_service_now")
+    public String get(@PageableDefault(value = 2) Pageable pageable, Model model) {
+        Page<CustomerUsingNow> customerUsingNowPage = customerService.get(pageable);
+        model.addAttribute("customerUsingNowPage", customerUsingNowPage);
         return "customer/list_customer_service";
     }
 }

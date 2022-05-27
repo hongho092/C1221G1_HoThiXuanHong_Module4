@@ -18,20 +18,21 @@
         <div class="col-8">
             <form class="was-validated" action="/contract_detail/save" method="post" th:object="${contractDetailDto}" novalidate>
                 <div class="input-group mb-3">
-                    <label for="a10"><span class="input-group-text" id="inputGroup-sizing-default8">Id hợp đồng</span></label>
-                    <select th:field="*{contract}" class="form-select" aria-label="Default select example" id="a10" required>
-                        <option value=""></option>
+                    <label for="exampleDataList1" class="form-label"><span class="input-group-text">Id hợp đồng</span></label>
+                    <input class="form-control" th:field="*{contract}" list="datalistOptions1" id="exampleDataList1" placeholder="Gõ để tìm..." required>
+                    <datalist id="datalistOptions1">
                         <option th:each="category : ${contractList}" th:value="${category.contractId}"
                                 th:text="${category.contractId}"></option>
-                    </select>
+                    </datalist>
                 </div>
                 <div class="input-group mb-3">
-                    <label for="a8"><span class="input-group-text" id="inputGroup-sizing-default9">Tên dịch vụ đính kèm</span></label>
-                    <select th:field="*{attachService}" class="form-select" aria-label="Default select example" id="a8" required>
-                        <option value=""></option>
+                    <label for="exampleDataList" class="form-label"><span class="input-group-text">Tên dịch vụ đính kèm</span></label>
+                    <input class="form-control" th:field="*{attachService}" list="datalistOptions" id="exampleDataList" placeholder="Gõ để tìm..." required>
+                    <datalist id="datalistOptions">
+<!--                        <option value=""></option>-->
                         <option th:each="category : ${attachServiceList}" th:value="${category.attachServiceId}"
                                 th:text="${category.attachServiceName}"></option>
-                    </select>
+                    </datalist>
                 </div>
                 <div class="input-group mb-3">
                     <label for="a3"><span class="input-group-text" id="inputGroup-sizing-default2">Số lượng</span></label>

@@ -23,11 +23,8 @@
                 <h2>Furama Resort</h2>
             </div>
             <div class="col-3 text-center">
-
                 <h4 class="text-danger" th:if="${#request.userPrincipal != null}"
                     th:text="${'Xin chào '+#request.userPrincipal.getName()}"></h4>
-                <button class="btn fw-bold"><a class="text-decoration-none" th:if="${#request.userPrincipal != null}" th:href="@{/logout}">Đăng xuất</a></button>
-
             </div>
         </div>
     </div>

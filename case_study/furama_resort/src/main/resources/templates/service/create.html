@@ -81,20 +81,20 @@
                           th:errors="*{numberOfFloors}"></span>
                 </div>
                 <div class="input-group mb-3">
-                    <label for="a10"><span class="input-group-text" id="inputGroup-sizing-default8">Loại dịch vụ</span></label>
-                    <select th:field="*{serviceType}" class="form-select" aria-label="Default select example" id="a10" required>
-                        <option value=""></option>
+                    <label for="exampleDataList2" class="form-label"><span class="input-group-text">Loại dịch vụ</span></label>
+                    <input class="form-control" th:field="*{serviceType}" list="datalistOptions2" id="exampleDataList2" placeholder="Gõ để tìm..." required>
+                    <datalist id="datalistOptions2">
                         <option th:each="category : ${serviceTypeList}" th:value="${category.serviceTypeId}"
                                 th:text="${category.serviceTypeName}"></option>
-                    </select>
+                    </datalist>
                 </div>
                 <div class="input-group mb-3">
-                    <label for="a8"><span class="input-group-text" id="inputGroup-sizing-default9">Kiểu thuê</span></label>
-                    <select th:field="*{rentType}" class="form-select" aria-label="Default select example" id="a8" required>
-                        <option value=""></option>
+                    <label for="exampleDataList21" class="form-label"><span class="input-group-text">Kiểu thuê</span></label>
+                    <input class="form-control" th:field="*{rentType}" list="datalistOptions21" id="exampleDataList21" placeholder="Gõ để tìm..." required>
+                    <datalist id="datalistOptions21">
                         <option th:each="category : ${rentTypeList}" th:value="${category.rentTypeId}"
                                 th:text="${category.rentTypeName}"></option>
-                    </select>
+                    </datalist>
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary position-relative">

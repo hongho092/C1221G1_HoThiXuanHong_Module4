@@ -43,7 +43,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable();
 
-        http.authorizeRequests().antMatchers("/", "/login", "/logout").permitAll();
+        http.authorizeRequests().antMatchers("/", "/login", "/logout",
+                "/customer/list_customer_service_now").permitAll();
 //        http.authorizeRequests().antMatchers("/*").permitAll();
 
         http.authorizeRequests().antMatchers("/employee/*",
@@ -61,8 +62,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                                                         "/customer/edit",
                                                         "/customer/save_edit",
                                                         "/customer/detail",
-                                                        "/customer/list_customer_type",
-                                                        "/customer/list_customer_service_now"
+                                                        "/customer/list_customer_type"
                                                         ).access("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')");
 
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/login/403");
@@ -80,7 +80,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().and() //
                 .rememberMe().tokenRepository(this.persistentTokenRepository()) //
                 .tokenValiditySeconds(60 * 60); // 1h
-
     }
 
     @Bean

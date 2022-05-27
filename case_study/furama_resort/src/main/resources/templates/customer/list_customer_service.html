@@ -49,22 +49,38 @@
         </tr>
         </thead>
         <tbody>
-            <tr th:each="service, hong : ${serviceNowList}">
+            <tr th:each="cus, hong : ${customerUsingNowPage}">
                 <td th:text="${hong.count}"></td>
-                <td th:text="${service.contractId}"></td>
-                <td th:text="${service.customerName}"></td>
-                <td th:text="${service.serviceName}"></td>
-                <td th:text="${service.descriptionOtherConvenience}"></td>
-                <td th:text="${service.serviceCost}"></td>
-                <td th:text="${service.attachServiceName}"></td>
-                <td th:text="${service.quantity}"></td>
-                <td th:text="${service.totalMoney}"></td>
+                <td th:text="${cus.contractId}"></td>
+                <td th:text="${cus.getCustomerName()}"></td>
+                <td th:text="${cus.getServiceName()}"></td>
+                <td th:text="${cus.getDescriptionOtherConvenience()}"></td>
+                <td th:text="${cus.getServiceCost()}"></td>
+                <td th:text="${cus.getAttachServiceName()}"></td>
+                <td th:text="${cus.getTotalQuantity()}"></td>
+                <td th:text="${cus.getTotalMoney()}"></td>
             </tr>
         </tbody>
     </table>
 </div>
 
-
+<div class="col-11">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end">
+            <li class="page-item">
+                <a class="page-link" th:if="${customerUsingNowPage.hasPrevious()}"
+                   th:href="@{/customer/list_customer_service_now/(page=${customerUsingNowPage.number - 1})}">Trang trước</a>
+            </li>
+            <li class="page-item"><a class="page-link"><span th:text="${customerUsingNowPage.number + 1}"></span></a></li>
+            <li class="page-item page-link">/</li>
+            <li class="page-item"><a class="page-link"><span th:text="${customerUsingNowPage.totalPages}"></span></a></li>
+            <li class="page-item">
+                <a class="page-link" th:if="${customerUsingNowPage.hasNext()}"
+                   th:href="@{/customer/list_customer_service_now/(page=${customerUsingNowPage.number + 1})}">Trang sau</a>
+            </li>
+        </ul>
+    </nav>
+</div>
 <!--<div class="col-11">-->
 <!--    <nav aria-label="Page navigation example">-->
 <!--        <ul class="pagination justify-content-end">-->

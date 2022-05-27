@@ -10,4 +10,6 @@ public interface IAttachServiceService {
     List<AttachService> findAll();
 
     Page<AttachService> findAllPage(Pageable pageable);
+
+    AttachService findById(int attachServiceVal);
 }

@@ -25,4 +25,9 @@ public class AttachServiceService implements IAttachServiceService {
     public Page<AttachService> findAllPage(Pageable pageable) {
         return attachServiceRepository.findAll(pageable);
     }
+
+    @Override
+    public AttachService findById(int attachServiceVal) {
+        return attachServiceRepository.findByAttachServiceId(attachServiceVal);
+    }
 }

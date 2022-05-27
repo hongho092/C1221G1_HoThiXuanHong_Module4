@@ -36,7 +36,7 @@
             <th scope="col">Ngày bắt đầu</th>
             <th scope="col">Ngày kết thúc</th>
             <th scope="col">Tiền đặt cọc</th>
-<!--            <th scope="col">Contract Total Money</th>-->
+            <th scope="col">Tổng tiền</th>
             <th scope="col">Nhân viên tạo hợp đồng</th>
             <th scope="col">Hợp đồng cho khách hàng</th>
         </tr>
@@ -49,7 +49,7 @@
             <td th:text="${contract.contractStartDate}"></td>
             <td th:text="${contract.contractEndDate}"></td>
             <td th:text="${contract.contractDeposit}"></td>
-<!--            <td th:text="${contract.contractTotalMoney}"></td>-->
+            <td th:text="${contract.contractTotalMoney}"></td>
             <td th:text="${contract.employee.employeeName}"></td>
             <td th:text="${contract.customer.customerName}"></td>
         </tr>

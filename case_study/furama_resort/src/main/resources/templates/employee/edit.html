@@ -73,28 +73,46 @@
                           th:errors="*{employeeAddress}"></span>
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default5">Trình độ</span>
-                    <select th:field="*{educationDegree}" class="form-select" aria-label="Default select example" required>
-                        <option value=""></option>
+                    <label for="exampleDataList112" class="form-label"><span class="input-group-text">Trình độ</span></label>
+                    <input class="form-control" th:field="*{educationDegree}" list="datalistOptions112" id="exampleDataList112" placeholder="Gõ để tìm..." required>
+                    <datalist id="datalistOptions112">
                         <option th:each="category : ${educationDegreeList}" th:value="${category.educationDegreeId}"
                                 th:text="${category.educationDegreeName}"></option>
-                    </select>
+                    </datalist>
+<!--                    <span class="input-group-text" id="inputGroup-sizing-default5">Trình độ</span>-->
+<!--                    <select th:field="*{educationDegree}" class="form-select" aria-label="Default select example" required>-->
+<!--                        <option value=""></option>-->
+<!--                        <option th:each="category : ${educationDegreeList}" th:value="${category.educationDegreeId}"-->
+<!--                                th:text="${category.educationDegreeName}"></option>-->
+<!--                    </select>-->
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default7">Vị trí</span>
-                    <select th:field="*{position}" class="form-select" aria-label="Default select example" required>
-                        <option value=""></option>
+                    <label for="exampleDataList12" class="form-label"><span class="input-group-text">Vị trí</span></label>
+                    <input class="form-control" th:field="*{position}" list="datalistOptions12" id="exampleDataList12" placeholder="Gõ để tìm..." required>
+                    <datalist id="datalistOptions12">
                         <option th:each="category : ${positionList}" th:value="${category.positionId}"
                                 th:text="${category.positionName}"></option>
-                    </select>
+                    </datalist>
+<!--                    <span class="input-group-text" id="inputGroup-sizing-default7">Vị trí</span>-->
+<!--                    <select th:field="*{position}" class="form-select" aria-label="Default select example" required>-->
+<!--                        <option value=""></option>-->
+<!--                        <option th:each="category : ${positionList}" th:value="${category.positionId}"-->
+<!--                                th:text="${category.positionName}"></option>-->
+<!--                    </select>-->
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default8">Bộ phận</span>
-                    <select th:field="*{division}" class="form-select" aria-label="Default select example" required>
-                        <option value=""></option>
+                    <label for="exampleDataList1" class="form-label"><span class="input-group-text">Bộ phận</span></label>
+                    <input class="form-control" th:field="*{division}" list="datalistOptions1" id="exampleDataList1" placeholder="Gõ để tìm..." required>
+                    <datalist id="datalistOptions1">
                         <option th:each="category : ${divisionList}" th:value="${category.divisionId}"
                                 th:text="${category.divisionName}"></option>
-                    </select>
+                    </datalist>
+<!--                    <span class="input-group-text" id="inputGroup-sizing-default8">Bộ phận</span>-->
+<!--                    <select th:field="*{division}" class="form-select" aria-label="Default select example" required>-->
+<!--                        <option value=""></option>-->
+<!--                        <option th:each="category : ${divisionList}" th:value="${category.divisionId}"-->
+<!--                                th:text="${category.divisionName}"></option>-->
+<!--                    </select>-->
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary position-relative">

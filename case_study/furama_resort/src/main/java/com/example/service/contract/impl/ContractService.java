@@ -1,6 +1,8 @@
 package com.example.service.contract.impl;
 
+import com.example.model.contract.AttachService;
 import com.example.model.contract.Contract;
+import com.example.model.contract.ContractDetail;
 import com.example.reposirory.contract.IContractRepository;
 import com.example.service.contract.IContractService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ContractService implements IContractService {
@@ -30,6 +33,20 @@ public class ContractService implements IContractService {
     public List<Contract> findList() {
         return contractRepository.findAll();
     }
+
+    @Override
+    public void copy(Contract contract, ContractDetail contractDetail, AttachService attachService1, String quantityVal) {
+        int quantity = Integer.parseInt(quantityVal);
+        int cost1 = Integer.parseInt(contract.getService().getServiceCost());
+        int cost2 = Integer.parseInt(attachService1.getAttachServiceCost());
+        int total = cost1 + (quantity * cost2);
+        contract.setContractTotalMoney(String.valueOf(total));
+        contractDetail.setContract(contract);
+        contractDetail.setAttachService(attachService1);
+        contractDetail.setQuantity(quantityVal);
+//        System.out.println(" trong service"+contractDetail.getContract().);
+    }
+
 }
 
 

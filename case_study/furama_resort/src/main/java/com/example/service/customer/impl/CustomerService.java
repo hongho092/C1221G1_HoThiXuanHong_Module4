@@ -1,5 +1,6 @@
 package com.example.service.customer.impl;
 
+import com.example.dto.CustomerUsingNow;
 import com.example.model.customer.Customer;
 import com.example.reposirory.customer.ICustomerRepository;
 import com.example.service.customer.ICustomerService;
@@ -28,6 +29,9 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public void save(Customer customer) {
+        int codeInt = ((int) (1000 + (Math.random() * 9999)));
+        String codeString = Integer.toString(codeInt);
+        customer.setCustomerCode("KH-"+codeString);
         customerRepository.save(customer);
     }
 
@@ -45,6 +49,17 @@ public class CustomerService implements ICustomerService {
     public List<Customer> findAll() {
         return customerRepository.findAll();
     }
+
+    @Override
+    public Page<CustomerUsingNow> get(Pageable pageable) {
+        return customerRepository.get(pageable);
+    }
+
+    @Override
+    public void save1(Customer customer) {
+        customerRepository.save(customer);
+    }
+
 
 //    @Override
 //    public void updateFlag(int id) {

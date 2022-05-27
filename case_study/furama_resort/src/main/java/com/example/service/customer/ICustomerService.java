@@ -1,5 +1,6 @@
 package com.example.service.customer;
 
+import com.example.dto.CustomerUsingNow;
 import com.example.model.customer.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +19,10 @@ public interface ICustomerService {
     Customer findById(int id);
 
     List<Customer> findAll();
+
+    Page<CustomerUsingNow> get(Pageable pageable);
+
+    void save1(Customer customer);
 
 //    void updateFlag(int id);
 }

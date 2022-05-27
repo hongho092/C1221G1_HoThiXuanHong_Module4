@@ -15,7 +15,7 @@ public class CustomerDto implements Validator {
 
     private int customerId;
 
-    @Pattern(regexp = "^KH-[0-9]{4}$", message = "Sai format mã khách hàng")
+//    @Pattern(regexp = "^KH-[0-9]{4}$", message = "Sai format mã khách hàng")
     private String customerCode;
 
     @Pattern(regexp = "^([A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]*|[A-Z][a-z]* [A-Z][a-z]* [A-Z][a-z]*|)$", message = "Chữ cái đầu phải viết hoa")
@@ -126,17 +126,7 @@ public class CustomerDto implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-
-    }
-
-    public void validate1(Object target, Errors errors, List<Customer> customers) {
         CustomerDto customerDto = (CustomerDto) target;
-        for (int i=0; i<customers.size(); i++) {
-            if (customers.get(i).getCustomerCode().equals(customerDto.customerCode)) {
-                errors.rejectValue("customerCode", "error", "Error");
-            }
-        }
-
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate age = LocalDate.parse(customerDto.customerBirthday, formatter);
         LocalDate now = LocalDate.now();
@@ -146,8 +136,27 @@ public class CustomerDto implements Validator {
         } else if (current > 100) {
             errors.rejectValue("customerBirthday", "age_error2", "Error");
         }
-
-//        regex ngayf thangs nawm:  ^\\d{4}[-](0?[1-9]|1[012])[-](0?[1-9]|[12][0-9]|3[01])$
-
     }
+
+//    public void validate1(Object target, Errors errors, List<Customer> customers) {
+//        CustomerDto customerDto = (CustomerDto) target;
+//        for (int i=0; i<customers.size(); i++) {
+//            if (customers.get(i).getCustomerCode().equals(customerDto.customerCode)) {
+//                errors.rejectValue("customerCode", "error", "Error");
+//            }
+//        }
+//
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//        LocalDate age = LocalDate.parse(customerDto.customerBirthday, formatter);
+//        LocalDate now = LocalDate.now();
+//        int current = Period.between(age, now).getYears();
+//        if (current < 18) {
+//            errors.rejectValue("customerBirthday", "age_error1", "Error");
+//        } else if (current > 100) {
+//            errors.rejectValue("customerBirthday", "age_error2", "Error");
+//        }
+//
+////        regex ngayf thangs nawm:  ^\\d{4}[-](0?[1-9]|1[012])[-](0?[1-9]|[12][0-9]|3[01])$
+//
+//    }
 }
