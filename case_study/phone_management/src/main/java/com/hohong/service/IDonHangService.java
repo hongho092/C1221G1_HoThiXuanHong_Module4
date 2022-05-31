@@ -12,5 +12,5 @@ public interface IDonHangService {
 
     Page<DonHang> findAllSearchDay(String startDay, String endDay, Pageable pageable);
 
-    List<DonHangDto> findAllByTop(int top);
+    Page<DonHang> findAllByTop(Pageable pageable);
 }

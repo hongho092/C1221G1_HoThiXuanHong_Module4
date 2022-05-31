@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{layout :: head_bootstrap}"></th:block>
+</head>
+<body>
+<th:block th:replace="~{layout :: head}"></th:block>
+<div class="text-center pb-4">
+    <h2 class="text-danger text-center pt-5 pb-2">CHI TIẾT GIAO DỊCH</h2>
+<!--    <button class="btn btn-warning"><a href="/" class="text-decoration-none">Go List Product</a></button>-->
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 px-5">
+            <table class="table">
+                <tr>
+                    <td class="col-1"></td>
+                    <th class="col-5">Code giao dịch</th>
+                    <td class="col-5" th:text="${giaoDich.codeGiaoDich}"></td>
+                    <td class="col-1"></td>
+                </tr>
+                <tr>
+                    <td class="col-1"></td>
+                    <th>Loại bất động sản</th>
+                    <td th:text="${giaoDich.loaiGiaoDich.tenLoaiGiaoDich}"></td>
+                    <td class="col-1"></td>
+                </tr>
+                <tr>
+                    <td class="col-1"></td>
+                    <th class="col-5">Ngày giao dịch</th>
+                    <td class="col-5" th:text="${giaoDich.ngayGiaoDich}"></td>
+                    <td class="col-1"></td>
+                </tr>
+                <tr>
+                    <td class="col-1"></td>
+                    <th class="col-5">Đơn giá (VND/m2).</th>
+                    <td class="col-5" th:text="${giaoDich.donGia}"></td>
+                    <td class="col-1"></td>
+                </tr>
+                <tr>
+                    <td class="col-1"></td>
+                    <th class="col-5">Diện tích (m2)</th>
+                    <td class="col-5" th:text="${giaoDich.dienTich}"></td>
+                    <td class="col-1"></td>
+                </tr>
+                <tr>
+                    <td class="col-1"></td>
+                    <th class="col-5">Tên khách hàng</th>
+                    <td class="col-5" th:text="${giaoDich.khachHang.tenKhachHang}"></td>
+                    <td class="col-1"></td>
+                </tr>
+                <tr>
+                    <td class="col-1"></td>
+                    <th class="col-5">Số điện thoại khách hàng</th>
+                    <td class="col-5" th:text="${giaoDich.khachHang.soDienThoai}"></td>
+                    <td class="col-1"></td>
+                </tr>
+                <tr>
+                    <td class="col-1"></td>
+                    <th class="col-5">Email khách hàng</th>
+                    <td class="col-5" th:text="${giaoDich.khachHang.email}"></td>
+                    <td class="col-1"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-5"></div>
+        <div class="col-2">
+            <!--                    <button type="button" th:attr="onclick=|deleteProduct(${giaoDich.maGiaoDich},'${product.name}')|"-->
+            <button type="button" th:attr="onclick=|deleteGiaoDich(${giaoDich.maGiaoDich})|"
+                    class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Delete
+            </button>
+            <button class="btn btn-primary"><a href="/" class="text-decoration-none text-light">Quay lại</a></button>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure to delete.</p>
+            </div>
+            <div class="modal-footer">
+                <form th:action="@{/delete}">
+                    <input type="hidden" name="action" value="delete">
+                    <input type="hidden" name="id" id="idDelete1">
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:replace="~{layout :: foot}"></th:block>
+<th:block th:replace="~{layout :: foot_bootstrap}"></th:block>
+</body>
+</html>
+<script>
+    function deleteGiaoDich(id) {
+        document.getElementById("idDelete1").value = id;
+        document.getElementById("idDelete2").value = id;
+        // document.getElementById("nameDelete").innerText = name;
+    }
+</script>

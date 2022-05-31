@@ -29,8 +29,8 @@ public class DonHangService implements IDonHangService {
     }
 
     @Override
-    public List<DonHangDto> findAllByTop(int top) {
-        return donHangRepository.findAllTop(top);
+    public Page<DonHang> findAllByTop(Pageable pageable) {
+        return donHangRepository.findAllTop(pageable);
     }
 
 }

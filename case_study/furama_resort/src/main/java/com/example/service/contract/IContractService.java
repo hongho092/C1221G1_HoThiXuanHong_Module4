@@ -19,5 +19,7 @@ public interface IContractService {
 
     void copy(Contract contract, ContractDetail contractDetail, AttachService attachService1, String quantityVal);
 
+    void save1(Contract contract);
+
 //    void copy(Contract contract, ContractDetail contractDetail, AttachService attachServiceVal, String quantityVal);
 }

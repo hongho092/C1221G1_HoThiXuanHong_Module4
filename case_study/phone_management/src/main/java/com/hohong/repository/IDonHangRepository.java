@@ -17,9 +17,14 @@ public interface IDonHangRepository extends JpaRepository<DonHang, Integer> {
                 nativeQuery = true)
     Page<DonHang> findAllSearchDay(@Param("start") String startDay, @Param("end") String endDay, Pageable pageable);
 
-    @Query(value = "select don_hang.ma_don_hang maDonHang,don_hang.ngay_mua ngayMua,don_hang.so_luong soLuong,don_hang.ma_san_pham maSanPham  from don_hang join san_pham on don_hang.ma_san_pham = san_pham.ma_san_pham order by (don_hang.so_luong * san_pham.gia_san_pham) DESC LIMIT :top",
-                nativeQuery = true)
-    List<DonHangDto> findAllTop(@Param("top") int numberTop);
+//    @Query(value = "select don_hang.ma_don_hang maDonHang,don_hang.ngay_mua ngayMua,don_hang.so_luong soLuong,don_hang.ma_san_pham maSanPham  from don_hang join san_pham on don_hang.ma_san_pham = san_pham.ma_san_pham order by (don_hang.so_luong * san_pham.gia_san_pham) DESC LIMIT :top",
+//                nativeQuery = true)
+//    List<DonHangDto> findAllTop(@Param("top") int numberTop);
+
+    @Query(value = "select don_hang.* from don_hang join san_pham on don_hang.ma_san_pham = san_pham.ma_san_pham order by (don_hang.so_luong * san_pham.gia_san_pham) DESC",
+            countQuery = "select don_hang.* from don_hang join san_pham on don_hang.ma_san_pham = san_pham.ma_san_pham order by (don_hang.so_luong * san_pham.gia_san_pham) DESC",
+            nativeQuery = true)
+    Page<DonHang> findAllTop(Pageable pageable);
 
 //    Integer getMaDonHang();
 //    String getNgayMua();

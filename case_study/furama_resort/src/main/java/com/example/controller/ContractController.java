@@ -91,7 +91,7 @@ public class ContractController {
                 contractService.save(contract);
                 contractDetailService.save(contractDetail);
             } else {
-                contractService.save(contract);
+                contractService.save1(contract);
             }
             redirectAttributes.addFlashAttribute("mess", "Create Contract Success");
             return "redirect:/contract/list";

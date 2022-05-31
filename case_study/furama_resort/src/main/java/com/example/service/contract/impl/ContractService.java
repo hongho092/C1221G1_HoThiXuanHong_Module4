@@ -47,6 +47,12 @@ public class ContractService implements IContractService {
 //        System.out.println(" trong service"+contractDetail.getContract().);
     }
 
+    @Override
+    public void save1(Contract contract) {
+        contract.setContractTotalMoney(contract.getService().getServiceCost());
+        contractRepository.save(contract);
+    }
+
 }
 
 

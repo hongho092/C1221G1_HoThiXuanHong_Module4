@@ -76,7 +76,7 @@
                     </datalist>
                 </div>
 
-                Bạn có muốn chọn dịch vụ đính kèm <br>
+                Bạn có muốn chọn dịch vụ đính kèm (hãy nhập form dưới:)<br>
 
                 <div class="input-group my-3">
                     <label for="exampleDataList21" class="form-label"><span class="input-group-text">Tên dịch vụ đính kèm</span></label>
@@ -105,9 +105,6 @@
     </div>
 </div>
 
-<div>
-    <button class="btn btn-warning"><a class="text-decoration-none"  th:href="@{/contract_detail/create_add(id=${contractDto.contractId})}">Tạo hợp đồng chi tiết</a></button>
-</div>
 <th:block th:replace="~{common/layout :: foot}"></th:block>
 <th:block th:replace="~{common/layout :: foot_bootstrap}"></th:block>
 </body>

@@ -1,6 +1,7 @@
 package com.hohong.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "don_hang")
@@ -9,14 +10,14 @@ public class DonHang {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int maDonHang;
-    private String ngayMua;
+    private Date ngayMua;
     private int soLuong;
 
     @ManyToOne
     @JoinColumn(name = "ma_san_pham", referencedColumnName = "maSanPham")
     private SanPham sanPham;
 
-    public DonHang(int maDonHang, String ngayMua, int soLuong, SanPham sanPham) {
+    public DonHang(int maDonHang, Date ngayMua, int soLuong, SanPham sanPham) {
         this.maDonHang = maDonHang;
         this.ngayMua = ngayMua;
         this.soLuong = soLuong;
@@ -34,11 +35,11 @@ public class DonHang {
         this.maDonHang = maDonHang;
     }
 
-    public String getNgayMua() {
+    public Date getNgayMua() {
         return ngayMua;
     }
 
-    public void setNgayMua(String ngayMua) {
+    public void setNgayMua(Date ngayMua) {
         this.ngayMua = ngayMua;
     }
 

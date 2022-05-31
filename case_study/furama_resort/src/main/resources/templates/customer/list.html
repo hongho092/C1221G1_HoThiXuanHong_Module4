@@ -83,6 +83,8 @@
 <!--        </tbody>-->
 <!--    </table>-->
 <!--</div>-->
+
+
 <div class="container">
     <div class="row">
         <div class="card my-5 me-2 col-4" th:each="customer, hong : ${customerPage}" style="width: 32%">
@@ -115,7 +117,6 @@
         </div>
     </div>
 </div>
-
 
 <div class="col-11">
     <nav aria-label="Page navigation example">
@@ -169,3 +170,11 @@
         document.getElementById("nameDelete").innerText = name;
     }
 </script>
+
+
+
+<!--@Transactional-->
+<!--@Modifying-->
+<!--@Query(value = "update employee set flag = 0 where employee_id = :idDelete",-->
+<!--nativeQuery = true)-->
+<!--void softDelete(@Param("idDelete") Integer id);-->

@@ -66,7 +66,7 @@ public class CustomerController {
                                BindingResult bindingResult,
                                RedirectAttributes redirectAttributes,
                                Model model) {
-        System.out.println(customerDto.getCustomerBirthday());
+//        System.out.println(customerDto.getCustomerBirthday());
         List<Customer> customerList = customerService.findAll();
         CustomerDto customerDto1 = new CustomerDto();
         customerDto1.validate(customerDto, bindingResult);

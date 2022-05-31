@@ -1,0 +1,13 @@
+package com.hongho;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class ThiCuoiModule4ApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}
